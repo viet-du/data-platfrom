@@ -1,6 +1,6 @@
 # Data Platform
 
-![Data Platform Banner](docs/architecture/diagrams/readme-banner.png)
+![Data Platform Banner](docs/architecture/diagrams/readme-header.png)
 
 ---
 
