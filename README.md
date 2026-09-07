@@ -23,9 +23,9 @@
 
 <div align="center">
 
-![Data Platform Banner](docs/architecture/diagrams/readme-header.png)
+![Data Platform Banner](docs/architecture/diagrams/end-to-end-banner.png)
 
-*Nền tảng data pipeline cấp doanh nghiệp với kiến trúc Lakehouse*
+*Nền tảng data pipeline cấp doanh nghiệp - Từ thu thập đến Business Intelligence*
 
 </div>
 
