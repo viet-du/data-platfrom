@@ -1,66 +1,44 @@
 #!/usr/bin/env python3
 """
-Beautiful README Banner - Glassmorphism Style
+Bright & Beautiful README Banner - Modern Gradient Style
 """
 
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib.patches import FancyBboxPatch, Rectangle, Circle, FancyArrowPatch
 import numpy as np
-from matplotlib.colors import LinearSegmentedColormap
 
-def create_beautiful_banner():
-    fig = plt.figure(figsize=(16, 9), facecolor='#0f172a')
+def create_bright_banner():
+    fig = plt.figure(figsize=(16, 9), facecolor='#f8fafc')
     ax = fig.add_subplot(111)
     ax.set_xlim(0, 16)
     ax.set_ylim(0, 9)
     ax.axis('off')
     
-    # Background gradient effect
-    colors_bg = ['#0f172a', '#1e1b4b', '#312e81']
-    for i, color in enumerate(colors_bg):
-        rect = Rectangle((0, i * 3), 16, 3, facecolor=color, edgecolor='none')
+    # ============ GRADIENT BACKGROUND ============
+    # Top gradient bar
+    gradient_colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c']
+    for i in range(100):
+        ratio = i / 100
+        color_val = (0.4 + ratio * 0.1, 0.5 + ratio * 0.2, 0.92 - ratio * 0.3)
+        rect = Rectangle((0, 7.5 + i*0.015), 16, 0.015, facecolor=color_val, edgecolor='none')
         ax.add_patch(rect)
     
-    # Add subtle grid pattern
-    for x in np.arange(0, 16, 0.5):
-        ax.axvline(x, color='white', alpha=0.02, linewidth=0.5)
-    for y in np.arange(0, 9, 0.5):
-        ax.axhline(y, color='white', alpha=0.02, linewidth=0.5)
+    # ============ HEADER SECTION ============
+    # Glass card for title
+    title_card = FancyBboxPatch((2, 6.8), 12, 1.8,
+                                boxstyle="round,pad=0.08",
+                                facecolor='white', edgecolor='#e2e8f0', linewidth=2)
+    ax.add_patch(title_card)
     
-    # ============ FLOATING ORBS FOR GLASSMORPHISM ============
-    # Large gradient orb - top right
-    for i in range(50):
-        alpha = 0.02 + (i * 0.003)
-        size = 1.5 + (i * 0.05)
-        circle = Circle((12 + i*0.02, 6.5 + i*0.02), size, 
-                       facecolor='#818cf8', edgecolor='none', alpha=alpha)
-        ax.add_patch(circle)
+    # Main title
+    ax.text(8, 7.9, 'DATA PLATFORM', fontsize=48, fontweight='bold',
+            ha='center', va='center', color='#1e293b')
     
-    # Medium orb - bottom left  
-    for i in range(40):
-        alpha = 0.015 + (i * 0.003)
-        size = 1.0 + (i * 0.04)
-        circle = Circle((3 - i*0.015, 2.5 - i*0.015), size,
-                       facecolor='#34d399', edgecolor='none', alpha=alpha)
-        ax.add_patch(circle)
+    ax.text(8, 7.2, 'Enterprise Data Engineering Platform', fontsize=16,
+            ha='center', va='center', color='#64748b')
     
-    # Small accent orb
-    for i in range(30):
-        alpha = 0.02 + (i * 0.004)
-        size = 0.5 + (i * 0.03)
-        circle = Circle((14, 1.5 + i*0.02), size,
-                       facecolor='#f472b6', edgecolor='none', alpha=alpha)
-        ax.add_patch(circle)
-    
-    # ============ MAIN TITLE ============
-    ax.text(8, 7.2, 'DATA PLATFORM', fontsize=52, fontweight='bold',
-            ha='center', va='center', color='white', fontfamily='sans-serif')
-    
-    ax.text(8, 6.3, 'Enterprise Data Engineering Platform', fontsize=18,
-            ha='center', va='center', color='#94a3b8', fontfamily='sans-serif')
-    
-    # ============ TECH BADGES ROW ============
+    # ============ TECH STACK BADGES ============
     badges_data = [
         ('Python', '#306998'),
         ('Databricks', '#FF3621'),
@@ -72,121 +50,119 @@ def create_beautiful_banner():
         ('FastAPI', '#009688'),
     ]
     
-    badge_y = 5.0
-    badge_width = 1.6
-    badge_height = 0.45
-    total_width = len(badges_data) * badge_width + (len(badges_data) - 1) * 0.15
+    badge_y = 5.5
+    badge_width = 1.5
+    badge_height = 0.5
+    total_width = len(badges_data) * badge_width + (len(badges_data) - 1) * 0.2
     start_x = (16 - total_width) / 2
     
     for i, (name, color) in enumerate(badges_data):
-        x = start_x + i * (badge_width + 0.15)
+        x = start_x + i * (badge_width + 0.2)
         
-        # Badge with glass effect
         badge = FancyBboxPatch((x, badge_y), badge_width, badge_height,
-                               boxstyle="round,pad=0.03",
-                               facecolor=color, edgecolor='none', alpha=0.85)
+                               boxstyle="round,pad=0.05",
+                               facecolor=color, edgecolor='none', alpha=0.9)
         ax.add_patch(badge)
         
         ax.text(x + badge_width/2, badge_y + badge_height/2, name, 
                 fontsize=10, fontweight='bold', ha='center', va='center', color='white')
     
-    # ============ ARCHITECTURE FLOW ============
-    flow_y = 3.5
+    # ============ PIPELINE FLOW ============
+    flow_y = 3.8
     
-    # Glass container
-    container = FancyBboxPatch((1, 2.5), 14, 2.0,
-                               boxstyle="round,pad=0.05",
-                               facecolor='white', edgecolor='white', alpha=0.05)
+    # Container card
+    container = FancyBboxPatch((0.8, 2.8), 14.4, 2.2,
+                               boxstyle="round,pad=0.08",
+                               facecolor='white', edgecolor='#e2e8f0', linewidth=2)
     ax.add_patch(container)
-    container_border = FancyBboxPatch((1, 2.5), 14, 2.0,
-                                      boxstyle="round,pad=0.05",
-                                      facecolor='none', edgecolor='white', alpha=0.15, linewidth=1)
-    ax.add_patch(container_border)
+    
+    # Section title
+    ax.text(8, 4.7, 'Data Pipeline', fontsize=14, fontweight='bold',
+            ha='center', va='center', color='#1e293b')
     
     # Pipeline steps
     steps = [
-        ('Data\nSources', '#4ade80', 'Google Drive, APIs'),
-        ('Bronze\nLayer', '#fb923c', 'Raw Data'),
-        ('Silver\nLayer', '#60a5fa', 'Cleaned Data'),
-        ('Gold\nLayer', '#fbbf24', 'Business Ready'),
-        ('Serving', '#c084fc', 'BI, API'),
+        ('Data\nSources', '#22c55e', 'Google Drive\nAPIs'),
+        ('Bronze\nLayer', '#f97316', 'Raw Data\nStorage'),
+        ('Silver\nLayer', '#3b82f6', 'Cleaned\nData'),
+        ('Gold\nLayer', '#eab308', 'Business\nReady'),
+        ('Serving', '#a855f7', 'BI & API'),
     ]
     
-    step_width = 2.2
-    step_spacing = 0.4
+    step_width = 2.0
+    step_spacing = 0.6
     total_flow = len(steps) * step_width + (len(steps)-1) * step_spacing
     start_flow = (16 - total_flow) / 2
     
     for i, (label, color, desc) in enumerate(steps):
         x = start_flow + i * (step_width + step_spacing)
         
-        # Step box with glass effect
-        step_box = FancyBboxPatch((x, flow_y), step_width, 1.2,
-                                   boxstyle="round,pad=0.05",
-                                   facecolor=color, edgecolor='none', alpha=0.9)
+        # Step box
+        step_box = FancyBboxPatch((x, flow_y), step_width, 1.0,
+                                   boxstyle="round,pad=0.08",
+                                   facecolor=color, edgecolor='none', alpha=0.95)
         ax.add_patch(step_box)
         
-        # Inner glow
-        step_inner = FancyBboxPatch((x + 0.05, flow_y + 0.05), step_width - 0.1, 1.1,
-                                    boxstyle="round,pad=0.03",
-                                    facecolor='white', edgecolor='none', alpha=0.1)
+        # White inner glow
+        step_inner = FancyBboxPatch((x + 0.05, flow_y + 0.05), step_width - 0.1, 0.9,
+                                    boxstyle="round,pad=0.05",
+                                    facecolor='white', edgecolor='none', alpha=0.15)
         ax.add_patch(step_inner)
         
-        ax.text(x + step_width/2, flow_y + 0.85, label, fontsize=12, fontweight='bold',
+        ax.text(x + step_width/2, flow_y + 0.7, label, fontsize=11, fontweight='bold',
                 ha='center', va='center', color='white')
-        ax.text(x + step_width/2, flow_y + 0.3, desc, fontsize=8,
-                ha='center', va='center', color='white', alpha=0.8)
+        ax.text(x + step_width/2, flow_y + 0.25, desc, fontsize=7,
+                ha='center', va='center', color='white', alpha=0.9)
         
         # Arrow
         if i < len(steps) - 1:
-            arrow_x = x + step_width + 0.05
-            arrow_y = flow_y + 0.6
-            ax.annotate('', xy=(arrow_x + step_spacing - 0.15, arrow_y), 
+            arrow_x = x + step_width + 0.1
+            arrow_y = flow_y + 0.5
+            ax.annotate('', xy=(arrow_x + step_spacing - 0.2, arrow_y), 
                         xytext=(arrow_x, arrow_y),
-                        arrowprops=dict(arrowstyle='->', color='white', lw=2.5))
+                        arrowprops=dict(arrowstyle='->', color='#1e293b', lw=2.5))
     
-    # ============ BOTTOM STATS ============
-    stats = [
-        ('100%', 'Open Source'),
-        ('Cloud', 'Native'),
-        ('Free', 'Tier Available'),
-        ('ETL', 'Pipeline'),
+    # ============ FEATURES ROW ============
+    features = [
+        ('ETL Pipeline', 'Automated Data Processing'),
+        ('Data Warehouse', 'Centralized Storage'),
+        ('Business Intel', 'Real-time Analytics'),
+        ('ML Ready', 'Predictive Analytics'),
     ]
     
-    stats_y = 1.3
-    stats_width = 3.0
-    total_stats = len(stats) * stats_width + (len(stats)-1) * 0.5
-    start_stats = (16 - total_stats) / 2
+    feat_y = 1.6
+    feat_width = 3.4
+    feat_spacing = 0.3
+    total_feat = len(features) * feat_width + (len(features)-1) * feat_spacing
+    start_feat = (16 - total_feat) / 2
     
-    for i, (value, label) in enumerate(stats):
-        x = start_stats + i * (stats_width + 0.5)
+    colors_feat = ['#22c55e', '#3b82f6', '#f97316', '#a855f7']
+    
+    for i, ((title, desc), color) in enumerate(zip(features, colors_feat)):
+        x = start_feat + i * (feat_width + feat_spacing)
         
-        # Glass stat box
-        stat_box = FancyBboxPatch((x, stats_y), stats_width, 0.8,
-                                  boxstyle="round,pad=0.03",
-                                  facecolor='white', edgecolor='white', alpha=0.08)
-        ax.add_patch(stat_box)
-        stat_border = FancyBboxPatch((x, stats_y), stats_width, 0.8,
-                                     boxstyle="round,pad=0.03",
-                                     facecolor='none', edgecolor='white', alpha=0.2, linewidth=1)
-        ax.add_patch(stat_border)
+        # Feature box
+        feat_box = FancyBboxPatch((x, feat_y), feat_width, 0.9,
+                                  boxstyle="round,pad=0.06",
+                                  facecolor=color, edgecolor='none', alpha=0.9)
+        ax.add_patch(feat_box)
         
-        ax.text(x + stats_width/2, stats_y + 0.5, value, fontsize=16, fontweight='bold',
+        ax.text(x + feat_width/2, feat_y + 0.55, title, fontsize=11, fontweight='bold',
                 ha='center', va='center', color='white')
-        ax.text(x + stats_width/2, stats_y + 0.2, label, fontsize=9,
-                ha='center', va='center', color='#94a3b8')
+        ax.text(x + feat_width/2, feat_y + 0.25, desc, fontsize=8,
+                ha='center', va='center', color='white', alpha=0.9)
     
     # ============ FOOTER ============
-    ax.text(8, 0.2, 'Built with passion | Databricks Community Edition',
-            fontsize=10, ha='center', va='center', color='#64748b')
+    ax.text(8, 0.3, 'Open Source | Cloud Native | Databricks Community Edition',
+            fontsize=11, ha='center', va='center', color='#94a3b8', fontweight='bold')
     
     plt.tight_layout()
     return fig
 
 if __name__ == '__main__':
-    fig = create_beautiful_banner()
+    fig = create_bright_banner()
     output_path = 'docs/architecture/diagrams/readme-banner.png'
     fig.savefig(output_path, dpi=200, bbox_inches='tight',
-                facecolor='#0f172a', edgecolor='none')
+                facecolor='#f8fafc', edgecolor='none')
     print(f'Banner saved to: {output_path}')
     plt.close()
