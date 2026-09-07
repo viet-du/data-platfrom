@@ -1,12 +1,16 @@
 # Data Platform
 
+![Data Platform Banner](docs/architecture/diagrams/readme-banner.png)
+
+---
+
 > Nền tảng xử lý dữ liệu doanh nghiệp - ETL, Data Warehouse, Business Intelligence
 
 ## 🎯 Tổng Quan
 
 Data Platform là một hệ thống xử lý dữ liệu end-to-end được thiết kế cho doanh nghiệp vừa và nhỏ. Hệ thống sử dụng các công nghệ cloud-native miễn phí, cho phép bắt đầu với chi phí thấp và mở rộng theo nhu cầu.
 
-**Tác giả:** Dư Quốc Việt  
+**Tác giả:** Dư Quốc Việt
 **Email:** duviet720@gmail.com
 
 ---
