@@ -1,10 +1,10 @@
 # Data Platform
 
-**Nền tảng xử lý dữ liệu doanh nghiệp - ETL, Data Warehouse, Business Intelligence**
-
-![Data Platform Architecture](docs/architecture/diagrams/architecture-overview.png)
+![Data Platform Banner](docs/architecture/diagrams/readme-banner.png)
 
 ---
+
+**Nền tảng xử lý dữ liệu doanh nghiệp - ETL, Data Warehouse, Business Intelligence**
 
 ## 🎯 Tổng Quan
 
