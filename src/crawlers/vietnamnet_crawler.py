@@ -1,5 +1,5 @@
 """
-VietnamNet Crawler
+VietnamNet Crawler - Fixed for new URL structure
 """
 from typing import List, Dict, Optional
 from bs4 import BeautifulSoup
@@ -15,29 +15,38 @@ class VietnamNetCrawler(BaseCrawler):
             name='VietnamNet',
             base_url='https://vietnamnet.vn',
             folder_name='vietnamnet-news',
-            categories=['thoi-su', 'the-gioi', 'kinh-te', 'the-thao', 'cong-nghe', 'giai-tri', 'giao-duc']
+            categories=['thoi-su', 'the-gioi', 'kinh-doanh', 'the-thao', 'giai-tri', 'suc-khoe', 'giao-duc']
         )
     
     def get_article_urls(self, category: str) -> List[str]:
         """Get article URLs from category page"""
-        url = f"{self.base_url}/{category}"
-        response = self._retry_request(url)
+        # Try multiple URL patterns
+        url_patterns = [
+            f"{self.base_url}/{category}",
+            f"{self.base_url}/{category}/",
+            f"{self.base_url}/{category}.html",
+        ]
         
-        if not response:
-            return []
+        for url in url_patterns:
+            response = self._retry_request(url)
+            if response and response.status_code == 200:
+                return self._extract_urls(response.text)
         
-        soup = self._parse_html(response.text)
+        return []
+    
+    def _extract_urls(self, html: str) -> List[str]:
+        """Extract article URLs from HTML"""
+        soup = self._parse_html(html)
         urls = []
         
-        # Find article links
         for link in soup.find_all('a', href=True):
             href = link['href']
-            if href.startswith('http') and 'vietnamnet.vn' in href:
-                urls.append(href)
-            elif href.startswith('/') and not href.startswith('//'):
-                urls.append(f"{self.base_url}{href}")
+            if 'vietnamnet.vn' in href and any(x in href for x in ['/article/', '.htm', '-']):
+                if href.startswith('http'):
+                    urls.append(href)
+                elif href.startswith('/'):
+                    urls.append(f"{self.base_url}{href}")
         
-        # Remove duplicates and filter
         seen = set()
         valid_urls = []
         for url in urls:
@@ -49,7 +58,7 @@ class VietnamNetCrawler(BaseCrawler):
     
     def _is_valid_article_url(self, url: str) -> bool:
         """Check if URL is a valid article URL"""
-        invalid_patterns = ['/video/', '/gallery/', '/tag/', '/search/', '/author/', '/topic/']
+        invalid_patterns = ['/video/', '/gallery/', '/tag/', '/search/', '/author/', '/topic/', '/van-de/', '/error/']
         return not any(pattern in url for pattern in invalid_patterns)
     
     def parse_article(self, url: str) -> Optional[Dict]:
@@ -67,28 +76,30 @@ class VietnamNetCrawler(BaseCrawler):
         }
         
         # Title
-        title_elem = soup.find('h1', class_='detail-title') or soup.find('h1', class_='title')
+        title_elem = soup.find('h1', class_='title-detail') or soup.find('h1', class_='detail-title')
+        if not title_elem:
+            title_elem = soup.find('meta', property='og:title')
         if title_elem:
-            article['title'] = title_elem.get_text(strip=True)
+            article['title'] = title_elem.get('content', '') or title_elem.get_text(strip=True)
         
         # Description
-        desc_elem = soup.find('h2', class_='detail-sapo') or soup.find('meta', property='og:description')
+        desc_elem = soup.find('p', class_='description') or soup.find('meta', property='og:description')
         if desc_elem:
             article['description'] = desc_elem.get('content', '') or desc_elem.get_text(strip=True)
         
         # Content
-        content_elem = soup.find('div', class_='detail-content') or soup.find('article')
+        content_elem = soup.find('div', class_='content-detail') or soup.find('article')
         if content_elem:
             paragraphs = content_elem.find_all('p')
             article['content'] = '\n'.join([p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True)])
         
         # Author
-        author_elem = soup.find('div', class_='detail-author') or soup.find('meta', attrs={'name': 'author'})
+        author_elem = soup.find('p', class_='author') or soup.find('meta', attrs={'name': 'author'})
         if author_elem:
             article['author'] = author_elem.get('content', '') or author_elem.get_text(strip=True)
         
         # Published date
-        date_elem = soup.find('span', class_='date-time') or soup.find('meta', property='article:published_time')
+        date_elem = soup.find('span', class_='date') or soup.find('meta', property='article:published_time')
         if date_elem:
             article['published_date'] = date_elem.get('content', '') or date_elem.get_text(strip=True)
         

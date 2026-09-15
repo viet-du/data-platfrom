@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  crawl-raw:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "crawl_raw.py"]
+    volumes:
+      - ./data:/app/data
+
+networks:
+  crawler-net:
+    driver: bridge

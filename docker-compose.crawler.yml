@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  crawler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/configs/google-drive-credentials.json
+      - GOOGLE_DRIVE_CREDENTIALS_PATH=/app/configs/google-drive-credentials.json
+      - GOOGLE_DRIVE_FOLDER_ID=${GOOGLE_DRIVE_FOLDER_ID}
+    volumes:
+      - ./data:/app/data
+      - ./configs:/app/configs
+    networks:
+      - crawler-net
+
+networks:
+  crawler-net:
+    driver: bridge

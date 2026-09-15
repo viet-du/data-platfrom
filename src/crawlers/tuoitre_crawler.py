@@ -1,5 +1,5 @@
 """
-Tuổi Trẻ Crawler
+Tuổi Trẻ Crawler - Fixed URL structure
 """
 from typing import List, Dict, Optional
 from bs4 import BeautifulSoup
@@ -20,17 +20,8 @@ class TuoiTreCrawler(BaseCrawler):
     
     def get_article_urls(self, category: str) -> List[str]:
         """Get article URLs from category page"""
-        category_urls = {
-            'thoi-su': 'https://tuoitre.vn/timeline/0/tin-tuc.htm',
-            'the-gioi': 'https://tuoitre.vn/timeline/7/the-gioi.htm',
-            'kinh-te': 'https://tuoitre.vn/timeline/1/kinh-te.htm',
-            'the-thao': 'https://tuoitre.vn/timeline/6/the-thao.htm',
-            'cong-nghe': 'https://tuoitre.vn/timeline/19/cong-nghe.htm',
-            'van-hoa': 'https://tuoitre.vn/timeline/3/van-hoa-xa-hoi.htm',
-            'giao-duc': 'https://tuoitre.vn/timeline/4/giao-duc.htm',
-        }
-        
-        url = category_urls.get(category, f"{self.base_url}/{category}")
+        # TuoiTre uses /<category>.htm format
+        url = f"{self.base_url}/{category}.htm"
         response = self._retry_request(url)
         
         if not response:
@@ -59,7 +50,7 @@ class TuoiTreCrawler(BaseCrawler):
     
     def _is_valid_article_url(self, url: str) -> bool:
         """Check if URL is a valid article URL"""
-        invalid_patterns = ['/video/', '/album/', '/tag/', '/search/', '/作者/']
+        invalid_patterns = ['/video/', '/album/', '/tag/', '/search/', '/error/', '/author/']
         return not any(pattern in url for pattern in invalid_patterns)
     
     def parse_article(self, url: str) -> Optional[Dict]:
@@ -78,8 +69,10 @@ class TuoiTreCrawler(BaseCrawler):
         
         # Title
         title_elem = soup.find('h1', class_='article-title') or soup.find('h1', class_='title')
+        if not title_elem:
+            title_elem = soup.find('meta', property='og:title')
         if title_elem:
-            article['title'] = title_elem.get_text(strip=True)
+            article['title'] = title_elem.get('content', '') or title_elem.get_text(strip=True)
         
         # Description
         desc_elem = soup.find('h2', class_='article-summary') or soup.find('meta', property='og:description')

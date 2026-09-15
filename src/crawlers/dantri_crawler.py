@@ -1,5 +1,5 @@
 """
-Dân Trí Crawler
+Dân Trí Crawler - Fixed URL structure
 """
 from typing import List, Dict, Optional
 from bs4 import BeautifulSoup
@@ -20,7 +20,8 @@ class DanTriCrawler(BaseCrawler):
     
     def get_article_urls(self, category: str) -> List[str]:
         """Get article URLs from category page"""
-        url = f"{self.base_url}/{category}"
+        # DanTri uses /<category>.htm format
+        url = f"{self.base_url}/{category}.htm"
         response = self._retry_request(url)
         
         if not response:
@@ -32,10 +33,12 @@ class DanTriCrawler(BaseCrawler):
         # Find article links
         for link in soup.find_all('a', href=True):
             href = link['href']
-            if href.startswith('http') and 'dantri.com.vn' in href:
-                urls.append(href)
-            elif href.startswith('/') and not href.startswith('//'):
-                urls.append(f"{self.base_url}{href}")
+            # DanTri article URLs contain article ID
+            if '.dantri.com.vn/' in href and '/src/' not in href and '/login' not in href:
+                if href.startswith('http'):
+                    urls.append(href)
+                elif href.startswith('/'):
+                    urls.append(f"{self.base_url}{href}")
         
         # Remove duplicates and filter
         seen = set()
@@ -49,7 +52,7 @@ class DanTriCrawler(BaseCrawler):
     
     def _is_valid_article_url(self, url: str) -> bool:
         """Check if URL is a valid article URL"""
-        invalid_patterns = ['/video/', '/audio/', '/tag/', '/search/', '/subscribe/', '/tin-tuc-']
+        invalid_patterns = ['/video/', '/audio/', '/tag/', '/search/', '/subscribe/', '/login', '/src/']
         return not any(pattern in url for pattern in invalid_patterns)
     
     def parse_article(self, url: str) -> Optional[Dict]:
@@ -68,8 +71,10 @@ class DanTriCrawler(BaseCrawler):
         
         # Title
         title_elem = soup.find('h1', class_='article-title') or soup.find('h1', class_='title')
+        if not title_elem:
+            title_elem = soup.find('meta', property='og:title')
         if title_elem:
-            article['title'] = title_elem.get_text(strip=True)
+            article['title'] = title_elem.get('content', '') or title_elem.get_text(strip=True)
         
         # Description
         desc_elem = soup.find('h2', class_='article-sapo') or soup.find('meta', property='og:description')

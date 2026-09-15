@@ -1,0 +1,1230 @@
+{
+  "crawled_at": "2026-09-15T10:55:11.521703",
+  "total_articles": 136,
+  "articles": [
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:46.246495"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:46.403440"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:46.510940"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:46.553094"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:46.746541"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:47.141875"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:47.343991"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:47.416233"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:47.472611"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:47.550697"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:47.679753"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:47.764354"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:47.824393"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:47.906426"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:48.008452"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:48.113839"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:54:48.197812"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:46.223692"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:46.384434"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:46.460032"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:46.532436"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:46.679635"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:47.352228"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:47.583236"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:47.642651"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:47.709983"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:47.794160"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:47.977050"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:48.079612"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:48.169669"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:48.322818"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:48.435993"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:48.610267"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:54:49.223946"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:46.267907"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:46.441383"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:47.012481"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:47.055791"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:47.133391"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:47.732642"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:47.969133"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:48.080310"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:48.227769"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:48.291405"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:48.503126"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:48.720550"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:48.787292"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:48.869070"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:49.051721"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:49.149030"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:54:49.265592"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:46.290917"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:46.421908"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:46.477627"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:46.572845"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:46.750229"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:47.424384"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:48.260216"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:48.365789"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:48.466221"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:48.562026"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:48.932785"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:49.006175"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:49.115547"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:49.236744"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:49.368529"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:49.479141"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:54:49.553603"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:48.524310"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:48.630290"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:48.690461"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:48.757270"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:48.823147"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:48.877177"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:49.085019"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:49.176558"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:49.296287"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:49.443374"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:49.632846"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:49.727810"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:49.832550"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:49.983889"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:50.073228"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:50.194772"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:54:50.311868"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:49.501754"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:49.651666"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:49.697285"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:49.785104"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:49.882018"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:49.946878"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:50.283297"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:50.339883"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:50.413172"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:50.506804"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:50.676357"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:50.788375"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:50.906270"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:50.966239"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:51.032680"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:51.101334"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:54:51.206200"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:49.784103"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:49.959288"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:50.041523"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:50.091710"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:50.161130"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:50.209177"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:50.447132"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:50.549359"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:50.624228"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:50.706286"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:50.875901"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:51.001754"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:51.062378"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:51.177918"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:51.268807"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:51.335554"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:54:51.411853"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:49.445594"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:49.581045"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:49.746109"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:49.802654"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:49.926159"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:49.991979"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:50.280479"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:50.382649"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:50.476527"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:50.579245"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:50.743540"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:50.839083"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:50.935865"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:51.147769"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:51.237493"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:51.302920"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:54:51.490962"
+    }
+  ]
+}

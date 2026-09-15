@@ -1,0 +1,2333 @@
+{
+  "crawled_at": "2026-09-15T10:58:51.994578",
+  "total_articles": 267,
+  "articles": [
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:04.892713"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:05.016323"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:05.076888"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:05.127891"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:05.274462"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:05.380310"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:05.596016"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:05.685548"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:05.780666"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:05.909624"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:06.131912"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:06.259093"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:06.459606"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:06.541518"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:06.619238"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:06.715891"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:06.842036"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:04.957708"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:05.083033"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:05.159267"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:05.214143"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:05.367914"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:05.424267"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:05.650933"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:05.714936"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:05.813933"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:05.940468"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:06.214271"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:06.311996"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:06.489706"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:06.656413"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:06.784050"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:06.936027"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:07.012121"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:04.942716"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:05.045803"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:05.109336"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:05.195358"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:05.370950"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:05.432549"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:05.750237"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:05.875839"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:06.006086"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:06.094339"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:06.356702"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:06.682224"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:06.814187"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:06.952893"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:07.043125"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:07.146683"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:07.227567"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:04.914587"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:05.177790"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:05.233061"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:05.291821"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:05.415604"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:05.447110"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:05.994410"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:06.064745"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:06.177794"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:06.319805"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:06.753198"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:06.887483"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:06.983522"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:07.073088"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:07.178313"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:07.302329"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:07.384570"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:07.200427"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:07.398764"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:07.515439"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:07.582726"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:07.681818"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:07.775910"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:08.000101"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:08.082906"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:08.224596"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:08.306559"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:08.501608"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:08.728340"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:08.885769"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:08.946449"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:09.256564"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:09.315967"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:09.390396"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:07.446562"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:07.602046"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:07.645673"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:07.745642"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:07.828999"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:07.915029"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:08.166540"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:08.253674"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:08.359584"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:08.477868"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:08.653707"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:08.759403"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:08.832032"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:08.916111"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:09.161537"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:09.222088"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:09.571964"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:07.351174"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:07.467879"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:07.543095"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:07.619180"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:07.767382"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:07.837127"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:08.041343"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:08.126959"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:08.226103"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:08.329245"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:08.566032"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:08.803284"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:09.067051"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:09.476784"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:09.544384"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:09.606069"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "so-hoa",
+      "crawled_at": "2026-09-15T10:58:09.758703"
+    },
+    {
+      "url": "https://vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "TP HCMChạy xe liên tục 13-15 tiếng, không ngày nghỉ hay chế độ an sinh, mất thưởng nếu từ chối cuốc, tài xế công nghệ đang trả giá đắt cho giấc mơ tự chủ, linh hoạt thời gian làm việc.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:07.565129"
+    },
+    {
+      "url": "https://vnexpress.net/tin-tuc-24h",
+      "source": "VNExpress",
+      "title": "Tin tức 24hMới nhất",
+      "description": "Hà NộiTrên cao tốc Pháp Vân - Cầu Giẽ, xe SUV màu trắng liên tục đổi hướng, phanh gấp, khiến các xe phía sau tông liên hoàn, ngày 15/9.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:07.700703"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ha-noi-2056",
+      "source": "VNExpress",
+      "title": "Hà Nội",
+      "description": "Mây đối lưu đang phát triển và mở rộng, dự báo gây mưa lớn nhiều khu vực Hà Nội trong chiều 15/9, trùng giờ tan tầm, có thể gây ngập cục bộ.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:07.793390"
+    },
+    {
+      "url": "https://vnexpress.net/chu-de/thanh-pho-ho-chi-minh-2091",
+      "source": "VNExpress",
+      "title": "TP HCM",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:07.854849"
+    },
+    {
+      "url": "https://e.vnexpress.net/",
+      "source": "VNExpress",
+      "title": "",
+      "description": "VnExpress International is a leading source for politics, economic, finance, travel & food from Vietnam and ASEAN.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:07.949827"
+    },
+    {
+      "url": "https://vnexpress.net/myvne",
+      "source": "VNExpress",
+      "title": "là gì?",
+      "description": "VnExpress tin tức mới nhất - Thông tin nhanh & chính xác được cập nhật hàng giờ. Đọc báo tin tức online Việt Nam & Thế giới nóng nhất trong ngày về thể thao, thời sự, pháp luật, kinh doanh,...",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:08.008462"
+    },
+    {
+      "url": "https://vnexpress.net/thoi-su",
+      "source": "VNExpress",
+      "title": "Thời sự",
+      "description": "Bầu trời nhiều nơi ở Cà Mau, Cần Thơ, An Giang... mờ đục từ sáng đến tối suốt hai ngày qua dù nhiều thời điểm có nắng.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:08.421246"
+    },
+    {
+      "url": "https://vnexpress.net/the-gioi",
+      "source": "VNExpress",
+      "title": "Thế giới",
+      "description": "Đan Mạch cáo buộc hộ vệ hạm Nga bắn hai quả pháo sáng về phía trực thăng quân sự nước này, trong đó một quả suýt trúng máy bay.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:08.528427"
+    },
+    {
+      "url": "https://vnexpress.net/kinh-doanh",
+      "source": "VNExpress",
+      "title": "Kinh doanh",
+      "description": "Một tuần trước khi chứng khoán Việt Nam chính thức nâng hạng, khối ngoại mua ròng hơn 30 triệu cổ phiếu, mức cao nhất kể từ tháng 4.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:08.609410"
+    },
+    {
+      "url": "https://vnexpress.net/khoa-hoc-cong-nghe",
+      "source": "VNExpress",
+      "title": "Khoa học công nghệ",
+      "description": "Nhà máy mới của UBTech bắt đầu hoạt động, cứ 10 phút xuất xưởng một robot, với nhân lực vận hành hoàn toàn bằng robot hình người và hệ thống tự động hóa.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:08.704813"
+    },
+    {
+      "url": "https://vnexpress.net/bat-dong-san",
+      "source": "VNExpress",
+      "title": "Bất động sản",
+      "description": "Việt Nam đứng vị trí 50 trong 89 nước được khảo sát về tính minh bạch của thị trường bất động sản, xếp sau Singapore, Thái Lan, Philippines, theo đánh giá của JLL.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:08.996171"
+    },
+    {
+      "url": "https://vnexpress.net/suc-khoe",
+      "source": "VNExpress",
+      "title": "Sức khỏe",
+      "description": "Hà NộiSau thời gian bị 'bêu riếu' trên trang confession của trường, nữ sinh lớp 10 liên tục thức thâu đêm lướt mạng xã hội và tự gây thương tích để giải tỏa cảm xúc.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:09.363669"
+    },
+    {
+      "url": "https://vnexpress.net/the-thao",
+      "source": "VNExpress",
+      "title": "Thể thao",
+      "description": "Hà NộiHậu vệ Đoàn Văn Hậu của Công an Hà Nội bị phạt treo giò bổ sung sau pha đạp vào chân khiến Doãn Ngọc Tân chấn thương ở vòng 2 V-League 2026-2027.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:09.419884"
+    },
+    {
+      "url": "https://vnexpress.net/giai-tri",
+      "source": "VNExpress",
+      "title": "Giải trí",
+      "description": "Hải PhòngDàn người đẹp Hoa hậu Việt Nam 2026 mặc áo dài trắng, tôn nét trong trẻo khi chụp ảnh ngoài trời tại Đồ Sơn.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:09.508150"
+    },
+    {
+      "url": "https://vnexpress.net/phap-luat",
+      "source": "VNExpress",
+      "title": "Pháp luật",
+      "description": "Nguyễn Trí Hào mang dao đến nhà người yêu cũ tìm nhưng không gặp, sau đó chém cha cô tử vong và làm hai người khác bị thương.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:09.661146"
+    },
+    {
+      "url": "https://vnexpress.net/giao-duc",
+      "source": "VNExpress",
+      "title": "Giáo dục",
+      "description": "Bộ Giáo dục và Đào tạo nhận trách nhiệm về việc khan hiếm sách giáo khoa, cho biết cả nước hiện chỉ còn thiếu khoảng 4 triệu cuốn, tức 1,5% nhu cầu.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:09.730287"
+    },
+    {
+      "url": "https://vnexpress.net/doi-song",
+      "source": "VNExpress",
+      "title": "Đời sống",
+      "description": "Việc phân biệt mỡ nội cơ và mỡ dưới da là bước đầu tiên để đánh giá chính xác hương vị và sự mềm mọng của một miếng thịt bò nguyên bản.",
+      "author": "VnExpress",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:09.785466"
+    },
+    {
+      "url": "https://vietnamnet.vn/thong-tin-toa-soan",
+      "source": "VietnamNet",
+      "title": "Thông tin tòa soạn",
+      "description": "Thông tin tòa soạn",
+      "author": "VietNamNet News",
+      "category": "kinh-doanh",
+      "crawled_at": "2026-09-15T10:58:10.177815"
+    },
+    {
+      "url": "https://vietnamnet.vn/thong-tin-toa-soan",
+      "source": "VietnamNet",
+      "title": "Thông tin tòa soạn",
+      "description": "Thông tin tòa soạn",
+      "author": "VietNamNet News",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:10.231482"
+    },
+    {
+      "url": "https://vietnamnet.vn/thong-tin-toa-soan",
+      "source": "VietnamNet",
+      "title": "Thông tin tòa soạn",
+      "description": "Thông tin tòa soạn",
+      "author": "VietNamNet News",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:10.265978"
+    },
+    {
+      "url": "https://vietnamnet.vn/thong-tin-toa-soan",
+      "source": "VietnamNet",
+      "title": "Thông tin tòa soạn",
+      "description": "Thông tin tòa soạn",
+      "author": "VietNamNet News",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:10.272796"
+    },
+    {
+      "url": "https://vietnamnet.vn/thong-tin-toa-soan",
+      "source": "VietnamNet",
+      "title": "Thông tin tòa soạn",
+      "description": "Thông tin tòa soạn",
+      "author": "VietNamNet News",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:10.375137"
+    },
+    {
+      "url": "https://vietnamnet.vn/thong-tin-toa-soan",
+      "source": "VietnamNet",
+      "title": "Thông tin tòa soạn",
+      "description": "Thông tin tòa soạn",
+      "author": "VietNamNet News",
+      "category": "suc-khoe",
+      "crawled_at": "2026-09-15T10:58:10.423397"
+    },
+    {
+      "url": "https://vietnamnet.vn/thong-tin-toa-soan",
+      "source": "VietnamNet",
+      "title": "Thông tin tòa soạn",
+      "description": "Thông tin tòa soạn",
+      "author": "VietNamNet News",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:10.458088"
+    },
+    {
+      "url": "https://fica.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "Chuyên trang thông tin kinh tế - tài chính | Báo Dân trí",
+      "description": "Chuyên trang tin tức kinh tế, tài chính, thông tin chứng khoán của Việt Nam và thế giới mới nhất được cập nhật liên tục, chính xác và đầy đủ, chuyên sâu của Báo Dân trí",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:10.793640"
+    },
+    {
+      "url": "https://dtinews.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "DTiNews - Dan Tri International, the news gateway of Vietnam",
+      "description": "DTiNews - an online English version of famous Vietnamese Dan Tri news, focuses on education, business, travel, environment and especially charity",
+      "published_date": "Tuesday, 15 September 2026",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:11.026517"
+    },
+    {
+      "url": "https://fica.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "Chuyên trang thông tin kinh tế - tài chính | Báo Dân trí",
+      "description": "Chuyên trang tin tức kinh tế, tài chính, thông tin chứng khoán của Việt Nam và thế giới mới nhất được cập nhật liên tục, chính xác và đầy đủ, chuyên sâu của Báo Dân trí",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:10.816179"
+    },
+    {
+      "url": "https://dtinews.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "DTiNews - Dan Tri International, the news gateway of Vietnam",
+      "description": "DTiNews - an online English version of famous Vietnamese Dan Tri news, focuses on education, business, travel, environment and especially charity",
+      "published_date": "Tuesday, 15 September 2026",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:11.049167"
+    },
+    {
+      "url": "https://fica.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "Chuyên trang thông tin kinh tế - tài chính | Báo Dân trí",
+      "description": "Chuyên trang tin tức kinh tế, tài chính, thông tin chứng khoán của Việt Nam và thế giới mới nhất được cập nhật liên tục, chính xác và đầy đủ, chuyên sâu của Báo Dân trí",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:10.832732"
+    },
+    {
+      "url": "https://dtinews.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "DTiNews - Dan Tri International, the news gateway of Vietnam",
+      "description": "DTiNews - an online English version of famous Vietnamese Dan Tri news, focuses on education, business, travel, environment and especially charity",
+      "published_date": "Tuesday, 15 September 2026",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:11.062210"
+    },
+    {
+      "url": "https://fica.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "Chuyên trang thông tin kinh tế - tài chính | Báo Dân trí",
+      "description": "Chuyên trang tin tức kinh tế, tài chính, thông tin chứng khoán của Việt Nam và thế giới mới nhất được cập nhật liên tục, chính xác và đầy đủ, chuyên sâu của Báo Dân trí",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:11.175299"
+    },
+    {
+      "url": "https://dtinews.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "DTiNews - Dan Tri International, the news gateway of Vietnam",
+      "description": "DTiNews - an online English version of famous Vietnamese Dan Tri news, focuses on education, business, travel, environment and especially charity",
+      "published_date": "Tuesday, 15 September 2026",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:11.241069"
+    },
+    {
+      "url": "https://fica.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "Chuyên trang thông tin kinh tế - tài chính | Báo Dân trí",
+      "description": "Chuyên trang tin tức kinh tế, tài chính, thông tin chứng khoán của Việt Nam và thế giới mới nhất được cập nhật liên tục, chính xác và đầy đủ, chuyên sâu của Báo Dân trí",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:11.203798"
+    },
+    {
+      "url": "https://dtinews.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "DTiNews - Dan Tri International, the news gateway of Vietnam",
+      "description": "DTiNews - an online English version of famous Vietnamese Dan Tri news, focuses on education, business, travel, environment and especially charity",
+      "published_date": "Tuesday, 15 September 2026",
+      "category": "giai-tri",
+      "crawled_at": "2026-09-15T10:58:11.270315"
+    },
+    {
+      "url": "https://fica.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "Chuyên trang thông tin kinh tế - tài chính | Báo Dân trí",
+      "description": "Chuyên trang tin tức kinh tế, tài chính, thông tin chứng khoán của Việt Nam và thế giới mới nhất được cập nhật liên tục, chính xác và đầy đủ, chuyên sâu của Báo Dân trí",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:11.227818"
+    },
+    {
+      "url": "https://dtinews.dantri.com.vn/",
+      "source": "DanTri",
+      "title": "DTiNews - Dan Tri International, the news gateway of Vietnam",
+      "description": "DTiNews - an online English version of famous Vietnamese Dan Tri news, focuses on education, business, travel, environment and especially charity",
+      "published_date": "Tuesday, 15 September 2026",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:12.406668"
+    },
+    {
+      "url": "https://tuoitre.vn/",
+      "source": "TuoiTre",
+      "title": "Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:14.329830"
+    },
+    {
+      "url": "https://tuoitre.vn/can-biet.htm",
+      "source": "TuoiTre",
+      "title": "Thông Tin - Cần Biết - Mua Bán - Dịch Vụ - Tuổi Trẻ Online",
+      "description": "Thông tin, dịch vụ mà bạn cần biết về: tài chính, doanh nghiệp, giáo duc, hướng nghiệp, sức khỏe, đời sống, du lịch, giải trí, địa ốc, công nghệ, sản phẩm.",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:14.636188"
+    },
+    {
+      "url": "https://quangcao.tuoitre.vn/ratecard/",
+      "source": "TuoiTre",
+      "title": "Báº£ng GiÃ¡ Quáº£ng CÃ¡o BÃ¡o Giáº¥y, Tuá»i Tráº» Online 2026",
+      "description": "ThÃ´ng tin báº£ng giÃ¡ quáº£ng cÃ¡o, giáº£i phÃ¡p truyá»n thÃ´ng, quáº£ng bÃ¡ thÆ°Æ¡ng hiá»u toÃ n diá»n trÃªn â online â offline. Tiáº¿p cáº­n sÃ¢u phÃ¢n khÃºc khÃ¡ch hÃ ng trÃªn: Tuá»i Tráº» Online, TV Tuá»i Tráº», Tuoi Tre News, Tuá»i Tráº» CÆ°á»i. ThÃ´ng qua chiáº¿n lÆ°á»£c remarketing vÃ  retargeting quáº£ng cÃ¡o banner, booking bÃ i viáº¿t trÃªn táº¥t cáº£ cÃ¡c áº¥n pháº©m quáº£ng cÃ¡o cá»§a BÃ¡o Äiá»n tá»­ Tuá»i Tráº».",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:14.754140"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/tong-quan",
+      "source": "TuoiTre",
+      "title": "Tổng quan",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:18.270838"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/tin-da-luu",
+      "source": "TuoiTre",
+      "title": "Tin đã lưu",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:21.855866"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/binh-luan-tuong-tac",
+      "source": "TuoiTre",
+      "title": "Bình luận tương tác",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:25.610357"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/transactions",
+      "source": "TuoiTre",
+      "title": "Lịch sử giao dịch",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:29.106948"
+    },
+    {
+      "url": "https://tuoitre.vn/danh-cho-ban.htm",
+      "source": "TuoiTre",
+      "title": "Dành cho bạn",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:29.334971"
+    },
+    {
+      "url": "https://sso.tuoitre.vn/dang-ky-tuoi-tre-sao",
+      "source": "TuoiTre",
+      "title": "Tuổi Trẻ Sao - Nâng cao trải nghiệm",
+      "description": "Tuổi Trẻ Sao phiên bản không hiển thị quảng cáo và nhiều giá trị riêng biệt, trải nghiệm hấp dẫn",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:32.198360"
+    },
+    {
+      "url": "https://tuoitre.vn/video.htm",
+      "source": "TuoiTre",
+      "title": "Video mới nhất, video vụ án, hình sự, tin nóng - Tuổi Trẻ Online",
+      "description": "Video nhanh nhất về an ninh trật tự, pháp luật, chính trị, xã hội, video thể thao, tin giải trí...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:32.718771"
+    },
+    {
+      "url": "https://tuoitre.vn/thoi-su.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thời sự - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip thời sự, chính trị, xã hôi, phóng sự, ký sự, quốc phòng, đời sống trong 24h qua.",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:33.039166"
+    },
+    {
+      "url": "https://tuoitre.vn/the-gioi.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thế giới - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip nhanh nhất về thời sự, kinh tế, chính trị, xa hội, quân sự, an ninh đang diễn ra trên thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:33.187878"
+    },
+    {
+      "url": "https://tuoitre.vn/phap-luat.htm",
+      "source": "TuoiTre",
+      "title": "Pháp luật - Tin tức pháp luật, vụ án hình sự - Tuổi Trẻ Online",
+      "description": "Tin tức mới về an ninh, pháp luật và vụ án ở Việt Nam và quốc tế, tư vấn pháp luật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:33.279874"
+    },
+    {
+      "url": "https://tuoitre.vn/kinh-doanh.htm",
+      "source": "TuoiTre",
+      "title": "Kinh doanh – tin kinh tế thị trường, tài chính và chứng khoán - Tuổi Trẻ Online",
+      "description": "Tin tức mới nhất về kinh tế, tin thị trường, tin chứng khoán, giá cả ở Việt Nam và thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:33.422994"
+    },
+    {
+      "url": "https://tuoitre.vn/cong-nghe.htm",
+      "source": "TuoiTre",
+      "title": "Công nghệ | Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:33.570978"
+    },
+    {
+      "url": "https://tuoitre.vn/xe.htm",
+      "source": "TuoiTre",
+      "title": "Xe ô tô – tin tức về xe ô tô, mẫu xe mới, giá cả xe ô tô - Tuổi Trẻ Online",
+      "description": "Tin mới nhất về xe ô tô, giá cả các loại xe ô tô, xe máy ở thị trướng Việt Nam và quốc tế",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-gioi",
+      "crawled_at": "2026-09-15T10:58:33.696727"
+    },
+    {
+      "url": "https://tuoitre.vn/",
+      "source": "TuoiTre",
+      "title": "Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:14.422556"
+    },
+    {
+      "url": "https://tuoitre.vn/can-biet.htm",
+      "source": "TuoiTre",
+      "title": "Thông Tin - Cần Biết - Mua Bán - Dịch Vụ - Tuổi Trẻ Online",
+      "description": "Thông tin, dịch vụ mà bạn cần biết về: tài chính, doanh nghiệp, giáo duc, hướng nghiệp, sức khỏe, đời sống, du lịch, giải trí, địa ốc, công nghệ, sản phẩm.",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:14.743523"
+    },
+    {
+      "url": "https://quangcao.tuoitre.vn/ratecard/",
+      "source": "TuoiTre",
+      "title": "Báº£ng GiÃ¡ Quáº£ng CÃ¡o BÃ¡o Giáº¥y, Tuá»i Tráº» Online 2026",
+      "description": "ThÃ´ng tin báº£ng giÃ¡ quáº£ng cÃ¡o, giáº£i phÃ¡p truyá»n thÃ´ng, quáº£ng bÃ¡ thÆ°Æ¡ng hiá»u toÃ n diá»n trÃªn â online â offline. Tiáº¿p cáº­n sÃ¢u phÃ¢n khÃºc khÃ¡ch hÃ ng trÃªn: Tuá»i Tráº» Online, TV Tuá»i Tráº», Tuoi Tre News, Tuá»i Tráº» CÆ°á»i. ThÃ´ng qua chiáº¿n lÆ°á»£c remarketing vÃ  retargeting quáº£ng cÃ¡o banner, booking bÃ i viáº¿t trÃªn táº¥t cáº£ cÃ¡c áº¥n pháº©m quáº£ng cÃ¡o cá»§a BÃ¡o Äiá»n tá»­ Tuá»i Tráº».",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:14.827777"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/tong-quan",
+      "source": "TuoiTre",
+      "title": "Tổng quan",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:18.287404"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/tin-da-luu",
+      "source": "TuoiTre",
+      "title": "Tin đã lưu",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:21.872112"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/binh-luan-tuong-tac",
+      "source": "TuoiTre",
+      "title": "Bình luận tương tác",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:25.576664"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/transactions",
+      "source": "TuoiTre",
+      "title": "Lịch sử giao dịch",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:29.091138"
+    },
+    {
+      "url": "https://tuoitre.vn/danh-cho-ban.htm",
+      "source": "TuoiTre",
+      "title": "Dành cho bạn",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:29.363728"
+    },
+    {
+      "url": "https://sso.tuoitre.vn/dang-ky-tuoi-tre-sao",
+      "source": "TuoiTre",
+      "title": "Tuổi Trẻ Sao - Nâng cao trải nghiệm",
+      "description": "Tuổi Trẻ Sao phiên bản không hiển thị quảng cáo và nhiều giá trị riêng biệt, trải nghiệm hấp dẫn",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:32.222639"
+    },
+    {
+      "url": "https://tuoitre.vn/video.htm",
+      "source": "TuoiTre",
+      "title": "Video mới nhất, video vụ án, hình sự, tin nóng - Tuổi Trẻ Online",
+      "description": "Video nhanh nhất về an ninh trật tự, pháp luật, chính trị, xã hội, video thể thao, tin giải trí...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:33.129918"
+    },
+    {
+      "url": "https://tuoitre.vn/thoi-su.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thời sự - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip thời sự, chính trị, xã hôi, phóng sự, ký sự, quốc phòng, đời sống trong 24h qua.",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:33.234677"
+    },
+    {
+      "url": "https://tuoitre.vn/the-gioi.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thế giới - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip nhanh nhất về thời sự, kinh tế, chính trị, xa hội, quân sự, an ninh đang diễn ra trên thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:33.343045"
+    },
+    {
+      "url": "https://tuoitre.vn/phap-luat.htm",
+      "source": "TuoiTre",
+      "title": "Pháp luật - Tin tức pháp luật, vụ án hình sự - Tuổi Trẻ Online",
+      "description": "Tin tức mới về an ninh, pháp luật và vụ án ở Việt Nam và quốc tế, tư vấn pháp luật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:33.463313"
+    },
+    {
+      "url": "https://tuoitre.vn/kinh-doanh.htm",
+      "source": "TuoiTre",
+      "title": "Kinh doanh – tin kinh tế thị trường, tài chính và chứng khoán - Tuổi Trẻ Online",
+      "description": "Tin tức mới nhất về kinh tế, tin thị trường, tin chứng khoán, giá cả ở Việt Nam và thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:33.625094"
+    },
+    {
+      "url": "https://tuoitre.vn/cong-nghe.htm",
+      "source": "TuoiTre",
+      "title": "Công nghệ | Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:33.745274"
+    },
+    {
+      "url": "https://tuoitre.vn/xe.htm",
+      "source": "TuoiTre",
+      "title": "Xe ô tô – tin tức về xe ô tô, mẫu xe mới, giá cả xe ô tô - Tuổi Trẻ Online",
+      "description": "Tin mới nhất về xe ô tô, giá cả các loại xe ô tô, xe máy ở thị trướng Việt Nam và quốc tế",
+      "author": "TUOI TRE ONLINE",
+      "category": "the-thao",
+      "crawled_at": "2026-09-15T10:58:33.890741"
+    },
+    {
+      "url": "https://tuoitre.vn/",
+      "source": "TuoiTre",
+      "title": "Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:14.375765"
+    },
+    {
+      "url": "https://tuoitre.vn/can-biet.htm",
+      "source": "TuoiTre",
+      "title": "Thông Tin - Cần Biết - Mua Bán - Dịch Vụ - Tuổi Trẻ Online",
+      "description": "Thông tin, dịch vụ mà bạn cần biết về: tài chính, doanh nghiệp, giáo duc, hướng nghiệp, sức khỏe, đời sống, du lịch, giải trí, địa ốc, công nghệ, sản phẩm.",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:14.689646"
+    },
+    {
+      "url": "https://quangcao.tuoitre.vn/ratecard/",
+      "source": "TuoiTre",
+      "title": "Báº£ng GiÃ¡ Quáº£ng CÃ¡o BÃ¡o Giáº¥y, Tuá»i Tráº» Online 2026",
+      "description": "ThÃ´ng tin báº£ng giÃ¡ quáº£ng cÃ¡o, giáº£i phÃ¡p truyá»n thÃ´ng, quáº£ng bÃ¡ thÆ°Æ¡ng hiá»u toÃ n diá»n trÃªn â online â offline. Tiáº¿p cáº­n sÃ¢u phÃ¢n khÃºc khÃ¡ch hÃ ng trÃªn: Tuá»i Tráº» Online, TV Tuá»i Tráº», Tuoi Tre News, Tuá»i Tráº» CÆ°á»i. ThÃ´ng qua chiáº¿n lÆ°á»£c remarketing vÃ  retargeting quáº£ng cÃ¡o banner, booking bÃ i viáº¿t trÃªn táº¥t cáº£ cÃ¡c áº¥n pháº©m quáº£ng cÃ¡o cá»§a BÃ¡o Äiá»n tá»­ Tuá»i Tráº».",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:14.774986"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/tong-quan",
+      "source": "TuoiTre",
+      "title": "Tổng quan",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:18.251326"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/tin-da-luu",
+      "source": "TuoiTre",
+      "title": "Tin đã lưu",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:21.837692"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/binh-luan-tuong-tac",
+      "source": "TuoiTre",
+      "title": "Bình luận tương tác",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:25.614084"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/transactions",
+      "source": "TuoiTre",
+      "title": "Lịch sử giao dịch",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:29.070814"
+    },
+    {
+      "url": "https://tuoitre.vn/danh-cho-ban.htm",
+      "source": "TuoiTre",
+      "title": "Dành cho bạn",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:29.302898"
+    },
+    {
+      "url": "https://sso.tuoitre.vn/dang-ky-tuoi-tre-sao",
+      "source": "TuoiTre",
+      "title": "Tuổi Trẻ Sao - Nâng cao trải nghiệm",
+      "description": "Tuổi Trẻ Sao phiên bản không hiển thị quảng cáo và nhiều giá trị riêng biệt, trải nghiệm hấp dẫn",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:32.231702"
+    },
+    {
+      "url": "https://tuoitre.vn/video.htm",
+      "source": "TuoiTre",
+      "title": "Video mới nhất, video vụ án, hình sự, tin nóng - Tuổi Trẻ Online",
+      "description": "Video nhanh nhất về an ninh trật tự, pháp luật, chính trị, xã hội, video thể thao, tin giải trí...",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:33.084665"
+    },
+    {
+      "url": "https://tuoitre.vn/thoi-su.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thời sự - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip thời sự, chính trị, xã hôi, phóng sự, ký sự, quốc phòng, đời sống trong 24h qua.",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:33.382668"
+    },
+    {
+      "url": "https://tuoitre.vn/the-gioi.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thế giới - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip nhanh nhất về thời sự, kinh tế, chính trị, xa hội, quân sự, an ninh đang diễn ra trên thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:33.503617"
+    },
+    {
+      "url": "https://tuoitre.vn/phap-luat.htm",
+      "source": "TuoiTre",
+      "title": "Pháp luật - Tin tức pháp luật, vụ án hình sự - Tuổi Trẻ Online",
+      "description": "Tin tức mới về an ninh, pháp luật và vụ án ở Việt Nam và quốc tế, tư vấn pháp luật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:33.651678"
+    },
+    {
+      "url": "https://tuoitre.vn/kinh-doanh.htm",
+      "source": "TuoiTre",
+      "title": "Kinh doanh – tin kinh tế thị trường, tài chính và chứng khoán - Tuổi Trẻ Online",
+      "description": "Tin tức mới nhất về kinh tế, tin thị trường, tin chứng khoán, giá cả ở Việt Nam và thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:33.788260"
+    },
+    {
+      "url": "https://tuoitre.vn/cong-nghe.htm",
+      "source": "TuoiTre",
+      "title": "Công nghệ | Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:33.984342"
+    },
+    {
+      "url": "https://tuoitre.vn/xe.htm",
+      "source": "TuoiTre",
+      "title": "Xe ô tô – tin tức về xe ô tô, mẫu xe mới, giá cả xe ô tô - Tuổi Trẻ Online",
+      "description": "Tin mới nhất về xe ô tô, giá cả các loại xe ô tô, xe máy ở thị trướng Việt Nam và quốc tế",
+      "author": "TUOI TRE ONLINE",
+      "category": "thoi-su",
+      "crawled_at": "2026-09-15T10:58:34.093412"
+    },
+    {
+      "url": "https://tuoitre.vn/",
+      "source": "TuoiTre",
+      "title": "Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:14.468965"
+    },
+    {
+      "url": "https://tuoitre.vn/can-biet.htm",
+      "source": "TuoiTre",
+      "title": "Thông Tin - Cần Biết - Mua Bán - Dịch Vụ - Tuổi Trẻ Online",
+      "description": "Thông tin, dịch vụ mà bạn cần biết về: tài chính, doanh nghiệp, giáo duc, hướng nghiệp, sức khỏe, đời sống, du lịch, giải trí, địa ốc, công nghệ, sản phẩm.",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:30.772997"
+    },
+    {
+      "url": "https://quangcao.tuoitre.vn/ratecard/",
+      "source": "TuoiTre",
+      "title": "Báº£ng GiÃ¡ Quáº£ng CÃ¡o BÃ¡o Giáº¥y, Tuá»i Tráº» Online 2026",
+      "description": "ThÃ´ng tin báº£ng giÃ¡ quáº£ng cÃ¡o, giáº£i phÃ¡p truyá»n thÃ´ng, quáº£ng bÃ¡ thÆ°Æ¡ng hiá»u toÃ n diá»n trÃªn â online â offline. Tiáº¿p cáº­n sÃ¢u phÃ¢n khÃºc khÃ¡ch hÃ ng trÃªn: Tuá»i Tráº» Online, TV Tuá»i Tráº», Tuoi Tre News, Tuá»i Tráº» CÆ°á»i. ThÃ´ng qua chiáº¿n lÆ°á»£c remarketing vÃ  retargeting quáº£ng cÃ¡o banner, booking bÃ i viáº¿t trÃªn táº¥t cáº£ cÃ¡c áº¥n pháº©m quáº£ng cÃ¡o cá»§a BÃ¡o Äiá»n tá»­ Tuá»i Tráº».",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:30.796985"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/tong-quan",
+      "source": "TuoiTre",
+      "title": "Tổng quan",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:34.154616"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/tin-da-luu",
+      "source": "TuoiTre",
+      "title": "Tin đã lưu",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:37.222844"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/binh-luan-tuong-tac",
+      "source": "TuoiTre",
+      "title": "Bình luận tương tác",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:40.199613"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/transactions",
+      "source": "TuoiTre",
+      "title": "Lịch sử giao dịch",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:43.395921"
+    },
+    {
+      "url": "https://tuoitre.vn/danh-cho-ban.htm",
+      "source": "TuoiTre",
+      "title": "Dành cho bạn",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:43.646646"
+    },
+    {
+      "url": "https://sso.tuoitre.vn/dang-ky-tuoi-tre-sao",
+      "source": "TuoiTre",
+      "title": "Tuổi Trẻ Sao - Nâng cao trải nghiệm",
+      "description": "Tuổi Trẻ Sao phiên bản không hiển thị quảng cáo và nhiều giá trị riêng biệt, trải nghiệm hấp dẫn",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:46.392370"
+    },
+    {
+      "url": "https://tuoitre.vn/video.htm",
+      "source": "TuoiTre",
+      "title": "Video mới nhất, video vụ án, hình sự, tin nóng - Tuổi Trẻ Online",
+      "description": "Video nhanh nhất về an ninh trật tự, pháp luật, chính trị, xã hội, video thể thao, tin giải trí...",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:46.791148"
+    },
+    {
+      "url": "https://tuoitre.vn/thoi-su.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thời sự - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip thời sự, chính trị, xã hôi, phóng sự, ký sự, quốc phòng, đời sống trong 24h qua.",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:46.930713"
+    },
+    {
+      "url": "https://tuoitre.vn/the-gioi.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thế giới - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip nhanh nhất về thời sự, kinh tế, chính trị, xa hội, quân sự, an ninh đang diễn ra trên thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:47.037604"
+    },
+    {
+      "url": "https://tuoitre.vn/phap-luat.htm",
+      "source": "TuoiTre",
+      "title": "Pháp luật - Tin tức pháp luật, vụ án hình sự - Tuổi Trẻ Online",
+      "description": "Tin tức mới về an ninh, pháp luật và vụ án ở Việt Nam và quốc tế, tư vấn pháp luật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:47.137510"
+    },
+    {
+      "url": "https://tuoitre.vn/kinh-doanh.htm",
+      "source": "TuoiTre",
+      "title": "Kinh doanh – tin kinh tế thị trường, tài chính và chứng khoán - Tuổi Trẻ Online",
+      "description": "Tin tức mới nhất về kinh tế, tin thị trường, tin chứng khoán, giá cả ở Việt Nam và thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:47.280595"
+    },
+    {
+      "url": "https://tuoitre.vn/cong-nghe.htm",
+      "source": "TuoiTre",
+      "title": "Công nghệ | Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:47.390871"
+    },
+    {
+      "url": "https://tuoitre.vn/xe.htm",
+      "source": "TuoiTre",
+      "title": "Xe ô tô – tin tức về xe ô tô, mẫu xe mới, giá cả xe ô tô - Tuổi Trẻ Online",
+      "description": "Tin mới nhất về xe ô tô, giá cả các loại xe ô tô, xe máy ở thị trướng Việt Nam và quốc tế",
+      "author": "TUOI TRE ONLINE",
+      "category": "kinh-te",
+      "crawled_at": "2026-09-15T10:58:47.525882"
+    },
+    {
+      "url": "https://tuoitre.vn/",
+      "source": "TuoiTre",
+      "title": "Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:34.354475"
+    },
+    {
+      "url": "https://tuoitre.vn/can-biet.htm",
+      "source": "TuoiTre",
+      "title": "Thông Tin - Cần Biết - Mua Bán - Dịch Vụ - Tuổi Trẻ Online",
+      "description": "Thông tin, dịch vụ mà bạn cần biết về: tài chính, doanh nghiệp, giáo duc, hướng nghiệp, sức khỏe, đời sống, du lịch, giải trí, địa ốc, công nghệ, sản phẩm.",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:34.564883"
+    },
+    {
+      "url": "https://quangcao.tuoitre.vn/ratecard/",
+      "source": "TuoiTre",
+      "title": "Báº£ng GiÃ¡ Quáº£ng CÃ¡o BÃ¡o Giáº¥y, Tuá»i Tráº» Online 2026",
+      "description": "ThÃ´ng tin báº£ng giÃ¡ quáº£ng cÃ¡o, giáº£i phÃ¡p truyá»n thÃ´ng, quáº£ng bÃ¡ thÆ°Æ¡ng hiá»u toÃ n diá»n trÃªn â online â offline. Tiáº¿p cáº­n sÃ¢u phÃ¢n khÃºc khÃ¡ch hÃ ng trÃªn: Tuá»i Tráº» Online, TV Tuá»i Tráº», Tuoi Tre News, Tuá»i Tráº» CÆ°á»i. ThÃ´ng qua chiáº¿n lÆ°á»£c remarketing vÃ  retargeting quáº£ng cÃ¡o banner, booking bÃ i viáº¿t trÃªn táº¥t cáº£ cÃ¡c áº¥n pháº©m quáº£ng cÃ¡o cá»§a BÃ¡o Äiá»n tá»­ Tuá»i Tráº».",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:34.588928"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/tong-quan",
+      "source": "TuoiTre",
+      "title": "Tổng quan",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:37.919054"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/tin-da-luu",
+      "source": "TuoiTre",
+      "title": "Tin đã lưu",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:41.168191"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/binh-luan-tuong-tac",
+      "source": "TuoiTre",
+      "title": "Bình luận tương tác",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:44.312543"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/transactions",
+      "source": "TuoiTre",
+      "title": "Lịch sử giao dịch",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:47.404171"
+    },
+    {
+      "url": "https://tuoitre.vn/danh-cho-ban.htm",
+      "source": "TuoiTre",
+      "title": "Dành cho bạn",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:47.602240"
+    },
+    {
+      "url": "https://sso.tuoitre.vn/dang-ky-tuoi-tre-sao",
+      "source": "TuoiTre",
+      "title": "Tuổi Trẻ Sao - Nâng cao trải nghiệm",
+      "description": "Tuổi Trẻ Sao phiên bản không hiển thị quảng cáo và nhiều giá trị riêng biệt, trải nghiệm hấp dẫn",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:50.635643"
+    },
+    {
+      "url": "https://tuoitre.vn/video.htm",
+      "source": "TuoiTre",
+      "title": "Video mới nhất, video vụ án, hình sự, tin nóng - Tuổi Trẻ Online",
+      "description": "Video nhanh nhất về an ninh trật tự, pháp luật, chính trị, xã hội, video thể thao, tin giải trí...",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:50.977841"
+    },
+    {
+      "url": "https://tuoitre.vn/thoi-su.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thời sự - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip thời sự, chính trị, xã hôi, phóng sự, ký sự, quốc phòng, đời sống trong 24h qua.",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:51.125858"
+    },
+    {
+      "url": "https://tuoitre.vn/the-gioi.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thế giới - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip nhanh nhất về thời sự, kinh tế, chính trị, xa hội, quân sự, an ninh đang diễn ra trên thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:51.258676"
+    },
+    {
+      "url": "https://tuoitre.vn/phap-luat.htm",
+      "source": "TuoiTre",
+      "title": "Pháp luật - Tin tức pháp luật, vụ án hình sự - Tuổi Trẻ Online",
+      "description": "Tin tức mới về an ninh, pháp luật và vụ án ở Việt Nam và quốc tế, tư vấn pháp luật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:51.399700"
+    },
+    {
+      "url": "https://tuoitre.vn/kinh-doanh.htm",
+      "source": "TuoiTre",
+      "title": "Kinh doanh – tin kinh tế thị trường, tài chính và chứng khoán - Tuổi Trẻ Online",
+      "description": "Tin tức mới nhất về kinh tế, tin thị trường, tin chứng khoán, giá cả ở Việt Nam và thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:51.520797"
+    },
+    {
+      "url": "https://tuoitre.vn/cong-nghe.htm",
+      "source": "TuoiTre",
+      "title": "Công nghệ | Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:51.652635"
+    },
+    {
+      "url": "https://tuoitre.vn/xe.htm",
+      "source": "TuoiTre",
+      "title": "Xe ô tô – tin tức về xe ô tô, mẫu xe mới, giá cả xe ô tô - Tuổi Trẻ Online",
+      "description": "Tin mới nhất về xe ô tô, giá cả các loại xe ô tô, xe máy ở thị trướng Việt Nam và quốc tế",
+      "author": "TUOI TRE ONLINE",
+      "category": "giao-duc",
+      "crawled_at": "2026-09-15T10:58:51.796339"
+    },
+    {
+      "url": "https://tuoitre.vn/",
+      "source": "TuoiTre",
+      "title": "Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:34.138678"
+    },
+    {
+      "url": "https://tuoitre.vn/can-biet.htm",
+      "source": "TuoiTre",
+      "title": "Thông Tin - Cần Biết - Mua Bán - Dịch Vụ - Tuổi Trẻ Online",
+      "description": "Thông tin, dịch vụ mà bạn cần biết về: tài chính, doanh nghiệp, giáo duc, hướng nghiệp, sức khỏe, đời sống, du lịch, giải trí, địa ốc, công nghệ, sản phẩm.",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:34.401718"
+    },
+    {
+      "url": "https://quangcao.tuoitre.vn/ratecard/",
+      "source": "TuoiTre",
+      "title": "Báº£ng GiÃ¡ Quáº£ng CÃ¡o BÃ¡o Giáº¥y, Tuá»i Tráº» Online 2026",
+      "description": "ThÃ´ng tin báº£ng giÃ¡ quáº£ng cÃ¡o, giáº£i phÃ¡p truyá»n thÃ´ng, quáº£ng bÃ¡ thÆ°Æ¡ng hiá»u toÃ n diá»n trÃªn â online â offline. Tiáº¿p cáº­n sÃ¢u phÃ¢n khÃºc khÃ¡ch hÃ ng trÃªn: Tuá»i Tráº» Online, TV Tuá»i Tráº», Tuoi Tre News, Tuá»i Tráº» CÆ°á»i. ThÃ´ng qua chiáº¿n lÆ°á»£c remarketing vÃ  retargeting quáº£ng cÃ¡o banner, booking bÃ i viáº¿t trÃªn táº¥t cáº£ cÃ¡c áº¥n pháº©m quáº£ng cÃ¡o cá»§a BÃ¡o Äiá»n tá»­ Tuá»i Tráº».",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:34.423259"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/tong-quan",
+      "source": "TuoiTre",
+      "title": "Tổng quan",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:37.802934"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/tin-da-luu",
+      "source": "TuoiTre",
+      "title": "Tin đã lưu",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:41.186794"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/binh-luan-tuong-tac",
+      "source": "TuoiTre",
+      "title": "Bình luận tương tác",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:44.351001"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/transactions",
+      "source": "TuoiTre",
+      "title": "Lịch sử giao dịch",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:47.561335"
+    },
+    {
+      "url": "https://tuoitre.vn/danh-cho-ban.htm",
+      "source": "TuoiTre",
+      "title": "Dành cho bạn",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:47.791493"
+    },
+    {
+      "url": "https://sso.tuoitre.vn/dang-ky-tuoi-tre-sao",
+      "source": "TuoiTre",
+      "title": "Tuổi Trẻ Sao - Nâng cao trải nghiệm",
+      "description": "Tuổi Trẻ Sao phiên bản không hiển thị quảng cáo và nhiều giá trị riêng biệt, trải nghiệm hấp dẫn",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:50.671764"
+    },
+    {
+      "url": "https://tuoitre.vn/video.htm",
+      "source": "TuoiTre",
+      "title": "Video mới nhất, video vụ án, hình sự, tin nóng - Tuổi Trẻ Online",
+      "description": "Video nhanh nhất về an ninh trật tự, pháp luật, chính trị, xã hội, video thể thao, tin giải trí...",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:51.170925"
+    },
+    {
+      "url": "https://tuoitre.vn/thoi-su.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thời sự - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip thời sự, chính trị, xã hôi, phóng sự, ký sự, quốc phòng, đời sống trong 24h qua.",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:51.300552"
+    },
+    {
+      "url": "https://tuoitre.vn/the-gioi.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thế giới - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip nhanh nhất về thời sự, kinh tế, chính trị, xa hội, quân sự, an ninh đang diễn ra trên thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:51.440074"
+    },
+    {
+      "url": "https://tuoitre.vn/phap-luat.htm",
+      "source": "TuoiTre",
+      "title": "Pháp luật - Tin tức pháp luật, vụ án hình sự - Tuổi Trẻ Online",
+      "description": "Tin tức mới về an ninh, pháp luật và vụ án ở Việt Nam và quốc tế, tư vấn pháp luật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:51.561734"
+    },
+    {
+      "url": "https://tuoitre.vn/kinh-doanh.htm",
+      "source": "TuoiTre",
+      "title": "Kinh doanh – tin kinh tế thị trường, tài chính và chứng khoán - Tuổi Trẻ Online",
+      "description": "Tin tức mới nhất về kinh tế, tin thị trường, tin chứng khoán, giá cả ở Việt Nam và thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:51.710470"
+    },
+    {
+      "url": "https://tuoitre.vn/cong-nghe.htm",
+      "source": "TuoiTre",
+      "title": "Công nghệ | Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:51.845350"
+    },
+    {
+      "url": "https://tuoitre.vn/xe.htm",
+      "source": "TuoiTre",
+      "title": "Xe ô tô – tin tức về xe ô tô, mẫu xe mới, giá cả xe ô tô - Tuổi Trẻ Online",
+      "description": "Tin mới nhất về xe ô tô, giá cả các loại xe ô tô, xe máy ở thị trướng Việt Nam và quốc tế",
+      "author": "TUOI TRE ONLINE",
+      "category": "van-hoa",
+      "crawled_at": "2026-09-15T10:58:51.948620"
+    },
+    {
+      "url": "https://tuoitre.vn/",
+      "source": "TuoiTre",
+      "title": "Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:33.935524"
+    },
+    {
+      "url": "https://tuoitre.vn/can-biet.htm",
+      "source": "TuoiTre",
+      "title": "Thông Tin - Cần Biết - Mua Bán - Dịch Vụ - Tuổi Trẻ Online",
+      "description": "Thông tin, dịch vụ mà bạn cần biết về: tài chính, doanh nghiệp, giáo duc, hướng nghiệp, sức khỏe, đời sống, du lịch, giải trí, địa ốc, công nghệ, sản phẩm.",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:34.219280"
+    },
+    {
+      "url": "https://quangcao.tuoitre.vn/ratecard/",
+      "source": "TuoiTre",
+      "title": "Báº£ng GiÃ¡ Quáº£ng CÃ¡o BÃ¡o Giáº¥y, Tuá»i Tráº» Online 2026",
+      "description": "ThÃ´ng tin báº£ng giÃ¡ quáº£ng cÃ¡o, giáº£i phÃ¡p truyá»n thÃ´ng, quáº£ng bÃ¡ thÆ°Æ¡ng hiá»u toÃ n diá»n trÃªn â online â offline. Tiáº¿p cáº­n sÃ¢u phÃ¢n khÃºc khÃ¡ch hÃ ng trÃªn: Tuá»i Tráº» Online, TV Tuá»i Tráº», Tuoi Tre News, Tuá»i Tráº» CÆ°á»i. ThÃ´ng qua chiáº¿n lÆ°á»£c remarketing vÃ  retargeting quáº£ng cÃ¡o banner, booking bÃ i viáº¿t trÃªn táº¥t cáº£ cÃ¡c áº¥n pháº©m quáº£ng cÃ¡o cá»§a BÃ¡o Äiá»n tá»­ Tuá»i Tráº».",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:34.265737"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/tong-quan",
+      "source": "TuoiTre",
+      "title": "Tổng quan",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:37.832982"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/tin-da-luu",
+      "source": "TuoiTre",
+      "title": "Tin đã lưu",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:41.112170"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/hoat-dong/binh-luan-tuong-tac",
+      "source": "TuoiTre",
+      "title": "Bình luận tương tác",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:44.332580"
+    },
+    {
+      "url": "https://mediahub.tuoitre.vn/transactions",
+      "source": "TuoiTre",
+      "title": "Lịch sử giao dịch",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:47.547230"
+    },
+    {
+      "url": "https://tuoitre.vn/danh-cho-ban.htm",
+      "source": "TuoiTre",
+      "title": "Dành cho bạn",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:47.646945"
+    },
+    {
+      "url": "https://sso.tuoitre.vn/dang-ky-tuoi-tre-sao",
+      "source": "TuoiTre",
+      "title": "Tuổi Trẻ Sao - Nâng cao trải nghiệm",
+      "description": "Tuổi Trẻ Sao phiên bản không hiển thị quảng cáo và nhiều giá trị riêng biệt, trải nghiệm hấp dẫn",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:50.655058"
+    },
+    {
+      "url": "https://tuoitre.vn/video.htm",
+      "source": "TuoiTre",
+      "title": "Video mới nhất, video vụ án, hình sự, tin nóng - Tuổi Trẻ Online",
+      "description": "Video nhanh nhất về an ninh trật tự, pháp luật, chính trị, xã hội, video thể thao, tin giải trí...",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:51.215858"
+    },
+    {
+      "url": "https://tuoitre.vn/thoi-su.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thời sự - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip thời sự, chính trị, xã hôi, phóng sự, ký sự, quốc phòng, đời sống trong 24h qua.",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:51.341129"
+    },
+    {
+      "url": "https://tuoitre.vn/the-gioi.htm",
+      "source": "TuoiTre",
+      "title": "Tin tức, video mới, nóng, nhanh trong 24h - Thế giới - Tuổi Trẻ Online",
+      "description": "Cập nhật tin tức, video clip nhanh nhất về thời sự, kinh tế, chính trị, xa hội, quân sự, an ninh đang diễn ra trên thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:51.480233"
+    },
+    {
+      "url": "https://tuoitre.vn/phap-luat.htm",
+      "source": "TuoiTre",
+      "title": "Pháp luật - Tin tức pháp luật, vụ án hình sự - Tuổi Trẻ Online",
+      "description": "Tin tức mới về an ninh, pháp luật và vụ án ở Việt Nam và quốc tế, tư vấn pháp luật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:51.603783"
+    },
+    {
+      "url": "https://tuoitre.vn/kinh-doanh.htm",
+      "source": "TuoiTre",
+      "title": "Kinh doanh – tin kinh tế thị trường, tài chính và chứng khoán - Tuổi Trẻ Online",
+      "description": "Tin tức mới nhất về kinh tế, tin thị trường, tin chứng khoán, giá cả ở Việt Nam và thế giới",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:51.750054"
+    },
+    {
+      "url": "https://tuoitre.vn/cong-nghe.htm",
+      "source": "TuoiTre",
+      "title": "Công nghệ | Báo Tuổi Trẻ - Tin tức mới nhất, tin nhanh, tin nóng 24h",
+      "description": "Tin tức mới nhất trên các lĩnh vực chính trị, xã hội, văn hóa, thể thao ở Việt Nam và quốc tế. Tin tức thời sự mỗi ngày sẽ được Tuổi Trẻ Online liên tục cập nhật...",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:51.891371"
+    },
+    {
+      "url": "https://tuoitre.vn/xe.htm",
+      "source": "TuoiTre",
+      "title": "Xe ô tô – tin tức về xe ô tô, mẫu xe mới, giá cả xe ô tô - Tuổi Trẻ Online",
+      "description": "Tin mới nhất về xe ô tô, giá cả các loại xe ô tô, xe máy ở thị trướng Việt Nam và quốc tế",
+      "author": "TUOI TRE ONLINE",
+      "category": "cong-nghe",
+      "crawled_at": "2026-09-15T10:58:51.992534"
+    }
+  ]
+}
