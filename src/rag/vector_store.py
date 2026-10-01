@@ -4,12 +4,16 @@ Vector Store - ChromaDB-backed embeddings index for RAG.
 Uses sentence-transformers multilingual MiniLM (384 dim) for Vietnamese.
 """
 import os
+import gc
+from pathlib import Path
 from typing import List, Optional, Dict, Any
 
 from src.pipeline.schema import ArticleSchema
 
 
-DEFAULT_EMBED_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
+# Lightweight embedder for 512 MB environments: MiniLM-L6 (22 MB on disk,
+# ~80 MB resident) instead of multilingual L12 (~470 MB resident).
+DEFAULT_EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 DEFAULT_COLLECTION = "vietnamese_news"
 
 
@@ -51,7 +55,7 @@ class VectorStore:
 
         # Load embedder (lazy to avoid heavy import at startup)
         from sentence_transformers import SentenceTransformer
-        self._embedder = SentenceTransformer(self.embedding_model_name)
+        self._embedder = SentenceTransformer(self.embedding_model_name, device="cpu")
 
         self._collection = self._client.get_or_create_collection(
             name=self.collection_name,
@@ -61,8 +65,17 @@ class VectorStore:
 
     def _embed_texts(self, texts: List[str]) -> List[List[float]]:
         self._ensure_loaded()
-        vecs = self._embedder.encode(texts, normalize_embeddings=True, show_progress_bar=False)
-        return [v.tolist() for v in vecs]
+        vecs = self._embedder.encode(
+            texts,
+            normalize_embeddings=True,
+            show_progress_bar=False,
+            batch_size=16,  # small batch to keep RAM under 512 MB
+        )
+        result = [v.tolist() for v in vecs]
+        # Free intermediate tensors so we don't accumulate in 512 MB envs.
+        del vecs
+        gc.collect()
+        return result
 
     @property
     def count(self) -> int:
@@ -73,7 +86,7 @@ class VectorStore:
         parts = [article.title.strip(), article.description.strip(), article.content.strip()]
         return " | ".join(p for p in parts if p)[:3000]
 
-    def add_articles(self, articles: List[ArticleSchema], batch_size: int = 64) -> Dict[str, int]:
+    def add_articles(self, articles: List[ArticleSchema], batch_size: int = 16) -> Dict[str, int]:
         """Add articles to the index. Returns {added, skipped}."""
         self._ensure_loaded()
 
@@ -114,6 +127,9 @@ class VectorStore:
             if new_ids:
                 self._collection.add(ids=new_ids, documents=new_texts, metadatas=new_metas)
                 added += len(new_ids)
+            # Aggressively free memory after every batch so we stay under
+            # 512 MB during long indexing runs.
+            gc.collect()
 
         return {"added": added, "skipped": skipped}
 

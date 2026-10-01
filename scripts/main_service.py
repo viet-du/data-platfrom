@@ -324,7 +324,7 @@ class BotCommands:
                 "Chạy /index trước để build embeddings từ dữ liệu đã crawl."
             )
 
-        result = chain.ask(question, top_k=5)
+        result = chain.ask(question, top_k=3)  # 3 chunks fits comfortably in 512 MB
         return (
             f"🤖 <b>RAG Answer</b>\n\n"
             f"{result['answer']}\n\n"
@@ -366,7 +366,7 @@ class BotCommands:
             f"🔮 <b>RAG Stats</b>\n\n"
             f"📦 Articles indexed: <b>{chain.store.count}</b>\n"
             f"🤖 Gemini: {gemini_status}\n"
-            f"📐 Embedding: paraphrase-multilingual-MiniLM-L12-v2"
+            f"📐 Embedding: all-MiniLM-L6-v2 (lightweight, ~80 MB RAM)"
         )
 
     def cmd_backup(self) -> str:
