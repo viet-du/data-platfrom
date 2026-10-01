@@ -460,14 +460,12 @@ class BotCommands:
                     response = self.cmd_raw()
                 elif command == '/report':
                     response = self.cmd_report()
-                elif command == '/dashboard':
-                    response = self.cmd_dashboard()
-elif command == '/index':
-                        response = self.cmd_index()
-                    elif command == '/ragstats':
-                        response = self.cmd_ragstats()
-                    elif command == '/backup':
-                        response = self.cmd_backup()
+                elif command == '/index':
+                    response = self.cmd_index()
+                elif command == '/ragstats':
+                    response = self.cmd_ragstats()
+                elif command == '/backup':
+                    response = self.cmd_backup()
                 elif command == '/ask':
                     question = text[len(command):].strip() if text_lower.startswith(command) else ""
                     if not question:
@@ -479,6 +477,10 @@ elif command == '/index':
                 if response:
                     self.telegram.send(response)
             except requests.exceptions.ReadTimeout:
+                continue
+            except requests.exceptions.ConnectionError as e:
+                logger.warning(f"Telegram connection reset (will retry): {e}")
+                time.sleep(3)
                 continue
             except Exception as e:
                 logger.error(f"Poll error: {e}")
