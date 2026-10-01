@@ -145,6 +145,7 @@ class BotCommands:
 /crawl - Chạy crawl ngay
 /raw - Crawl Google Drive
 /status - Trạng thái hệ thống
+/drives📁 - Thống kê file trên Drive
 /report - Báo cáo hôm nay
 /dashboard - Thống kê chi tiết
 /restart - Khởi động lại bot"""
@@ -235,6 +236,48 @@ class BotCommands:
 • Bot started: {datetime.now().strftime('%Y-%m-%d %H:%M')}
 • Last crawl: {self.crawler.last_run.strftime('%H:%M:%S') if self.crawler.last_run else 'N/A'}"""
     
+    def cmd_drivestats(self) -> str:
+        """Read statistics from Google Drive"""
+        try:
+            from src.services.google_drive_service import get_drive_service
+
+            drive = get_drive_service()
+
+            if not drive.service:
+                return (
+                    "❌ <b>Drive không khả dụng</b>\n\n"
+                    "Lý do: thiếu credentials hoặc token hết hạn.\n"
+                    "Trên Railway cần upload credentials để đọc Drive."
+                )
+
+            self.telegram.send("📁 <b>Đang quét Google Drive...</b>")
+
+            stats = drive.get_drive_stats()
+
+            if 'error' in stats:
+                return f"❌ Lỗi đọc Drive: {stats['error']}"
+
+            msg = f"""📁 <b>Thống kê Google Drive</b>
+
+<b>Tổng quan:</b>
+• Tổng file: <b>{stats['total_files']}</b>
+• File dữ liệu (JSON): <b>{stats['total_articles']}</b>
+
+<b>Chi tiết theo nguồn:</b>"""
+
+            for src in sorted(stats['sources_detail'], key=lambda x: x['name']):
+                latest = src['latest'][:10] if src['latest'] else 'N/A'
+                msg += f"\n• <b>{src['name']}</b>: {src['file_count']} files ({src['json_count']} bài) - {latest}"
+
+            if stats['last_updated']:
+                msg += f"\n\n<i>🕐 Cập nhật cuối: {stats['last_updated'][:19].replace('T', ' ')}</i>"
+
+            return msg
+
+        except Exception as e:
+            logger.error(f"cmd_drivestats error: {e}")
+            return f"❌ Lỗi: {str(e)[:200]}"
+
     def cmd_restart(self) -> str:
         self.telegram.send("🔄 <b>Đang khởi động lại...</b>")
         time.sleep(2)
@@ -288,6 +331,8 @@ class BotCommands:
                         response = self.cmd_start()
                     elif command == '/status':
                         response = self.cmd_status()
+                    elif command in ['/drivestats', '/drives']:
+                        response = self.cmd_drivestats()
                     elif command == '/crawl':
                         response = self.cmd_crawl()
                     elif command == '/raw':

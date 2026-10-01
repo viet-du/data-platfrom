@@ -181,17 +181,87 @@ class GoogleDriveService:
     def list_files_in_folder(self, folder_id: str, max_results: int = 100) -> List[Dict]:
         """List all files in a folder"""
         query = f"'{folder_id}' in parents and trashed=false"
-        
+
         results = self.service.files().list(
             q=query,
             pageSize=max_results,
             supportsAllDrives=True,
             includeItemsFromAllDrives=True,
-            fields='files(id, name, mimeType, createdTime, modifiedTime)'
+            fields='files(id, name, mimeType, createdTime, modifiedTime, size)'
         ).execute()
-        
+
         return results.get('files', [])
-    
+
+    def get_drive_stats(self) -> Dict:
+        """Get statistics of all crawled articles stored in Drive"""
+        stats = {
+            'total_files': 0,
+            'total_articles': 0,
+            'by_source': {},
+            'last_updated': None,
+            'oldest_file': None,
+            'sources_detail': []
+        }
+
+        try:
+            # List all sub-folders in main folder (one per source)
+            folder_query = (
+                f"'{self.folder_id}' in parents and "
+                f"mimeType='application/vnd.google-apps.folder' and "
+                f"trashed=false"
+            )
+            folders_result = self.service.files().list(
+                q=folder_query,
+                supportsAllDrives=True,
+                includeItemsFromAllDrives=True,
+                fields='files(id, name, createdTime)'
+            ).execute()
+
+            folders = folders_result.get('files', [])
+
+            for folder in folders:
+                source_name = folder['name']
+                files = self.list_files_in_folder(folder['id'], max_results=1000)
+
+                source_articles = 0
+                source_latest = None
+
+                for f in files:
+                    # Each JSON file contains crawled articles
+                    if f['name'].endswith('.json'):
+                        source_articles += 1
+
+                        modified = f.get('modifiedTime', '')
+                        if source_latest is None or modified > source_latest:
+                            source_latest = modified
+
+                        if stats['last_updated'] is None or modified > stats['last_updated']:
+                            stats['last_updated'] = modified
+
+                        if stats['oldest_file'] is None or modified < stats['oldest_file']:
+                            stats['oldest_file'] = modified
+
+                stats['by_source'][source_name] = {
+                    'files': len(files),
+                    'json_files': source_articles,
+                    'latest_update': source_latest
+                }
+
+                stats['total_files'] += len(files)
+                stats['total_articles'] += source_articles
+
+                stats['sources_detail'].append({
+                    'name': source_name,
+                    'file_count': len(files),
+                    'json_count': source_articles,
+                    'latest': source_latest
+                })
+
+        except Exception as e:
+            stats['error'] = str(e)
+
+        return stats
+
     def ensure_source_folder(self, source_name: str) -> str:
         """Ensure folder exists for a news source, create if not"""
         return self.create_folder(source_name, self.folder_id)
