@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+
+# Data files
+data/raw/*.json
+data/silver/*.json
+data/gold/*.json
+data/summary/*.json
+data/logs/*.log
+
+# Credentials (keep in configs/, don't commit secrets)
+configs/client_secret*.json
+*.json
+
+# Environment
+.env
+.env.local
+.env.*
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Temp
+*.tmp
+tmp/
