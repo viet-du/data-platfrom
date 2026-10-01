@@ -9,7 +9,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy requirements
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
+
+# Force rebuild layer: any change to this line invalidates Docker cache.
+# Bump this whenever requirements.txt changes so Railway does not
+# serve a stale image missing the new packages.
+RUN echo "deps build: 2026-10-01-rag-fix" && pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 # Copy app
 COPY src/ ./src/
