@@ -9,16 +9,26 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy requirements
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 # Copy app
 COPY src/ ./src/
-COPY crawl_news.py .
-COPY crawl_raw.py .
+COPY scripts/ ./scripts/
 COPY configs/ ./configs/
 
 # Create dirs
-RUN mkdir -p /app/data/raw /app/data/logs
+RUN mkdir -p /app/data/raw /app/data/logs /app/data/silver /app/data/gold /app/data/summary
 
-# Run crawler
-CMD ["python", "crawl_news.py"]
+# Remove any conflicting root .py files
+RUN find /app -maxdepth 1 -name "*.py" -delete
+
+# Environment
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Run main service
+CMD ["python", "-u", "scripts/main_service.py"]
