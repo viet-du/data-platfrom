@@ -408,8 +408,16 @@ class BotCommands:
         except Exception as e:
             logger.warning(f"Could not clear webhook: {e}")
 
-        # Wait a bit to ensure old polling instance (if any) has stopped
-        time.sleep(3)
+        # Verify no other instance is polling the same token (PID lock)
+        lock_path = Path(os.environ.get("DATA_DIR", "/app/data")) / ".bot.lock"
+        if not acquire_singleton_lock(lock_path):
+            logger.error("Exiting to prevent duplicate Telegram polling.")
+            return
+
+        # Wait longer (was 3s) to let any old container fully release the
+        # long-poll connection. Railway zero-downtime deploys start the new
+        # container before fully killing the old one.
+        time.sleep(15)
 
         logger.info("Bot polling started!")
         self.telegram.send("🤖 <b>Bot Online!</b>\nHệ thống đang chạy 24/7")
@@ -546,12 +554,39 @@ def ensure_data_dirs():
     return base
 
 
+def acquire_singleton_lock(pidfile: Path) -> bool:
+    """Acquire an exclusive PID lock to prevent two pollers running at once."""
+    import fcntl
+    fp = open(pidfile, "w")
+    try:
+        fcntl.lockf(fp.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        fp.write(str(os.getpid()))
+        fp.flush()
+        return True
+    except (IOError, OSError):
+        existing_pid = "?"
+        try:
+            existing_pid = pidfile.read_text().strip() or "?"
+        except OSError:
+            pass
+        logger.error(
+            "Another bot instance holds the singleton lock (pid=%s). "
+            "Likely two containers polling the same Telegram token.",
+            existing_pid,
+        )
+        return False
+
+
 def main():
     logger.info("=" * 50)
     logger.info("Data Platform Service - Starting...")
     logger.info("=" * 50)
     data_root = ensure_data_dirs()
     logger.info(f"Data root: {data_root}")
+    # Volume diagnostic: check whether /app/data is writable and persistent
+    probe = data_root / ".startup_probe"
+    probe.write_text(datetime.now().isoformat())
+    logger.info(f"Volume write probe OK: {probe.read_text()}")
     start_health_server()
     telegram = TelegramService()
     crawler = CrawlerService(telegram)
