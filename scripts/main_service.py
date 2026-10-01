@@ -141,13 +141,20 @@ class BotCommands:
 ⏰ Auto-crawl: 6h, 12h, 18h, 22h
 📊 Daily report: 23h
 
-<b>Commands:</b>
+<b>📥 Data Commands:</b>
 /crawl - Chạy crawl ngay
 /raw - Crawl Google Drive
 /status - Trạng thái hệ thống
-/drives📁 - Thống kê file trên Drive
+/drives - Thống kê file trên Drive
 /report - Báo cáo hôm nay
 /dashboard - Thống kê chi tiết
+
+<b>🔮 RAG Chatbot (Q&A về tin tức):</b>
+/index - Build vector index từ data
+/ragstats - Thống kê vector store
+/ask &lt;câu hỏi&gt; - Hỏi AI về tin tức
+
+<b>⚙️ System:</b>
 /restart - Khởi động lại bot"""
     
     def cmd_status(self) -> str:
@@ -284,6 +291,80 @@ class BotCommands:
         self.telegram.send("✅ <b>Bot đã restart!</b>")
         time.sleep(1)
         os.execv(sys.executable, [sys.executable] + sys.argv)
+
+    # ----- RAG commands (lazy loaded) -----
+    _rag_chain = None
+    _rag_indexed = False
+
+    def _get_rag(self):
+        if self._rag_chain is not None:
+            return self._rag_chain
+        try:
+            from src.rag import RAGChain, VectorStore, GeminiClient
+            store = VectorStore()
+            chain = RAGChain(store, GeminiClient())
+            self._rag_chain = chain
+            return chain
+        except Exception as e:
+            logger.error(f"Failed to init RAG chain: {e}")
+            return None
+
+    def cmd_ask(self, question: str) -> str:
+        """RAG: answer a question using crawled articles."""
+        chain = self._get_rag()
+        if chain is None:
+            return "❌ RAG chưa khả dụng. Kiểm tra dependencies (chromadb, sentence-transformers)."
+
+        if chain.store.count == 0:
+            return (
+                "⚠️ Vector store trống.\n"
+                "Chạy /index trước để build embeddings từ dữ liệu đã crawl."
+            )
+
+        result = chain.ask(question, top_k=5)
+        return (
+            f"🤖 <b>RAG Answer</b>\n\n"
+            f"{result['answer']}\n\n"
+            f"<b>📚 Sources:</b>\n{result['sources']}"
+        )
+
+    def cmd_index(self) -> str:
+        """Build / rebuild the vector index from parquet."""
+        chain = self._get_rag()
+        if chain is None:
+            return "❌ RAG chưa khả dụng."
+
+        self.telegram.send("📥 <b>Đang build vector index...</b>\nCó thể mất 1-2 phút lần đầu (tải model).")
+        try:
+            from src.rag import build_store_from_parquet
+            # Reset and rebuild
+            chain.store.reset()
+            store, stats = build_store_from_parquet()
+            self._rag_chain = None  # re-init
+            chain = self._get_rag()
+            return (
+                f"✅ <b>Index hoàn thành!</b>\n\n"
+                f"📊 Indexed: {stats.get('added', 0)} bài\n"
+                f"⏭️ Skipped (đã có): {stats.get('skipped', 0)}\n"
+                f"🗑️ Dedup removed: {stats.get('duplicates_removed', 0)}\n"
+                f"💾 Total in store: {chain.store.count if chain else '?'}"
+            )
+        except Exception as e:
+            logger.error(f"Index error: {e}")
+            return f"❌ Lỗi index: {str(e)[:200]}"
+
+    def cmd_ragstats(self) -> str:
+        """Show RAG vector store stats."""
+        chain = self._get_rag()
+        if chain is None:
+            return "❌ RAG chưa khả dụng."
+        gemini_status = "✅ Ready" if chain.gemini.is_available() else "⚠️ Chưa có API key (extractive mode)"
+        return (
+            f"🔮 <b>RAG Stats</b>\n\n"
+            f"📦 Articles indexed: <b>{chain.store.count}</b>\n"
+            f"🤖 Gemini: {gemini_status}\n"
+            f"📐 Embedding: paraphrase-multilingual-MiniLM-L12-v2"
+        )
     
     def poll(self):
         import requests
@@ -333,30 +414,41 @@ class BotCommands:
                     msg = update['message']
                     if 'text' not in msg:
                         continue
-                    text = msg['text'].strip().lower()
-                    if not text:
-                        continue
-                    command = text.split(maxsplit=1)[0].split("@", 1)[0]
-                    logger.info(f"Command: {text}")
-                    response = None
-                    if command in ['/start', '/help']:
-                        response = self.cmd_start()
-                    elif command == '/status':
-                        response = self.cmd_status()
-                    elif command in ['/drivestats', '/drives']:
-                        response = self.cmd_drivestats()
-                    elif command == '/crawl':
-                        response = self.cmd_crawl()
-                    elif command == '/raw':
-                        response = self.cmd_raw()
-                    elif command == '/report':
-                        response = self.cmd_report()
-                    elif command == '/dashboard':
-                        response = self.cmd_dashboard()
-                    elif command == '/restart':
-                        response = self.cmd_restart()
-                    if response:
-                        self.telegram.send(response)
+                text = msg['text'].strip()
+                text_lower = text.lower()
+                if not text_lower:
+                    continue
+                command = text_lower.split(maxsplit=1)[0].split("@", 1)[0]
+                logger.info(f"Command: {text}")
+                response = None
+                if command in ['/start', '/help']:
+                    response = self.cmd_start()
+                elif command == '/status':
+                    response = self.cmd_status()
+                elif command in ['/drivestats', '/drives']:
+                    response = self.cmd_drivestats()
+                elif command == '/crawl':
+                    response = self.cmd_crawl()
+                elif command == '/raw':
+                    response = self.cmd_raw()
+                elif command == '/report':
+                    response = self.cmd_report()
+                elif command == '/dashboard':
+                    response = self.cmd_dashboard()
+                elif command == '/index':
+                    response = self.cmd_index()
+                elif command == '/ragstats':
+                    response = self.cmd_ragstats()
+                elif command == '/ask':
+                    question = text[len(command):].strip() if text_lower.startswith(command) else ""
+                    if not question:
+                        response = "💡 <b>Cách dùng:</b>\n<code>/ask Có tin gì về Hà Nội?</code>"
+                    else:
+                        response = self.cmd_ask(question)
+                elif command == '/restart':
+                    response = self.cmd_restart()
+                if response:
+                    self.telegram.send(response)
             except requests.exceptions.ReadTimeout:
                 continue
             except Exception as e:
