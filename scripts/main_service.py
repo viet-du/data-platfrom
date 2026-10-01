@@ -291,6 +291,18 @@ class BotCommands:
             logger.error("Telegram polling cannot start: bot is disabled or TELEGRAM_BOT_TOKEN is missing.")
             return
         api_url = f"{self.telegram.api_url}/getUpdates"
+
+        # Delete any webhook (in case it was set) and drop pending updates
+        # to avoid 409 Conflict with stale sessions
+        try:
+            requests.post(f"{self.telegram.api_url}/deleteWebhook", json={"drop_pending_updates": True}, timeout=10)
+            logger.info("Webhook cleared (drop_pending_updates=True)")
+        except Exception as e:
+            logger.warning(f"Could not clear webhook: {e}")
+
+        # Wait a bit to ensure old polling instance (if any) has stopped
+        time.sleep(3)
+
         logger.info("Bot polling started!")
         self.telegram.send("🤖 <b>Bot Online!</b>\nHệ thống đang chạy 24/7")
         while self.running:
