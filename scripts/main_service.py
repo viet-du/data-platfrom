@@ -20,16 +20,31 @@ class TelegramService:
         self.chat_id = os.getenv("TELEGRAM_CHAT_ID")
         self.api_url = f"https://api.telegram.org/bot{self.token}"
         self.enabled = os.getenv("TELEGRAM_ENABLED", "true").lower() == "true"
+        if self.enabled and not self.token:
+            logger.error("Telegram is enabled but TELEGRAM_BOT_TOKEN is not configured.")
+        if self.enabled and not self.chat_id:
+            logger.error("Telegram is enabled but TELEGRAM_CHAT_ID is not configured.")
     
     def send(self, text: str, parse_mode: str = "HTML") -> bool:
         if not self.enabled or not self.token:
+            return False
+        if not self.chat_id:
+            logger.error("Cannot send Telegram message: TELEGRAM_CHAT_ID is not configured.")
             return False
         try:
             import requests
             url = f"{self.api_url}/sendMessage"
             payload = {"chat_id": self.chat_id, "text": text, "parse_mode": parse_mode}
             resp = requests.post(url, json=payload, timeout=10)
-            return resp.status_code == 200
+            result = resp.json()
+            if resp.status_code != 200 or not result.get("ok"):
+                logger.error(
+                    "Telegram sendMessage failed (HTTP %s): %s",
+                    resp.status_code,
+                    result.get("description", "Unknown Telegram API error"),
+                )
+                return False
+            return True
         except Exception as e:
             logger.error(f"Telegram error: {e}")
             return False
@@ -48,16 +63,17 @@ class CrawlerService:
         start = time.time()
         try:
             sys.path.insert(0, '/app')
-            from src.crawlers import vnexpress_crawler, dantri_crawler, tuoitre_crawler, vietnamnet_crawler
+            from src.crawlers import VNExpressCrawler, DanTriCrawler, TuoiTreCrawler, VietnamNetCrawler
             articles = []
-            for name, crawler in [
-                ('Vnexpress', vnexpress_crawler),
-                ('Dantri', dantri_crawler),
-                ('Tuoitre', tuoitre_crawler),
-                ('Vietnamnet', vietnamnet_crawler)
+            for name, cls in [
+                ('Vnexpress', VNExpressCrawler),
+                ('Dantri', DanTriCrawler),
+                ('Tuoitre', TuoiTreCrawler),
+                ('Vietnamnet', VietnamNetCrawler)
             ]:
                 try:
-                    results = crawler.crawl()
+                    instance = cls()
+                    results = instance.crawl_all(today_only=True)
                     articles.extend(results)
                     logger.info(f"{name}: {len(results)} articles")
                 except Exception as e:
@@ -77,8 +93,14 @@ class CrawlerService:
         try:
             sys.path.insert(0, '/app')
             from src.services.google_drive_service import GoogleDriveService
-            drive = GoogleDriveService()
-            files = drive.download_new_files()
+
+            creds_path = os.getenv("GOOGLE_CREDENTIALS_PATH")
+            if not creds_path or not os.path.exists(creds_path):
+                logger.warning("Raw crawl skipped: GOOGLE_CREDENTIALS_PATH not configured.")
+                return {'success': False, 'error': 'No credentials configured', 'files': 0}
+
+            drive = GoogleDriveService(credentials_path=creds_path, use_oauth=False)
+            files = drive.download_new_files() if hasattr(drive, 'download_new_files') else []
             elapsed = time.time() - start
             return {'success': True, 'files': len(files), 'time': elapsed}
         except Exception as e:
@@ -222,19 +244,32 @@ class BotCommands:
     
     def poll(self):
         import requests
-        api_url = f"https://api.telegram.org/bot{os.getenv('TELEGRAM_BOT_TOKEN')}"
+        if not self.telegram.enabled or not self.telegram.token:
+            logger.error("Telegram polling cannot start: bot is disabled or TELEGRAM_BOT_TOKEN is missing.")
+            return
+        api_url = f"{self.telegram.api_url}/getUpdates"
         logger.info("Bot polling started!")
         self.telegram.send("🤖 <b>Bot Online!</b>\nHệ thống đang chạy 24/7")
         while self.running:
             try:
-                url = f"{api_url}/getUpdates"
                 params = {"offset": self.offset, "timeout": 30, "limit": 5}
-                resp = requests.get(url, params=params, timeout=35)
+                resp = requests.get(api_url, params=params, timeout=35)
                 if resp.status_code != 200:
+                    try:
+                        description = resp.json().get("description", "Unknown Telegram API error")
+                    except ValueError:
+                        description = resp.text[:300]
+                    logger.error(
+                        "Telegram getUpdates failed (HTTP %s): %s",
+                        resp.status_code,
+                        description,
+                    )
                     time.sleep(5)
                     continue
                 data = resp.json()
                 if not data.get('ok'):
+                    logger.error("Telegram getUpdates returned an error: %s", data.get("description", "Unknown Telegram API error"))
+                    time.sleep(5)
                     continue
                 for update in data.get('result', []):
                     self.offset = update['update_id'] + 1
@@ -244,21 +279,24 @@ class BotCommands:
                     if 'text' not in msg:
                         continue
                     text = msg['text'].strip().lower()
+                    if not text:
+                        continue
+                    command = text.split(maxsplit=1)[0].split("@", 1)[0]
                     logger.info(f"Command: {text}")
                     response = None
-                    if text in ['/start', '/help']:
+                    if command in ['/start', '/help']:
                         response = self.cmd_start()
-                    elif text == '/status':
+                    elif command == '/status':
                         response = self.cmd_status()
-                    elif text == '/crawl':
+                    elif command == '/crawl':
                         response = self.cmd_crawl()
-                    elif text == '/raw':
+                    elif command == '/raw':
                         response = self.cmd_raw()
-                    elif text == '/report':
+                    elif command == '/report':
                         response = self.cmd_report()
-                    elif text == '/dashboard':
+                    elif command == '/dashboard':
                         response = self.cmd_dashboard()
-                    elif text == '/restart':
+                    elif command == '/restart':
                         response = self.cmd_restart()
                     if response:
                         self.telegram.send(response)
