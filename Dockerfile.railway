@@ -19,12 +19,16 @@ COPY scripts/ ./scripts/
 COPY configs/ ./configs/
 COPY dags/ ./dags/
 
-# Create data directories
-RUN mkdir -p /app/data/raw /app/data/silver /app/data/gold /app/data/logs /app/data/summary
+# Create data directories (Railway Volume will be mounted here)
+# Volume mount creates these dirs persistently across redeploys
+RUN mkdir -p /app/data/raw /app/data/silver /app/data/gold \
+    /app/data/logs /app/data/summary /app/data/parquet \
+    /app/data/chroma /app/data/backups
 
 # Environment variables
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
+ENV DATA_DIR=/app/data
 
 # Remove any conflicting root .py files (safety)
 RUN find /app -maxdepth 1 -name "*.py" -delete

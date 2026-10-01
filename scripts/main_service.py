@@ -56,7 +56,7 @@ class CrawlerService:
         self.is_running = False
         self.last_run = None
         self.last_result = None
-        self.data_path = Path('/app/data')
+        self.data_path = Path(os.environ.get("DATA_DIR", "/app/data"))
     
     def run_crawl_news(self) -> dict:
         logger.info("Starting news crawl...")
@@ -153,6 +153,9 @@ class BotCommands:
 /index - Build vector index từ data
 /ragstats - Thống kê vector store
 /ask &lt;câu hỏi&gt; - Hỏi AI về tin tức
+
+<b>💾 Backup & Storage:</b>
+/backup - Backup data → Drive
 
 <b>⚙️ System:</b>
 /restart - Khởi động lại bot"""
@@ -365,6 +368,30 @@ class BotCommands:
             f"🤖 Gemini: {gemini_status}\n"
             f"📐 Embedding: paraphrase-multilingual-MiniLM-L12-v2"
         )
+
+    def cmd_backup(self) -> str:
+        """Create a backup archive and push to Drive if available."""
+        try:
+            from src.backup import run_backup
+            self.telegram.send("💾 <b>Đang tạo backup...</b>")
+            result = run_backup(upload_to_drive=True, keep_local=7)
+            if not result.get("ok"):
+                return f"⚠️ Không có data để backup: {result.get('reason', '?')}"
+            msg = (
+                f"✅ <b>Backup hoàn thành!</b>\n\n"
+                f"📦 File: <code>{Path(result['archive']).name}</code>\n"
+                f"💽 Size: {result['size_mb']} MB\n"
+            )
+            if "drive_file_id" in result:
+                msg += "☁️ Uploaded to Drive folder: <b>data-backups</b>"
+            elif "drive_error" in result:
+                msg += f"⚠️ Drive upload: {result['drive_error']}"
+            if result.get("pruned_local"):
+                msg += f"\n🗑️ Pruned {result['pruned_local']} old local archives"
+            return msg
+        except Exception as e:
+            logger.error(f"Backup error: {e}")
+            return f"❌ Backup lỗi: {str(e)[:200]}"
     
     def poll(self):
         import requests
@@ -435,10 +462,12 @@ class BotCommands:
                     response = self.cmd_report()
                 elif command == '/dashboard':
                     response = self.cmd_dashboard()
-                elif command == '/index':
-                    response = self.cmd_index()
-                elif command == '/ragstats':
-                    response = self.cmd_ragstats()
+elif command == '/index':
+                        response = self.cmd_index()
+                    elif command == '/ragstats':
+                        response = self.cmd_ragstats()
+                    elif command == '/backup':
+                        response = self.cmd_backup()
                 elif command == '/ask':
                     question = text[len(command):].strip() if text_lower.startswith(command) else ""
                     if not question:
@@ -471,8 +500,21 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
     def daily_report():
         stats = crawler.get_data_stats()
         telegram.send(f"📊 <b>Daily Report - {datetime.now().strftime('%Y-%m-%d')}</b>\n\n📁 Total files: {stats['raw'] + stats['silver'] + stats['gold']}")
-    
+
+    def nightly_backup():
+        try:
+            from src.backup import run_backup
+            result = run_backup(upload_to_drive=True, keep_local=7)
+            if result.get("ok"):
+                telegram.send(
+                    f"💾 <b>Nightly backup OK</b>\n"
+                    f"📦 {Path(result['archive']).name} ({result['size_mb']} MB)"
+                )
+        except Exception as e:
+            telegram.send(f"⚠️ Backup lỗi: {str(e)[:150]}")
+
     schedule.every().day.at("23:00").do(daily_report)
+    schedule.every().day.at("23:30").do(nightly_backup)
     logger.info("Scheduler started!")
     while True:
         schedule.run_pending()
@@ -494,10 +536,20 @@ def start_health_server():
     threading.Thread(target=run, daemon=True).start()
 
 # ============== MAIN ==============
+def ensure_data_dirs():
+    """Ensure all data subdirectories exist (volume mount point)."""
+    base = Path(os.environ.get("DATA_DIR", "/app/data"))
+    for sub in ["raw", "silver", "gold", "logs", "summary", "parquet", "chroma", "backups"]:
+        (base / sub).mkdir(parents=True, exist_ok=True)
+    return base
+
+
 def main():
     logger.info("=" * 50)
     logger.info("Data Platform Service - Starting...")
     logger.info("=" * 50)
+    data_root = ensure_data_dirs()
+    logger.info(f"Data root: {data_root}")
     start_health_server()
     telegram = TelegramService()
     crawler = CrawlerService(telegram)

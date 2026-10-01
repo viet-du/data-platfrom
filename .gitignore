@@ -11,6 +11,10 @@ data/gold/*.json
 data/summary/*.json
 data/logs/*.log
 
+# Parquet & vector stores (rebuilt by pipeline)
+data/parquet/
+data/chroma/
+
 # Railway config (keep this!)
 !railway.json
 

@@ -60,9 +60,13 @@ def _articles_from_raw_json(path: str) -> List[ArticleSchema]:
 
 def write_partitioned_parquet(
     articles: List[ArticleSchema],
-    output_root: str = "data/parquet",
+    output_root: str = None,
 ) -> dict:
     """Write articles to Hive-partitioned parquet. Returns stats dict."""
+    import os
+    if output_root is None:
+        base = Path(os.environ.get("DATA_DIR", "/app/data"))
+        output_root = str(base / "parquet")
     if not articles:
         return {"written": 0, "partitions": 0}
 
@@ -100,11 +104,15 @@ def write_partitioned_parquet(
 
 def convert_raw_json_to_parquet(
     raw_dir: str = "data/raw",
-    output_root: str = "data/parquet",
+    output_root: str = None,
     use_dedup: bool = True,
 ) -> dict:
     """Read all raw JSON files, optionally dedupe, then write partitioned Parquet."""
     from .deduplicator import Deduplicator
+    import os
+    if output_root is None:
+        base = Path(os.environ.get("DATA_DIR", "/app/data"))
+        output_root = str(base / "parquet")
 
     raw_files = sorted(glob.glob(os.path.join(raw_dir, "raw_crawl_*.json")))
     if not raw_files:

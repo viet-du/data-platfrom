@@ -18,10 +18,14 @@ class VectorStore:
 
     def __init__(
         self,
-        persist_dir: str = "data/chroma",
+        persist_dir: str = None,
         collection_name: str = DEFAULT_COLLECTION,
         embedding_model: str = DEFAULT_EMBED_MODEL,
     ):
+        import os
+        if persist_dir is None:
+            base = Path(os.environ.get("DATA_DIR", "/app/data"))
+            persist_dir = str(base / "chroma")
         self.persist_dir = persist_dir
         self.collection_name = collection_name
         self.embedding_model_name = embedding_model
@@ -149,11 +153,16 @@ class VectorStore:
         )
 
 
-def build_store_from_parquet(parquet_root: str = "data/parquet") -> VectorStore:
+def build_store_from_parquet(parquet_root: str = None) -> VectorStore:
     """Load all partitioned parquet into a new VectorStore."""
+    import os
     import glob
     import pandas as pd
     from datetime import datetime
+
+    if parquet_root is None:
+        base = Path(os.environ.get("DATA_DIR", "/app/data"))
+        parquet_root = str(base / "parquet")
 
     store = VectorStore()
     files = sorted(glob.glob(os.path.join(parquet_root, "**", "*.parquet"), recursive=True))
