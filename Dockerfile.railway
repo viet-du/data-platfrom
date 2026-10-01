@@ -10,22 +10,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy requirements first for caching
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies (with upgrade pip first)
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Copy application files
+# Copy ONLY specific folders - no root-level .py files
 COPY src/ ./src/
 COPY scripts/ ./scripts/
 COPY configs/ ./configs/
-COPY data/ ./data/
 COPY dags/ ./dags/
 
-# Create directories
+# Create data directories
 RUN mkdir -p /app/data/raw /app/data/silver /app/data/gold /app/data/logs /app/data/summary
 
 # Environment variables
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
+
+# Remove any conflicting root .py files (safety)
+RUN find /app -maxdepth 1 -name "*.py" -delete
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \

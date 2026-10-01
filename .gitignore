@@ -11,9 +11,9 @@ data/gold/*.json
 data/summary/*.json
 data/logs/*.log
 
-# Credentials (keep in configs/, don't commit secrets)
-configs/client_secret*.json
-*.json
+# Railway config (keep this!)
+!railway.json
+
 
 # Environment
 .env
