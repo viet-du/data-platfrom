@@ -57,9 +57,14 @@ class VectorStore:
         from sentence_transformers import SentenceTransformer
         self._embedder = SentenceTransformer(self.embedding_model_name, device="cpu")
 
+        # NOTE: do NOT pass `embedding_function` to get_or_create_collection.
+        # chromadb 0.5.x validates it against the EmbeddingFunction protocol
+        # (must have name(), is_legacy(), __call__(input)). Passing
+        # `self._embed_texts` raises:
+        #   ValueError: Embedding function must implement __call__ method
+        # We compute embeddings ourselves and pass `embeddings=` to add().
         self._collection = self._client.get_or_create_collection(
             name=self.collection_name,
-            embedding_function=self._embed_texts,
             metadata={"hnsw:space": "cosine"},
         )
 
@@ -125,7 +130,14 @@ class VectorStore:
                 })
 
             if new_ids:
-                self._collection.add(ids=new_ids, documents=new_texts, metadatas=new_metas)
+                # Pre-compute embeddings since collection has no embedding_function.
+                new_embeddings = self._embed_texts(new_texts)
+                self._collection.add(
+                    ids=new_ids,
+                    documents=new_texts,
+                    metadatas=new_metas,
+                    embeddings=new_embeddings,
+                )
                 added += len(new_ids)
             # Aggressively free memory after every batch so we stay under
             # 512 MB during long indexing runs.
@@ -139,8 +151,12 @@ class VectorStore:
 
         where = {"source": source_filter} if source_filter else None
 
+        # Pre-compute query embedding; pass via query_embeddings= (not query_texts=)
+        # because the collection has no embedding_function.
+        query_embedding = self._embed_texts([question])
+
         result = self._collection.query(
-            query_texts=[question],
+            query_embeddings=query_embedding,
             n_results=top_k,
             where=where,
             include=["documents", "metadatas", "distances"],
@@ -162,9 +178,9 @@ class VectorStore:
     def reset(self):
         self._ensure_loaded()
         self._client.delete_collection(self.collection_name)
+        # No embedding_function here either; we embed at call time.
         self._collection = self._client.create_collection(
             name=self.collection_name,
-            embedding_function=self._embed_texts,
             metadata={"hnsw:space": "cosine"},
         )
 
