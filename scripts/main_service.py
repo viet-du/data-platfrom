@@ -350,10 +350,21 @@ class BotCommands:
         Drive if the local chroma dir is empty — that way a fresh
         container can answer /ask immediately after boot, even if the
         volume was wiped.
+
+        Failures used to be silently swallowed with just a one-liner
+        "RAG chưa khả dụng", which made it impossible to tell from the
+        bot whether the issue was:
+          - a missing module (chromadb/sentence-transformers not installed),
+          - a Drive credentials problem,
+          - an OOM during model load,
+          - a corrupt chroma sqlite file,
+        so we now capture the full traceback and send it to Telegram.
         """
         if self._rag_chain is not None:
             return self._rag_chain
         try:
+            import traceback
+
             from src.rag import RAGChain, GeminiClient
             from src.rag.persistent_store import get_persistent_store
 
@@ -361,7 +372,11 @@ class BotCommands:
             # Auto-restore from Drive only the first time we touch the
             # store on this container, not on every query.
             if store._restored_from is None and store._estimate_local_count() == 0:
-                restored = store.restore_from_drive()
+                try:
+                    restored = store.restore_from_drive()
+                except Exception as restore_err:
+                    logger.error("Drive restore failed: %s", restore_err)
+                    restored = False
                 if restored:
                     logger.info(
                         "RAG boot: restored index from Drive snapshot %s",
@@ -376,7 +391,19 @@ class BotCommands:
             self._rag_chain = chain
             return chain
         except Exception as e:
-            logger.error(f"Failed to init RAG chain: {e}")
+            tb = traceback.format_exc()
+            logger.error(f"Failed to init RAG chain: {e}\n{tb}")
+            # Notify the user with the actual cause, not a vague message.
+            try:
+                short_tb = tb[-1200:] if len(tb) > 1200 else tb
+                self.telegram.send(
+                    "❌ <b>RAG init failed</b>\n\n"
+                    f"<code>{str(e)[:300]}</code>\n\n"
+                    "<b>Traceback:</b>\n"
+                    f"<pre><code>{short_tb}</code></pre>"
+                )
+            except Exception:
+                pass
             return None
 
     def cmd_ask(self, question: str) -> str:
