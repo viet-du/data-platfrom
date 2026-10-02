@@ -252,6 +252,7 @@ class BotCommands:
 
 ⏰ Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 🔄 Last crawl: {last}
+🏷 Build: <code>rag-error-surfacing-v2</code>
 
 📁 <b>Data Stats:</b>
 • Raw files: {data['raw']}
@@ -260,7 +261,7 @@ class BotCommands:
 
 🔄 <b>Auto Schedule:</b>
 • 06:00 - Morning crawl
-• 12:00 - Noon crawl  
+• 12:00 - Noon crawl
 • 18:00 - Evening crawl
 • 22:00 - Night crawl
 • 23:00 - Daily report"""
@@ -993,6 +994,28 @@ def ensure_data_dirs():
 def acquire_singleton_lock(pidfile: Path) -> bool:
     """Acquire an exclusive PID lock to prevent two pollers running at once."""
     import fcntl
+    # Stale-lock recovery: if the previous holder's PID is no longer
+    # alive, the fcntl lock is gone but the file still references the
+    # dead PID. Remove it so we can re-acquire. This handles the case
+    # where Railway's old container died hard (SIGKILL) without
+    # releasing the lock cleanly.
+    if pidfile.exists():
+        try:
+            old_pid = int(pidfile.read_text().strip() or "0")
+        except ValueError:
+            old_pid = 0
+        if old_pid and old_pid != os.getpid():
+            try:
+                os.kill(old_pid, 0)  # signal 0 = check existence only
+            except (OSError, ProcessLookupError):
+                logger.warning(
+                    "Stale .bot.lock (pid=%s) — old process is dead, removing.",
+                    old_pid,
+                )
+                try:
+                    pidfile.unlink()
+                except OSError as e:
+                    logger.warning("Could not remove stale lock: %s", e)
     fp = open(pidfile, "w")
     try:
         fcntl.lockf(fp.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -1016,6 +1039,11 @@ def acquire_singleton_lock(pidfile: Path) -> bool:
 def main():
     logger.info("=" * 50)
     logger.info("Data Platform Service - Starting...")
+    # Build identifier so we can confirm the latest code is actually
+    # running, not a stale container that survived a deploy.
+    # Bump this string every time we deploy; if /status still shows
+    # the old value, Railway is still serving the previous image.
+    logger.info("BUILD_TAG: rag-error-surfacing-v2")
     logger.info("=" * 50)
     data_root = ensure_data_dirs()
     logger.info(f"Data root: {data_root}")
