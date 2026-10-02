@@ -194,6 +194,7 @@ class BotCommands:
 /index - Build vector index từ data
 /ragstats - Thống kê vector store
 /ask &lt;câu hỏi&gt; - Hỏi AI về tin tức
+/snapshot - Push RAG index snapshot → Drive (24/7)
 
 <b>💾 Backup & Storage:</b>
 /backup - Backup data → Drive
@@ -342,11 +343,34 @@ class BotCommands:
     _rag_indexed = False
 
     def _get_rag(self):
+        """Lazily construct RAGChain around a PersistentVectorStore.
+
+        On the very first call we attempt to restore the index from
+        Drive if the local chroma dir is empty — that way a fresh
+        container can answer /ask immediately after boot, even if the
+        volume was wiped.
+        """
         if self._rag_chain is not None:
             return self._rag_chain
         try:
-            from src.rag import RAGChain, VectorStore, GeminiClient
-            store = VectorStore()
+            from src.rag import RAGChain, GeminiClient
+            from src.rag.persistent_store import get_persistent_store
+
+            store = get_persistent_store()
+            # Auto-restore from Drive only the first time we touch the
+            # store on this container, not on every query.
+            if store._restored_from is None and store._estimate_local_count() == 0:
+                restored = store.restore_from_drive()
+                if restored:
+                    logger.info(
+                        "RAG boot: restored index from Drive snapshot %s",
+                        store._restored_from,
+                    )
+                    self.telegram.send(
+                        f"♻️ <b>RAG index restored từ Drive snapshot</b>\n"
+                        f"📦 Snapshot: <code>{store._restored_from}</code>"
+                    )
+
             chain = RAGChain(store, GeminiClient())
             self._rag_chain = chain
             return chain
@@ -387,29 +411,66 @@ class BotCommands:
             store, stats = build_store_from_parquet()
             self._rag_chain = None  # re-init
             chain = self._get_rag()
+
+            # After a successful build, immediately snapshot to Drive so
+            # the next container boot can restore from this version
+            # even if the volume is gone.
+            try:
+                chain.store.snapshot_to_drive()
+            except Exception as e:
+                logger.warning("Auto-snapshot after /index failed: %s", e)
+
             return (
                 f"✅ <b>Index hoàn thành!</b>\n\n"
                 f"📊 Indexed: {stats.get('added', 0)} bài\n"
                 f"⏭️ Skipped (đã có): {stats.get('skipped', 0)}\n"
                 f"🗑️ Dedup removed: {stats.get('duplicates_removed', 0)}\n"
-                f"💾 Total in store: {chain.store.count if chain else '?'}"
+                f"💾 Total in store: {chain.store.count if chain else '?'}\n"
+                f"☁️ Auto-snapshot pushed → Drive"
             )
         except Exception as e:
             logger.error(f"Index error: {e}")
             return f"❌ Lỗi index: {str(e)[:200]}"
 
     def cmd_ragstats(self) -> str:
-        """Show RAG vector store stats."""
+        """Show RAG vector store stats + persistence status."""
         chain = self._get_rag()
         if chain is None:
             return "❌ RAG chưa khả dụng."
+        store = chain.store
         gemini_status = "✅ Ready" if chain.gemini.is_available() else "⚠️ Chưa có API key (extractive mode)"
+
+        snap_at = (
+            store._last_snapshot_at.isoformat() if getattr(store, "_last_snapshot_at", None) else "—"
+        )
+        restored_from = getattr(store, "_restored_from", None) or "—"
+
         return (
             f"🔮 <b>RAG Stats</b>\n\n"
             f"📦 Articles indexed: <b>{chain.store.count}</b>\n"
             f"🤖 Gemini: {gemini_status}\n"
-            f"📐 Embedding: all-MiniLM-L6-v2 (lightweight, ~80 MB RAM)"
+            f"📐 Embedding: all-MiniLM-L6-v2 (lightweight, ~80 MB RAM)\n\n"
+            f"<b>💾 Persistence (24/7):</b>\n"
+            f"📁 Local: <code>{store.persist_dir}</code>\n"
+            f"☁️ Drive folder: <b>{store.snapshot_folder}</b>\n"
+            f"🕐 Last Drive snapshot: {snap_at}\n"
+            f"♻️ Restored from: <code>{restored_from}</code>"
         )
+
+    def cmd_snapshot(self) -> str:
+        """Push a Drive snapshot of the current chroma dir manually."""
+        chain = self._get_rag()
+        if chain is None:
+            return "❌ RAG chưa khả dụng."
+        self.telegram.send("📤 <b>Đang snapshot RAG index → Drive...</b>")
+        try:
+            file_id = chain.store.snapshot_to_drive()
+            if file_id:
+                return f"✅ Snapshot uploaded → Drive/<b>{chain.store.snapshot_folder}</b>\n🆔 <code>{file_id}</code>"
+            return "⚠️ Snapshot skipped (no Drive credentials configured)."
+        except Exception as e:
+            logger.error(f"snapshot error: {e}")
+            return f"❌ Snapshot lỗi: {str(e)[:200]}"
 
     def cmd_backup(self) -> str:
         """Create a backup archive and push to Drive if available."""
@@ -555,6 +616,8 @@ class BotCommands:
                     response = self.cmd_index()
                 elif command == '/ragstats':
                     response = self.cmd_ragstats()
+                elif command == '/snapshot':
+                    response = self.cmd_snapshot()
                 elif command == '/backup':
                     response = self.cmd_backup()
                 elif command == '/logs':
@@ -618,7 +681,24 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
         except Exception as e:
             logger.error("hourly log upload error: %s", e)
 
+    def six_hourly_rag_snapshot():
+        """Push RAG index snapshot to Drive every 6 hours.
+
+        Why 6h and not nightly: if the volume dies during the day, the
+        user can still answer /ask by restoring from the most recent
+        snapshot, which is at most 6 hours stale.
+        """
+        try:
+            from src.rag.persistent_store import get_persistent_store
+            store = get_persistent_store()
+            file_id = store.snapshot_to_drive()
+            if file_id:
+                logger.info("6h RAG snapshot OK: %s", file_id)
+        except Exception as e:
+            logger.error("6h RAG snapshot error: %s", e)
+
     schedule.every().hour.do(hourly_log_upload)
+    schedule.every(6).hours.do(six_hourly_rag_snapshot)
     logger.info("Scheduler started!")
     while True:
         schedule.run_pending()
