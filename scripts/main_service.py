@@ -59,12 +59,27 @@ class CrawlerService:
         self.data_path = Path(os.environ.get("DATA_DIR", "/app/data"))
     
     def run_crawl_news(self) -> dict:
+        """Crawl from each source, push each batch straight to the cloud sink.
+
+        Why stream: the Railway container is ephemeral. Holding the
+        full crawl in memory until the end of the run is a recipe for
+        OOM on a 512 MB tier. We flush each source's batch to Drive /
+        local sink the moment the crawl finishes that source.
+        """
         logger.info("Starting news crawl...")
         start = time.time()
         try:
             sys.path.insert(0, '/app')
             from src.crawlers import VNExpressCrawler, DanTriCrawler, TuoiTreCrawler, VietnamNetCrawler
-            articles = []
+            from src.storage import build_sink_from_env
+
+            sink = build_sink_from_env()
+            sink_ok = sink.health_check()
+            logger.info("Cloud sink=%s healthy=%s", sink.name, sink_ok)
+
+            totals = {'articles': 0, 'uploaded': 0, 'upload_failed': 0}
+            per_source: List[Dict] = []
+
             for name, cls in [
                 ('Vnexpress', VNExpressCrawler),
                 ('Dantri', DanTriCrawler),
@@ -74,13 +89,39 @@ class CrawlerService:
                 try:
                     instance = cls()
                     results = instance.crawl_all(today_only=True)
-                    articles.extend(results)
-                    logger.info(f"{name}: {len(results)} articles")
+                    logger.info("%s: %d articles", name, len(results))
+
+                    # Flush immediately so the bytes leave the container.
+                    file_id = None
+                    if sink_ok and results:
+                        file_id = sink.write_batch(source=name, articles=results)
+
+                    per_source.append({
+                        'source': name,
+                        'articles': len(results),
+                        'sink': sink.name,
+                        'file_id': file_id,
+                    })
+                    totals['articles'] += len(results)
+                    if file_id:
+                        totals['uploaded'] += 1
+                    else:
+                        totals['upload_failed'] += 1
                 except Exception as e:
                     logger.error(f"{name} error: {e}")
+                    per_source.append({'source': name, 'error': str(e)})
+
             elapsed = time.time() - start
             self.last_run = datetime.now()
-            self.last_result = {'success': True, 'articles': len(articles), 'time': elapsed}
+            self.last_result = {
+                'success': True,
+                'articles': totals['articles'],
+                'uploaded': totals['uploaded'],
+                'upload_failed': totals['upload_failed'],
+                'sink': sink.name,
+                'per_source': per_source,
+                'time': elapsed,
+            }
             return self.last_result
         except Exception as e:
             logger.error(f"Crawl error: {e}")
@@ -156,6 +197,7 @@ class BotCommands:
 
 <b>💾 Backup & Storage:</b>
 /backup - Backup data → Drive
+/logs - Upload bot.log lên Drive (để xem local)
 
 <b>⚙️ System:</b>
 /restart - Khởi động lại bot"""
@@ -392,6 +434,47 @@ class BotCommands:
         except Exception as e:
             logger.error(f"Backup error: {e}")
             return f"❌ Backup lỗi: {str(e)[:200]}"
+
+    def cmd_upload_logs(self) -> str:
+        """Upload bot.log to a dedicated Drive folder so the dev machine can pull it.
+
+        Why: the container's stdout is ephemeral and Railway's log search
+        is slow. By uploading a copy every hour the user can `tail -f
+        ~/.cache/data-platform/logs/bot.log` on their Mac after the
+        pull_logs.sh LaunchAgent runs.
+        """
+        try:
+            creds_path = os.environ.get("GOOGLE_DRIVE_CREDENTIALS")
+            if not creds_path or not os.path.exists(creds_path):
+                return "⚠️ Chưa cấu hình GOOGLE_DRIVE_CREDENTIALS — không upload logs."
+
+            from src.services.google_drive_service import GoogleDriveService
+            from googleapiclient.http import MediaFileUpload
+
+            log_path = Path(os.environ.get("DATA_DIR", "/app/data")) / "logs" / "bot.log"
+            if not log_path.exists():
+                log_path.parent.mkdir(parents=True, exist_ok=True)
+                log_path.touch()
+                logger.info("Created empty log file: %s", log_path)
+
+            folder_name = "bot-logs"
+            drive = GoogleDriveService(credentials_path=creds_path, use_oauth=False)
+            folder_id = drive.create_folder(folder_name)
+            if not folder_id:
+                return "⚠️ Không tạo được Drive folder 'bot-logs' (check permissions)."
+
+            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+            media = MediaFileUpload(str(log_path), mimetype="text/plain", resumable=True)
+            created = drive.service.files().create(
+                body={"name": f"bot_{ts}.log", "parents": [folder_id]},
+                media_body=media,
+                fields="id",
+                supportsAllDrives=True,
+            ).execute()
+            return f"📤 Log uploaded → Drive/folder: <b>{folder_name}</b> (id={created.get('id')})"
+        except Exception as e:
+            logger.error("upload_log error: %s", e)
+            return f"❌ Upload logs lỗi: {str(e)[:200]}"
     
     def poll(self):
         import requests
@@ -474,6 +557,8 @@ class BotCommands:
                     response = self.cmd_ragstats()
                 elif command == '/backup':
                     response = self.cmd_backup()
+                elif command == '/logs':
+                    response = self.cmd_upload_logs()
                 elif command == '/ask':
                     question = text[len(command):].strip() if text_lower.startswith(command) else ""
                     if not question:
@@ -525,6 +610,15 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
 
     schedule.every().day.at("23:00").do(daily_report)
     schedule.every().day.at("23:30").do(nightly_backup)
+
+    def hourly_log_upload():
+        try:
+            bot = BotCommands(crawler, telegram)
+            telegram.send(bot.cmd_upload_logs())
+        except Exception as e:
+            logger.error("hourly log upload error: %s", e)
+
+    schedule.every().hour.do(hourly_log_upload)
     logger.info("Scheduler started!")
     while True:
         schedule.run_pending()

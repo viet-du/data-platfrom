@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.data-platform.logpuller.plist
+
+  Drop into ~/Library/LaunchAgents/ then enable with:
+      launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.data-platform.logpuller.plist
+      launchctl kickstart -k gui/$(id -u)/com.data-platform.logpuller
+
+  The agent fires once on login AND every 15 minutes after, which is
+  how often the bot uploads a new bot.log to Drive. So worst case your
+  local copy is 15 minutes stale, but you don't have to SSH anywhere.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.data-platform.logpuller</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/mac/Documents/project/data-platfrom/scripts/pull_logs.sh</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StartInterval</key>
+    <integer>900</integer>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/data-platform.logpuller.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/data-platform.logpuller.err</string>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/mac/Documents/project/data-platfrom</string>
+</dict>
+</plist>
