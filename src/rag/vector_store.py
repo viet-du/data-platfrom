@@ -199,7 +199,11 @@ def build_store_from_parquet(parquet_root: str = None) -> VectorStore:
     store = VectorStore()
     files = sorted(glob.glob(os.path.join(parquet_root, "**", "*.parquet"), recursive=True))
     if not files:
-        return store
+        # Return the same (store, stats) tuple shape callers expect, even
+        # when there's nothing to index — otherwise downstream
+        # `store, stats = build_store_from_parquet()` fails with
+        # "cannot unpack non-iterable VectorStore object".
+        return store, {"added": 0, "skipped": 0}
 
     df = pd.concat([pd.read_parquet(f) for f in files], ignore_index=True)
 
