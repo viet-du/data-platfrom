@@ -179,8 +179,9 @@ class BotCommands:
         return """🤖 <b>Data Platform Bot - Online!</b>
 
 ✅ Hệ thống đang chạy tự động
-⏰ Auto-crawl: 6h, 12h, 18h, 22h
+⏰ Auto-crawl: 7h sáng, 19h chiều
 📊 Daily report: 23h
+🗑️ Auto-cleanup: 4h sáng (xoá data > 7 ngày)
 
 <b>📥 Data Commands:</b>
 /crawl - Chạy crawl ngay
@@ -199,6 +200,7 @@ class BotCommands:
 
 <b>💾 Backup & Storage:</b>
 /backup - Backup data → Drive
+/cleanup [days] - Xoá data cũ (mặc định 7 ngày)
 /logs - Upload bot.log lên Drive (để xem local)
 
 <b>⚙️ System:</b>
@@ -570,6 +572,18 @@ class BotCommands:
             logger.error(f"snapshot error: {e}")
             return f"❌ Snapshot lỗi: {str(e)[:200]}"
 
+    def cmd_cleanup(self, days: str = "") -> str:
+        """Manually trigger data cleanup. Args: <days> (default 7)."""
+        try:
+            from scripts.cleanup import cleanup_old_data, format_cleanup_summary
+            n = int(days) if days.strip().isdigit() else 7
+            self.telegram.send(f"🗑️ <b>Cleanup đang chạy (max_age={n}d)...</b>")
+            result = cleanup_old_data(max_age_days=n)
+            return format_cleanup_summary(result)
+        except Exception as e:
+            logger.error(f"Cleanup error: {e}")
+            return f"❌ Lỗi cleanup: {str(e)[:200]}"
+
     def cmd_backup(self) -> str:
         """Create a backup archive and push to Drive if available."""
         try:
@@ -720,6 +734,9 @@ class BotCommands:
                     response = self.cmd_news()
                 elif command == '/backup':
                     response = self.cmd_backup()
+                elif command == '/cleanup':
+                    arg = text[len(command):].strip() if text_lower.startswith(command) else ""
+                    response = self.cmd_cleanup(arg)
                 elif command == '/logs':
                     response = self.cmd_upload_logs()
                 elif command == '/ask':
@@ -755,6 +772,26 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
     # Schedule: 07:00 morning briefing, 19:00 evening roundup.
     schedule.every().day.at("07:00").do(job, "7h Sáng", "🌅", "Morning")
     schedule.every().day.at("19:00").do(job, "19h Chiều", "🌆", "Evening")
+
+    def daily_cleanup():
+        """Sweep old data every night so the volume doesn't grow forever.
+
+        The crawler is append-only by default — without a TTL the volume
+        fills with hundreds of MBs of articles nobody will ever query
+        again. We keep 7 days: enough buffer for natural drops and
+        still small enough that the Railway free tier never trips.
+        """
+        try:
+            from scripts.cleanup import cleanup_old_data, format_cleanup_summary
+            result = cleanup_old_data(max_age_days=7)
+            telegram.send(format_cleanup_summary(result))
+        except Exception as e:
+            logger.error("Daily cleanup failed: %s", e)
+            telegram.send(f"⚠️ Cleanup lỗi: <code>{str(e)[:200]}</code>")
+
+    # Run cleanup at 04:00 — well before the morning crawl so the
+    # 7-day window doesn't include data the bot is about to index.
+    schedule.every().day.at("04:00").do(daily_cleanup)
     
     def daily_report():
         stats = crawler.get_data_stats()
