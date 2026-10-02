@@ -754,54 +754,67 @@ class BotCommands:
                     msg = update['message']
                     if 'text' not in msg:
                         continue
-                text = msg['text'].strip()
-                text_lower = text.lower()
-                if not text_lower:
-                    continue
-                command = text_lower.split(maxsplit=1)[0].split("@", 1)[0]
-                logger.info(f"Command: {text}")
-                response = None
-                if command in ['/start', '/help']:
-                    response = self.cmd_start()
-                elif command == '/status':
-                    response = self.cmd_status()
-                elif command in ['/drivestats', '/drives']:
-                    response = self.cmd_drivestats()
-                elif command == '/crawl':
-                    response = self.cmd_crawl()
-                elif command == '/raw':
-                    response = self.cmd_raw()
-                elif command == '/report':
-                    response = self.cmd_report()
-                elif command == '/index':
-                    response = self.cmd_index()
-                elif command == '/ragstats':
-                    response = self.cmd_ragstats()
-                elif command == '/snapshot':
-                    response = self.cmd_snapshot()
-                elif command == '/news':
-                    response = self.cmd_news()
-                elif command == '/backup':
-                    response = self.cmd_backup()
-                elif command == '/cleanup':
-                    arg = text[len(command):].strip() if text_lower.startswith(command) else ""
-                    response = self.cmd_cleanup(arg)
-                elif command == '/logs':
-                    response = self.cmd_logs()
-                elif command == '/digest':
-                    response = self.cmd_digest()
-                elif command == '/digeststats':
-                    response = self.cmd_digeststats()
-                elif command == '/ask':
-                    question = text[len(command):].strip() if text_lower.startswith(command) else ""
-                    if not question:
-                        response = "💡 <b>Cách dùng:</b>\n<code>/ask Có tin gì về Hà Nội?</code>"
+                    text = msg['text'].strip()
+                    text_lower = text.lower()
+                    if not text_lower:
+                        continue
+                    command = text_lower.split(maxsplit=1)[0].split("@", 1)[0]
+                    logger.info(f"Command: {text}")
+                    response = None
+                    if command in ['/start', '/help']:
+                        response = self.cmd_start()
+                    elif command == '/status':
+                        response = self.cmd_status()
+                    elif command in ['/drivestats', '/drives']:
+                        response = self.cmd_drivestats()
+                    elif command == '/crawl':
+                        response = self.cmd_crawl()
+                    elif command == '/raw':
+                        response = self.cmd_raw()
+                    elif command == '/report':
+                        response = self.cmd_report()
+                    elif command == '/index':
+                        response = self.cmd_index()
+                    elif command == '/ragstats':
+                        response = self.cmd_ragstats()
+                    elif command == '/snapshot':
+                        response = self.cmd_snapshot()
+                    elif command == '/news':
+                        response = self.cmd_news()
+                    elif command == '/backup':
+                        response = self.cmd_backup()
+                    elif command == '/cleanup':
+                        arg = text[len(command):].strip() if text_lower.startswith(command) else ""
+                        response = self.cmd_cleanup(arg)
+                    elif command == '/logs':
+                        response = self.cmd_logs()
+                    elif command == '/digest':
+                        response = self.cmd_digest()
+                    elif command == '/digeststats':
+                        response = self.cmd_digeststats()
+                    elif command == '/ask':
+                        question = text[len(command):].strip() if text_lower.startswith(command) else ""
+                        if not question:
+                            response = "💡 <b>Cách dùng:</b>\n<code>/ask Có tin gì về Hà Nội?</code>"
+                        else:
+                            response = self.cmd_ask(question)
+                    elif command == '/restart':
+                        response = self.cmd_restart()
                     else:
-                        response = self.cmd_ask(question)
-                elif command == '/restart':
-                    response = self.cmd_restart()
-                if response:
-                    self.telegram.send(response)
+                        # Free-form message, no slash command. Treat it as
+                        # a question for the RAG chatbot so the bot feels
+                        # chatty instead of command-only.
+                        if text.startswith('/'):
+                            response = (
+                                "❓ <b>Lệnh không hợp lệ:</b> "
+                                f"<code>{command}</code>\n\n"
+                                "Gõ <code>/help</code> để xem danh sách lệnh, "
+                                "hoặc gửi câu hỏi bất kỳ để hỏi AI về tin tức."
+                            )
+                        else:
+                            response = self.cmd_ask(text)
+                    if response:
+                        self.telegram.send(response)
             except requests.exceptions.ReadTimeout:
                 continue
             except requests.exceptions.ConnectionError as e:
