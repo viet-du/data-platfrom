@@ -362,16 +362,28 @@ class BotCommands:
         """
         if self._rag_chain is not None:
             return self._rag_chain
+        logger.info("RAG: _get_rag called for the first time; initialising chain...")
+        t0 = time.time()
         try:
             import traceback
 
             from src.rag import RAGChain, GeminiClient
             from src.rag.persistent_store import get_persistent_store
 
+            logger.info("RAG: constructing PersistentVectorStore...")
             store = get_persistent_store()
+            logger.info("RAG: estimating local count at %s", store.persist_dir)
+            local = store._estimate_local_count()
+            logger.info("RAG: local chroma has %s embeddings", local)
+
             # Auto-restore from Drive only the first time we touch the
             # store on this container, not on every query.
-            if store._restored_from is None and store._estimate_local_count() == 0:
+            if store._restored_from is None and local == 0:
+                logger.info("RAG: store empty, attempting Drive restore...")
+                self.telegram.send(
+                    "♻️ <b>Local index trống, đang restore từ Drive snapshot...</b>\n"
+                    "⏳ Có thể mất 1-2 phút lần đầu."
+                )
                 try:
                     restored = store.restore_from_drive()
                 except Exception as restore_err:
@@ -386,9 +398,18 @@ class BotCommands:
                         f"♻️ <b>RAG index restored từ Drive snapshot</b>\n"
                         f"📦 Snapshot: <code>{store._restored_from}</code>"
                     )
+                else:
+                    logger.warning("RAG: no Drive snapshot restored; will run empty")
+                    self.telegram.send(
+                        "⚠️ <b>Không restore được từ Drive</b>\n"
+                        "Có thể chưa có snapshot, hoặc Drive credentials chưa config.\n"
+                        "Gửi <code>/index</code> để build từ parquet."
+                    )
 
+            logger.info("RAG: constructing RAGChain (this loads sentence-transformers)...")
             chain = RAGChain(store, GeminiClient())
             self._rag_chain = chain
+            logger.info("RAG: chain ready in %.1fs", time.time() - t0)
             return chain
         except Exception as e:
             tb = traceback.format_exc()
@@ -414,6 +435,12 @@ class BotCommands:
             which synthesizes the latest crawled batch across sources.
           - Specific questions ("Bộ trưởng X nói gì") -> standard semantic QA.
         """
+        # Instant "thinking" feedback so /ask never silently hangs.
+        self.telegram.send(
+            f"🔮 <b>Đang tra cứu...</b>\n"
+            f"❓ Câu hỏi: <i>{question[:200]}</i>\n"
+            f"⏳ Model cold-start có thể mất 30-60s lần đầu."
+        )
         chain = self._get_rag()
         if chain is None:
             return "❌ RAG chưa khả dụng. Kiểm tra dependencies (chromadb, sentence-transformers)."
@@ -424,7 +451,11 @@ class BotCommands:
                 "Chạy /index trước để build embeddings từ dữ liệu đã crawl."
             )
 
-        result = chain.ask(question, top_k=3)  # 3 chunks fits comfortably in 512 MB
+        try:
+            result = chain.ask(question, top_k=3)  # 3 chunks fits comfortably in 512 MB
+        except Exception as e:
+            logger.error("RAG ask failed: %s", e)
+            return f"❌ RAG ask failed: {e}"
 
         mode_emoji = "📰" if result.get("mode") == "digest" else "🔎"
         mode_label = (
@@ -439,12 +470,25 @@ class BotCommands:
 
     def cmd_news(self) -> str:
         """Force a news digest (bypasses the question-routing heuristic)."""
+        # Send an instant "I'm working on it" message so the user
+        # always sees feedback, even if the embedding/model load
+        # takes 30+ seconds on a cold start.
+        self.telegram.send("📰 <b>Đang tổng hợp bản tin...</b>\n⏳ Lần đầu có thể mất 30-60s (đang load model).")
         chain = self._get_rag()
         if chain is None:
-            return "❌ RAG chưa khả dụng."
+            return "❌ RAG chưa khả dụng (xem log)."
         if chain.store.count == 0:
-            return "⚠️ Vector store trống. Gửi /index trước."
-        result = chain.ask_digest("Tổng hợp tin tức mới nhất trong 48h qua", top_k=12)
+            return (
+                "⚠️ <b>Vector store trống.</b>\n"
+                "Gửi <code>/index</code> trước để build embeddings từ dữ liệu đã crawl."
+            )
+        try:
+            result = chain.ask_digest("Tổng hợp tin tức mới nhất trong 48h qua", top_k=12)
+        except Exception as e:
+            logger.error("ask_digest failed: %s", e)
+            return f"❌ Digest failed: {e}"
+        if not result.get("answer"):
+            return "📭 Không tìm được bài nào để tổng hợp."
         return (
             f"📰 <b>Bản tin thời sự</b>\n\n"
             f"{result['answer']}\n\n"
