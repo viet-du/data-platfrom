@@ -750,10 +750,11 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
         if result['success']:
             telegram.send(f"✅ Hoàn thành! 📰 {result['articles']} bài")
     
-    schedule.every().day.at("06:00").do(job, "6h Sáng", "🌅", "Morning")
-    schedule.every().day.at("12:00").do(job, "12h Trưa", "☀️", "Noon")
-    schedule.every().day.at("18:00").do(job, "18h Chiều", "🌆", "Evening")
-    schedule.every().day.at("22:00").do(job, "22h Tối", "🌙", "Night")
+    # News doesn't change minute-to-minute like weather, so 2 crawls
+    # per day is enough to keep the index fresh without burning CPU.
+    # Schedule: 07:00 morning briefing, 19:00 evening roundup.
+    schedule.every().day.at("07:00").do(job, "7h Sáng", "🌅", "Morning")
+    schedule.every().day.at("19:00").do(job, "19h Chiều", "🌆", "Evening")
     
     def daily_report():
         stats = crawler.get_data_stats()
