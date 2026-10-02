@@ -13,6 +13,12 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# Import the digest wrapper. TelegramService.send() stays the same
+# (immediate delivery for errors / user replies). TelegramService.buffer()
+# records low-importance events into an in-memory queue; flush_digest()
+# sends them as a single daily summary at 20:00 instead of one-by-one.
+from scripts.telegram_digest import TelegramDigest
+
 # ============== TELEGRAM SERVICE ==============
 class TelegramService:
     def __init__(self):
@@ -48,6 +54,30 @@ class TelegramService:
         except Exception as e:
             logger.error(f"Telegram error: {e}")
             return False
+
+    # ----- digest buffer (low-importance events) -----
+
+    # Lazily initialised digest wrapper — kept as an attribute on the
+    # TelegramService so callers can do `telegram.buffer(...)` without
+    # changing every function signature in main_service.py.
+    _digest: "TelegramDigest | None" = None
+
+    @property
+    def digest(self) -> "TelegramDigest":
+        if self._digest is None:
+            self._digest = TelegramDigest(self.send, chat_id=self.chat_id)
+        return self._digest
+
+    def buffer(self, event: str, level: str = "info", detail: str = "") -> None:
+        """Append a low-importance event for the daily digest (no send)."""
+        self.digest.buffer(event, level=level, detail=detail)
+
+    def flush_digest(self) -> bool:
+        """Send the buffered digest. Returns True if anything was sent."""
+        return self.digest.flush_digest()
+
+    def digest_stats(self) -> dict:
+        return self.digest.stats()
 
 # ============== CRAWLER SERVICE ==============
 class CrawlerService:
@@ -182,6 +212,7 @@ class BotCommands:
 ⏰ Auto-crawl: 7h sáng, 19h chiều
 📊 Daily report: 23h
 🗑️ Auto-cleanup: 4h sáng (xoá data > 7 ngày)
+📋 Daily digest: 20h (1 tin nhắn tổng hợp)
 
 <b>📥 Data Commands:</b>
 /crawl - Chạy crawl ngay
@@ -201,7 +232,11 @@ class BotCommands:
 <b>💾 Backup & Storage:</b>
 /backup - Backup data → Drive
 /cleanup [days] - Xoá data cũ (mặc định 7 ngày)
-/logs - Upload bot.log lên Drive (để xem local)
+/logs - Xem 30 dòng log cuối
+
+<b>📋 Notifications:</b>
+/digest - Xem tổng hợp events đã buffer
+/digeststats - Bao nhiêu event đang chờ digest
 
 <b>⚙️ System:</b>
 /restart - Khởi động lại bot"""
@@ -608,46 +643,60 @@ class BotCommands:
             logger.error(f"Backup error: {e}")
             return f"❌ Backup lỗi: {str(e)[:200]}"
 
-    def cmd_upload_logs(self) -> str:
-        """Upload bot.log to a dedicated Drive folder so the dev machine can pull it.
+    def cmd_logs(self) -> str:
+        """Show the last 30 lines of bot.log inline (no Drive round-trip).
 
-        Why: the container's stdout is ephemeral and Railway's log search
-        is slow. By uploading a copy every hour the user can `tail -f
-        ~/.cache/data-platform/logs/bot.log` on their Mac after the
-        pull_logs.sh LaunchAgent runs.
+        Why change from the old upload-logs-to-Drive behaviour:
+          The old `/logs` command uploaded a file to Google Drive and pinged
+          the user every hour. That both spammed the chat and required
+          network setup. Now `/logs` is a pull-only command — the user
+          asks, the bot sends back the tail of the file. Same data, less
+          noise.
         """
         try:
-            creds_path = os.environ.get("GOOGLE_DRIVE_CREDENTIALS")
-            if not creds_path or not os.path.exists(creds_path):
-                return "⚠️ Chưa cấu hình GOOGLE_DRIVE_CREDENTIALS — không upload logs."
-
-            from src.services.google_drive_service import GoogleDriveService
-            from googleapiclient.http import MediaFileUpload
-
             log_path = Path(os.environ.get("DATA_DIR", "/app/data")) / "logs" / "bot.log"
             if not log_path.exists():
-                log_path.parent.mkdir(parents=True, exist_ok=True)
-                log_path.touch()
-                logger.info("Created empty log file: %s", log_path)
-
-            folder_name = "bot-logs"
-            drive = GoogleDriveService(credentials_path=creds_path, use_oauth=False)
-            folder_id = drive.create_folder(folder_name)
-            if not folder_id:
-                return "⚠️ Không tạo được Drive folder 'bot-logs' (check permissions)."
-
-            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-            media = MediaFileUpload(str(log_path), mimetype="text/plain", resumable=True)
-            created = drive.service.files().create(
-                body={"name": f"bot_{ts}.log", "parents": [folder_id]},
-                media_body=media,
-                fields="id",
-                supportsAllDrives=True,
-            ).execute()
-            return f"📤 Log uploaded → Drive/folder: <b>{folder_name}</b> (id={created.get('id')})"
+                return "ℹ️  Chưa có log file (bot mới khởi động)."
+            # Read last ~30 lines without loading the whole file.
+            try:
+                from collections import deque
+                tail = deque(maxlen=30)
+                with open(log_path, "r", encoding="utf-8", errors="ignore") as f:
+                    for line in f:
+                        tail.append(line.rstrip())
+            except OSError as e:
+                return f"⚠️ Không đọc được log: {e}"
+            body = "\n".join(tail)
+            # Telegram hard limit is 4096 chars — trim the body to fit.
+            head = f"📜 <b>bot.log</b> — last 30 lines\n<code>"
+            tail_max = "</code>"
+            max_body = 4096 - len(head) - len(tail_max) - 5
+            if len(body) > max_body:
+                body = "…\n" + body[-(max_body - 5):]
+            return head + body + tail_max
         except Exception as e:
-            logger.error("upload_log error: %s", e)
-            return f"❌ Upload logs lỗi: {str(e)[:200]}"
+            logger.error("logs cmd: %s", e)
+            return f"❌ Lỗi: {str(e)[:150]}"
+
+    def cmd_digest(self) -> str:
+        """Manually flush the buffered events. Same content the bot will
+        ship automatically at 20:00, just on-demand."""
+        msg = self.telegram.digest.format_digest()
+        if msg is None:
+            return "📋 <b>Digest</b>\nKhông có sự kiện nào được buffer hôm nay."
+        # Send immediately AND clear the buffer.
+        self.telegram.flush_digest()
+        return msg
+
+    def cmd_digeststats(self) -> str:
+        stats = self.telegram.digest_stats()
+        return (
+            f"📋 <b>Digest buffer</b>\n"
+            f"Buffered events: <b>{stats['buffered']}</b>\n"
+            f"Capacity: {stats['cap']}\n\n"
+            f"Auto-flush: <code>20:00</code> mỗi ngày\n"
+            f"Hoặc gọi <code>/digest</code> để xem ngay."
+        )
     
     def poll(self):
         import requests
@@ -738,7 +787,11 @@ class BotCommands:
                     arg = text[len(command):].strip() if text_lower.startswith(command) else ""
                     response = self.cmd_cleanup(arg)
                 elif command == '/logs':
-                    response = self.cmd_upload_logs()
+                    response = self.cmd_logs()
+                elif command == '/digest':
+                    response = self.cmd_digest()
+                elif command == '/digeststats':
+                    response = self.cmd_digeststats()
                 elif command == '/ask':
                     question = text[len(command):].strip() if text_lower.startswith(command) else ""
                     if not question:
@@ -762,11 +815,23 @@ class BotCommands:
 # ============== SCHEDULER ==============
 def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
     def job(hour: str, emoji: str, title: str):
-        telegram.send(f"{emoji} <b>Auto Crawl - {hour}</b>")
+        # Crawl start: low-importance, buffer instead of send. The
+        # user sees a single "crawl done at 7:04" entry in the digest,
+        # not a "crawl started" then "crawl done" pair.
+        telegram.buffer(f"{emoji} Auto crawl — {hour}", "INFO")
         result = crawler.run_crawl_news()
         if result['success']:
-            telegram.send(f"✅ Hoàn thành! 📰 {result['articles']} bài")
-    
+            telegram.buffer(
+                f"✅ Crawl OK — {result['articles']} bài",
+                "OK",
+                detail=f"{result['time']:.1f}s",
+            )
+        else:
+            # Errors are still immediate — the user needs to know.
+            err = result.get("error", "Unknown")
+            telegram.send(f"❌ <b>Lỗi crawl:</b> <code>{err[:200]}</code>")
+            telegram.buffer(f"❌ Crawl FAIL — {err[:80]}", "ERR")
+
     # News doesn't change minute-to-minute like weather, so 2 crawls
     # per day is enough to keep the index fresh without burning CPU.
     # Schedule: 07:00 morning briefing, 19:00 evening roundup.
@@ -784,7 +849,18 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
         try:
             from scripts.cleanup import cleanup_old_data, format_cleanup_summary
             result = cleanup_old_data(max_age_days=7)
-            telegram.send(format_cleanup_summary(result))
+            total = result["total_deleted"]
+            mb_freed = result["total_bytes"] / 1024 / 1024
+            if total > 0:
+                telegram.buffer(
+                    f"🗑️ Cleanup — {total} files ({mb_freed:.2f} MB)",
+                    "OK",
+                    detail=", ".join(
+                            f"{l}={s['deleted']}" for l, s in result["layers"].items() if s["deleted"]
+                        ),
+                    )
+            else:
+                telegram.buffer("🗑️ Cleanup — nothing to delete", "INFO")
         except Exception as e:
             logger.error("Daily cleanup failed: %s", e)
             telegram.send(f"⚠️ Cleanup lỗi: <code>{str(e)[:200]}</code>")
@@ -792,32 +868,32 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
     # Run cleanup at 04:00 — well before the morning crawl so the
     # 7-day window doesn't include data the bot is about to index.
     schedule.every().day.at("04:00").do(daily_cleanup)
-    
+
     def daily_report():
         stats = crawler.get_data_stats()
-        telegram.send(f"📊 <b>Daily Report - {datetime.now().strftime('%Y-%m-%d')}</b>\n\n📁 Total files: {stats['raw'] + stats['silver'] + stats['gold']}")
+        total = stats["raw"] + stats["silver"] + stats["gold"]
+        telegram.buffer(
+            f"📊 Daily report — {total} files total",
+            "INFO",
+            detail=f"raw={stats['raw']}, silver={stats['silver']}, gold={stats['gold']}",
+        )
 
     def nightly_backup():
         try:
             from src.backup import run_backup
             result = run_backup(upload_to_drive=True, keep_local=7)
             if result.get("ok"):
-                telegram.send(
-                    f"💾 <b>Nightly backup OK</b>\n"
-                    f"📦 {Path(result['archive']).name} ({result['size_mb']} MB)"
+                telegram.buffer(
+                    f"💾 Backup OK — {Path(result['archive']).name} ({result['size_mb']} MB)",
+                    "OK",
+                    detail="→ Drive" if "drive_file_id" in result else "local-only",
                 )
         except Exception as e:
+            # Errors are still immediate.
             telegram.send(f"⚠️ Backup lỗi: {str(e)[:150]}")
 
     schedule.every().day.at("23:00").do(daily_report)
     schedule.every().day.at("23:30").do(nightly_backup)
-
-    def hourly_log_upload():
-        try:
-            bot = BotCommands(crawler, telegram)
-            telegram.send(bot.cmd_upload_logs())
-        except Exception as e:
-            logger.error("hourly log upload error: %s", e)
 
     def six_hourly_rag_snapshot():
         """Push RAG index snapshot to Drive every 6 hours.
@@ -825,18 +901,36 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
         Why 6h and not nightly: if the volume dies during the day, the
         user can still answer /ask by restoring from the most recent
         snapshot, which is at most 6 hours stale.
+
+        Success is silent (buffer only); failures are immediate.
         """
         try:
             from src.rag.persistent_store import get_persistent_store
             store = get_persistent_store()
             file_id = store.snapshot_to_drive()
             if file_id:
-                logger.info("6h RAG snapshot OK: %s", file_id)
+                telegram.buffer("📦 RAG snapshot → Drive OK", "OK")
         except Exception as e:
             logger.error("6h RAG snapshot error: %s", e)
+            telegram.send(f"⚠️ RAG snapshot lỗi: <code>{str(e)[:150]}</code>")
 
-    schedule.every().hour.do(hourly_log_upload)
+    def daily_digest():
+        """Send the buffered digest at 20:00 — one summary message
+        covering everything that happened today. Anything not flushed
+        here would sit in the buffer until the next 20:00, so we also
+        flush on demand via /digest."""
+        sent = telegram.flush_digest()
+        if not sent:
+            logger.info("Daily digest: nothing buffered today.")
+
+    # RAG snapshots continue every 6h — they don't ping the user.
     schedule.every(6).hours.do(six_hourly_rag_snapshot)
+    # Daily digest at 20:00 covers every buffered event in one message.
+    schedule.every().day.at("20:00").do(daily_digest)
+
+    # Removed: hourly_log_upload (was spamming /logs uploads every
+    # 60 min). /logs is still available as an on-demand command.
+
     logger.info("Scheduler started!")
     while True:
         schedule.run_pending()
