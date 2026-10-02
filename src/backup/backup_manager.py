@@ -46,12 +46,17 @@ def create_local_archive(data_dir: str = None, archive_path: str = None) -> str:
 def upload_backup_to_drive(archive_path: str, drive_service: GoogleDriveService) -> Optional[str]:
     """Upload the archive to Drive under BACKUP_FOLDER_NAME; returns file id."""
     from googleapiclient.http import MediaFileUpload
+    from googleapiclient.errors import HttpError
 
     service = drive_service.service
     if not service:
         return None
 
-    folder_id = drive_service.get_or_create_folder(BACKUP_FOLDER_NAME)
+    try:
+        folder_id = drive_service.get_or_create_folder(BACKUP_FOLDER_NAME)
+    except AttributeError:
+        # Older versions of GoogleDriveService expose create_folder instead.
+        folder_id = drive_service.create_folder(BACKUP_FOLDER_NAME)
     if not folder_id:
         return None
 
@@ -59,9 +64,20 @@ def upload_backup_to_drive(archive_path: str, drive_service: GoogleDriveService)
         "name": Path(archive_path).name,
         "parents": [folder_id],
     }
-    media = MediaFileUpload(archive_path, mimetype="application/gzip", resumable=False)
-    file = service.files().create(body=file_metadata, media_body=media, fields="id").execute()
-    return file.get("id")
+    media = MediaFileUpload(archive_path, mimetype="application/gzip", resumable=True)
+    try:
+        file = service.files().create(
+            body=file_metadata,
+            media_body=media,
+            fields="id",
+            supportsAllDrives=True,
+        ).execute()
+        return file.get("id")
+    except HttpError as e:
+        # Surface the exact Google error code so the Telegram message can tell
+        # the user *why* the upload failed (permissions, quota, shared drive
+        # flag, etc.) instead of a generic "Drive error".
+        raise RuntimeError(f"Drive HttpError {e.resp.status}: {e._get_reason()}") from e
 
 
 def prune_old_archives(data_dir: str = None, keep: int = 7) -> int:
@@ -94,7 +110,12 @@ def run_backup(upload_to_drive: bool = True, keep_local: int = 7) -> dict:
     if upload_to_drive:
         try:
             creds_path = os.environ.get("GOOGLE_DRIVE_CREDENTIALS")
-            if creds_path:
+            if not creds_path:
+                result["drive_error"] = (
+                    "GOOGLE_DRIVE_CREDENTIALS env var not set; "
+                    "skipping Drive upload"
+                )
+            else:
                 drive = GoogleDriveService(credentials_path=creds_path, use_oauth=False)
                 file_id = upload_backup_to_drive(archive, drive)
                 if file_id:
