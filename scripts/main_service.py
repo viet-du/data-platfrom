@@ -865,6 +865,23 @@ def main():
     telegram = TelegramService()
     crawler = CrawlerService(telegram)
     bot = BotCommands(crawler, telegram)
+
+    # Auto-build RAG index on every boot so /ask works immediately.
+    # This replaces the previous silent failure where the user saw
+    # "RAG chưa khả dụng" because the store was empty and the
+    # model had never been downloaded.
+    def _auto_index():
+        logger.info("RAG auto-index: starting background index on boot...")
+        telegram.send("🔄 <b>Bot đang khởi động...</b>\n⏳ Đang build RAG index lần đầu (tải model, có thể mất 2-5 phút).")
+        try:
+            result = bot.cmd_index()
+            logger.info("RAG auto-index: done — %s", result)
+            telegram.send(f"✅ <b>RAG index ready!</b>\n{result}")
+        except Exception as e:
+            logger.error("RAG auto-index failed: %s", e)
+            telegram.send(f"⚠️ <b>RAG index failed:</b>\n<code>{str(e)[:200]}</code>\n\nGửi <code>/index</code> thủ công để thử lại.")
+
+    threading.Thread(target=_auto_index, daemon=True).start()
     threading.Thread(target=run_scheduler, args=(telegram, crawler), daemon=True).start()
     logger.info("All services started!")
     bot.poll()
