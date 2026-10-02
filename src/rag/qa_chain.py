@@ -23,6 +23,7 @@ dedicated digest path solves this without retraining anything.
 import os
 import re
 from datetime import datetime, timedelta
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from src.pipeline.schema import ArticleSchema

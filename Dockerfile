@@ -13,7 +13,7 @@ COPY requirements.txt .
 # Force rebuild layer: any change to this line invalidates Docker cache.
 # Bump this whenever requirements.txt changes so Railway does not
 # serve a stale image missing the new packages.
-RUN echo "deps build: 2026-10-02-rag-debug" && pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
+RUN echo "deps build: 2026-10-02-rag-path-fix" && pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 # Copy app
 COPY src/ ./src/
