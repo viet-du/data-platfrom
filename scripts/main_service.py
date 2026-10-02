@@ -204,6 +204,10 @@ class BotCommands:
         self.telegram = telegram
         self.offset = 0
         self.running = True
+        # Cached RAG chain + last init error so /ask can surface the real
+        # cause instead of a generic "RAG chưa khả dụng" line.
+        self._rag_chain = None
+        self._rag_last_error: str | None = None
     
     def cmd_start(self) -> str:
         return """🤖 <b>Data Platform Bot - Online!</b>
@@ -446,12 +450,15 @@ class BotCommands:
             logger.info("RAG: constructing RAGChain (this loads sentence-transformers)...")
             chain = RAGChain(store, GeminiClient())
             self._rag_chain = chain
+            self._rag_last_error = None
             logger.info("RAG: chain ready in %.1fs", time.time() - t0)
             return chain
         except Exception as e:
             tb = traceback.format_exc()
             logger.error(f"Failed to init RAG chain: {e}\n{tb}")
-            # Notify the user with the actual cause, not a vague message.
+            # Stash the error so /ask can return it directly without
+            # relying on a second telegram.send that may itself fail.
+            self._rag_last_error = f"{type(e).__name__}: {e}"
             try:
                 short_tb = tb[-1200:] if len(tb) > 1200 else tb
                 self.telegram.send(
@@ -480,7 +487,13 @@ class BotCommands:
         )
         chain = self._get_rag()
         if chain is None:
-            return "❌ RAG chưa khả dụng. Kiểm tra dependencies (chromadb, sentence-transformers)."
+            err = self._rag_last_error or "unknown error"
+            return (
+                "❌ <b>RAG chưa khả dụng.</b>\n\n"
+                f"<b>Lỗi:</b> <code>{err[:300]}</code>\n\n"
+                "Kiểm tra log (`/logs`) để xem traceback đầy đủ, "
+                "hoặc gửi <code>/index</code> để retry."
+            )
 
         if chain.store.count == 0:
             return (
@@ -513,7 +526,8 @@ class BotCommands:
         self.telegram.send("📰 <b>Đang tổng hợp bản tin...</b>\n⏳ Lần đầu có thể mất 30-60s (đang load model).")
         chain = self._get_rag()
         if chain is None:
-            return "❌ RAG chưa khả dụng (xem log)."
+            err = self._rag_last_error or "unknown error"
+            return f"❌ RAG chưa khả dụng.\n<code>{err[:200]}</code>"
         if chain.store.count == 0:
             return (
                 "⚠️ <b>Vector store trống.</b>\n"
@@ -536,7 +550,8 @@ class BotCommands:
         """Build / rebuild the vector index from parquet."""
         chain = self._get_rag()
         if chain is None:
-            return "❌ RAG chưa khả dụng."
+            err = self._rag_last_error or "unknown error"
+            return f"❌ RAG chưa khả dụng.\n<code>{err[:200]}</code>"
 
         self.telegram.send("📥 <b>Đang build vector index...</b>\nCó thể mất 1-2 phút lần đầu (tải model).")
         try:
@@ -571,7 +586,8 @@ class BotCommands:
         """Show RAG vector store stats + persistence status."""
         chain = self._get_rag()
         if chain is None:
-            return "❌ RAG chưa khả dụng."
+            err = self._rag_last_error or "unknown error"
+            return f"❌ RAG chưa khả dụng.\n<code>{err[:200]}</code>"
         store = chain.store
         gemini_status = "✅ Ready" if chain.gemini.is_available() else "⚠️ Chưa có API key (extractive mode)"
 
@@ -596,7 +612,8 @@ class BotCommands:
         """Push a Drive snapshot of the current chroma dir manually."""
         chain = self._get_rag()
         if chain is None:
-            return "❌ RAG chưa khả dụng."
+            err = self._rag_last_error or "unknown error"
+            return f"❌ RAG chưa khả dụng.\n<code>{err[:200]}</code>"
         self.telegram.send("📤 <b>Đang snapshot RAG index → Drive...</b>")
         try:
             file_id = chain.store.snapshot_to_drive()
