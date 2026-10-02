@@ -193,6 +193,7 @@ class BotCommands:
 <b>🔮 RAG Chatbot (Q&A về tin tức):</b>
 /index - Build vector index từ data
 /ragstats - Thống kê vector store
+/news - Bản tin thời sự (digest 48h)
 /ask &lt;câu hỏi&gt; - Hỏi AI về tin tức
 /snapshot - Push RAG index snapshot → Drive (24/7)
 
@@ -379,7 +380,13 @@ class BotCommands:
             return None
 
     def cmd_ask(self, question: str) -> str:
-        """RAG: answer a question using crawled articles."""
+        """RAG: answer a question using crawled articles.
+
+        Routing:
+          - Vague questions ("tin gì mới", "có gì hot") -> news_digest mode,
+            which synthesizes the latest crawled batch across sources.
+          - Specific questions ("Bộ trưởng X nói gì") -> standard semantic QA.
+        """
         chain = self._get_rag()
         if chain is None:
             return "❌ RAG chưa khả dụng. Kiểm tra dependencies (chromadb, sentence-transformers)."
@@ -391,10 +398,30 @@ class BotCommands:
             )
 
         result = chain.ask(question, top_k=3)  # 3 chunks fits comfortably in 512 MB
+
+        mode_emoji = "📰" if result.get("mode") == "digest" else "🔎"
+        mode_label = (
+            "News Digest" if result.get("mode") == "digest" else "RAG Answer"
+        )
+
         return (
-            f"🤖 <b>RAG Answer</b>\n\n"
+            f"{mode_emoji} <b>{mode_label}</b>\n\n"
             f"{result['answer']}\n\n"
-            f"<b>📚 Sources:</b>\n{result['sources']}"
+            f"<b>📚 Nguồn tham khảo:</b>\n{result['sources']}"
+        )
+
+    def cmd_news(self) -> str:
+        """Force a news digest (bypasses the question-routing heuristic)."""
+        chain = self._get_rag()
+        if chain is None:
+            return "❌ RAG chưa khả dụng."
+        if chain.store.count == 0:
+            return "⚠️ Vector store trống. Gửi /index trước."
+        result = chain.ask_digest("Tổng hợp tin tức mới nhất trong 48h qua", top_k=12)
+        return (
+            f"📰 <b>Bản tin thời sự</b>\n\n"
+            f"{result['answer']}\n\n"
+            f"<b>📚 Nguồn:</b>\n{result['sources']}"
         )
 
     def cmd_index(self) -> str:
@@ -618,6 +645,8 @@ class BotCommands:
                     response = self.cmd_ragstats()
                 elif command == '/snapshot':
                     response = self.cmd_snapshot()
+                elif command == '/news':
+                    response = self.cmd_news()
                 elif command == '/backup':
                     response = self.cmd_backup()
                 elif command == '/logs':
