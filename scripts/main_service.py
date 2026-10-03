@@ -10,6 +10,24 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
+# Materialize Drive credentials from env var JSON before any submodule
+# reads GOOGLE_DRIVE_CREDENTIALS(_PATH). This keeps existing call sites
+# working without changes; production sets GOOGLE_DRIVE_CREDENTIALS_JSON
+# so the secret never needs to live inside the git repo.
+try:
+    from src.utils.credentials import resolve_credentials_path
+    _resolved = resolve_credentials_path()
+    if _resolved:
+        os.environ.setdefault("GOOGLE_DRIVE_CREDENTIALS", _resolved)
+        os.environ.setdefault("GOOGLE_DRIVE_CREDENTIALS_PATH", _resolved)
+        logging.getLogger(__name__).info(
+            "Drive credentials resolved: %s", _resolved
+        )
+except Exception as _creds_err:
+    logging.getLogger(__name__).warning(
+        "credentials resolver failed (non-fatal): %s", _creds_err
+    )
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 

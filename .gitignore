@@ -18,6 +18,13 @@ data/chroma/
 # Railway config (keep this!)
 !railway.json
 
+# Secrets — never commit. Use GOOGLE_DRIVE_CREDENTIALS_JSON env var on
+# Railway instead (see src/utils/credentials.py).
+configs/google-drive-credentials.json
+configs/*.secret.json
+*.pem
+*.key
+
 
 # Environment
 .env
