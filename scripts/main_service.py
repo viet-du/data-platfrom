@@ -211,6 +211,9 @@ class CrawlerService:
                                 by_source.setdefault(rec.get("source_name", "Unknown"), []).append(rec)
 
                             ts = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
+                            # Track per-source results để retry queue biết file nào fail.
+                            from src.storage import get_retry_queue
+                            retry_queue = get_retry_queue()
                             for source_name, records in by_source.items():
                                 # Skip nếu file này đã push rồi (track trong Drive:
                                 # đơn giản nhất là thử list folder, nếu đã có file cùng
@@ -235,10 +238,19 @@ class CrawlerService:
                                         source_name, len(records), file_id,
                                     )
                                 else:
+                                    # write_payload đã retry 3 lần với exponential backoff
+                                    # (2s, 4s, 8s). Nếu vẫn fail → enqueue vào retry queue
+                                    # để scheduler retry ở các lần sau. Drive sync sẽ tự
+                                    # heal khi network/credential recover.
                                     totals['upload_failed'] += 1
+                                    entry_id = retry_queue.enqueue(
+                                        source=source_name,
+                                        filename=filename,
+                                        payload=payload,
+                                    )
                                     logger.error(
-                                        "Drive push FAILED: %s (%d records)",
-                                        source_name, len(records),
+                                        "Drive push FAILED: %s (%d records) — enqueued id=%s",
+                                        source_name, len(records), entry_id,
                                     )
                     except Exception as e:
                         logger.exception("Drive push batch failed: %s", e)
@@ -366,6 +378,8 @@ class BotCommands:
 /news - Bản tin thời sự (digest 48h)
 /ask &lt;câu hỏi&gt; - Hỏi AI về tin tức
 /snapshot - Push RAG index snapshot → Drive (24/7)
+/retry - Retry các Drive upload bị fail (sync Drive với Local)
+/queuestats - Xem trạng thái upload retry queue
 
 <b>💾 Backup & Storage:</b>
 /backup - Backup data → Drive
@@ -392,7 +406,7 @@ class BotCommands:
 
 ⏰ Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 🔄 Last crawl: {last}
-🏷 Build: <code>cache-bust-v9-default-creds-path</code>
+🏷 Build: <code>cache-bust-v10-drive-retry-queue</code>
 
 📁 <b>Data Layers (3-tier):</b>
 🥉 Bronze:  <code>{layers.get('bronze', 0)}</code> files
@@ -902,6 +916,106 @@ class BotCommands:
             logger.error(f"snapshot error: {e}")
             return f"❌ Snapshot lỗi: {str(e)[:200]}"
 
+    def cmd_retry(self) -> str:
+        """Retry Drive uploads đã fail trước đó.
+
+        Background:
+          Crawl xong → write_payload() lên Drive. Nếu Drive fail (HTTP 5xx,
+          rate limit, network blip), payload được lưu vào pending_uploads.json
+          + retry ở lần crawl sau. /retry cho phép user trigger thủ công nếu
+          muốn sync ngay (ví dụ sau khi sửa credentials).
+        """
+        try:
+            from src.storage import build_sink_from_env, get_retry_queue
+        except ImportError as e:
+            return f"❌ Không import được retry queue: {e}"
+
+        queue = get_retry_queue()
+        stats = queue.stats()
+        if stats["pending"] == 0:
+            return (
+                "✅ <b>Retry queue rỗng!</b>\n\n"
+                f"📊 Tổng entries: <b>{stats['total']}</b>\n"
+                f"🪦 Dead-letter (đã retry {stats['max_attempts']} lần): <b>{stats['dead_letter']}</b>\n\n"
+                "Drive hiện đang sync với Local Gold."
+            )
+
+        sink = build_sink_from_env()
+        if not sink.health_check():
+            return (
+                f"⚠️ <b>Sink không healthy</b> — không thể retry.\n\n"
+                f"📦 Queue: <b>{stats['pending']}</b> pending uploads đợi.\n"
+                "Gửi <code>/testdrive</code> để chẩn đoán credentials."
+            )
+
+        self.telegram.send(
+            f"♻️ <b>Retry queue flush...</b>\n"
+            f"📦 Pending: <b>{stats['pending']}</b>"
+        )
+        result = queue.flush_pending(sink)
+
+        lines = ["♻️ <b>Retry flush hoàn thành</b>\n"]
+        lines.append(f"• Attempted: <b>{result['attempted']}</b>")
+        lines.append(f"• ✅ Succeeded: <b>{result['succeeded']}</b>")
+        lines.append(f"• ❌ Failed: <b>{result['failed']}</b>")
+        lines.append(f"• 🪦 Dead-letter: <b>{result['dead_letter']}</b>")
+        lines.append(f"• 📦 Remaining: <b>{result['remaining']}</b>")
+
+        if result["details"]:
+            lines.append("\n<b>Chi tiết:</b>")
+            for d in result["details"][:10]:
+                emoji = "✅" if d["ok"] else "❌"
+                err = d.get("error", "")
+                err_str = f" — <code>{err[:80]}</code>" if err else ""
+                lines.append(f"  {emoji} {d['source']}/{d['filename']} (attempt {d['attempts']}){err_str}")
+
+        return "\n".join(lines)
+
+    def cmd_queuestats(self) -> str:
+        """Xem chi tiết các entries trong retry queue."""
+        try:
+            from src.storage import get_retry_queue
+            queue = get_retry_queue()
+        except ImportError as e:
+            return f"❌ Không import được: {e}"
+
+        stats = queue.stats()
+        pending = queue.list_pending()
+        dead = queue.list_dead()
+
+        lines = [
+            "📦 <b>Upload Retry Queue</b>\n",
+            f"• Tổng entries: <b>{stats['total']}</b>",
+            f"• Pending (sẽ retry): <b>{stats['pending']}</b>",
+            f"• Dead-letter (đã thất bại {stats['max_attempts']} lần): <b>{stats['dead_letter']}</b>",
+            f"• File: <code>pending_uploads.json</code> trong /app/data",
+        ]
+
+        if pending:
+            lines.append("\n<b>📥 Pending (sẽ retry):</b>")
+            for e in pending[:5]:
+                age = e.get("created_at", "?")[:19]
+                attempts = e.get("attempts", 0)
+                last_err = (e.get("last_error") or "")[:80]
+                lines.append(
+                    f"  • <code>{e['source']}/{e['filename']}</code>\n"
+                    f"    attempts={attempts}, age={age}\n"
+                    f"    err: <code>{last_err}</code>"
+                )
+
+        if dead:
+            lines.append(f"\n<b>🪦 Dead-letter ({len(dead)} entries):</b>")
+            for e in dead[:3]:
+                age = e.get("created_at", "?")[:19]
+                attempts = e.get("attempts", 0)
+                lines.append(
+                    f"  • <code>{e['source']}/{e['filename']}</code> "
+                    f"(attempts={attempts}, age={age})"
+                )
+
+        lines.append("\nGửi <code>/retry</code> để flush thủ công.")
+        return "\n".join(lines)
+
     def cmd_cleanup(self, days: str = "") -> str:
         """Manually trigger data cleanup. Args: <days> (default 7)."""
         try:
@@ -1163,6 +1277,10 @@ class BotCommands:
                         response = self.cmd_ragstats()
                     elif command == '/snapshot':
                         response = self.cmd_snapshot()
+                    elif command == '/retry':
+                        response = self.cmd_retry()
+                    elif command == '/queuestats':
+                        response = self.cmd_queuestats()
                     elif command == '/news':
                         response = self.cmd_news()
                     elif command == '/backup':
@@ -1215,6 +1333,44 @@ class BotCommands:
 
 # ============== SCHEDULER ==============
 def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
+    def flush_retry_queue(telegram, crawler):
+        """Retry tất cả pending payloads chưa push được lên Drive.
+
+        Được gọi:
+          - Sau mỗi auto-crawl (07:00, 19:00)
+          - Sau mỗi /crawl manual
+          - Boot nếu có pending (trước đó container bị kill mid-fail)
+
+        Chỉ chạy khi sink healthy (GoogleDriveSink hoặc Databricks sink).
+        """
+        try:
+            from src.storage import build_sink_from_env, get_retry_queue
+            sink = build_sink_from_env()
+            if not sink.health_check():
+                logger.info("flush_retry_queue: sink unhealthy, skip")
+                return
+            queue = get_retry_queue()
+            stats = queue.stats()
+            if stats["pending"] == 0:
+                logger.debug("flush_retry_queue: no pending uploads")
+                return
+            logger.info(
+                "flush_retry_queue: retrying %d pending uploads",
+                stats["pending"],
+            )
+            result = queue.flush_pending(sink)
+            if result["succeeded"] > 0 or result["failed"] > 0:
+                telegram.buffer(
+                    f"♻️ Retry Drive — OK={result['succeeded']}, FAIL={result['failed']}",
+                    "OK" if result["failed"] == 0 else "WARN",
+                    detail=f"dead_letter={result['dead_letter']}, remaining={result['remaining']}",
+                )
+        except Exception as e:
+            logger.error("flush_retry_queue: %s", e)
+            telegram.send(
+                f"⚠️ <b>Retry queue lỗi:</b> <code>{str(e)[:150]}</code>"
+            )
+
     def job(hour: str, emoji: str, title: str):
         # Crawl start: low-importance, buffer instead of send. The
         # user sees a single "crawl done at 7:04" entry in the digest,
@@ -1232,6 +1388,14 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
             err = result.get("error", "Unknown")
             telegram.send(f"❌ <b>Lỗi crawl:</b> <code>{err[:200]}</code>")
             telegram.buffer(f"❌ Crawl FAIL — {err[:80]}", "ERR")
+
+        # Sau crawl: flush retry queue — payload nào fail push Drive trước
+        # đó sẽ được retry. Đảm bảo Drive sync với Local Gold ngay trong
+        # ngày, kể cả khi push lần đầu fail vì rate limit / network blip.
+        try:
+            flush_retry_queue(telegram, crawler)
+        except Exception as e:
+            logger.error("flush_retry_queue (after crawl): %s", e)
 
     # News doesn't change minute-to-minute like weather, so 2 crawls
     # per day is enough to keep the index fresh without burning CPU.
@@ -1474,7 +1638,7 @@ def main():
     # running, not a stale container that survived a deploy.
     # Bump this string every time we deploy; if /status still shows
     # the old value, Railway is still serving the previous image.
-    logger.info("BUILD_TAG: cache-bust-v9-default-creds-path")
+    logger.info("BUILD_TAG: cache-bust-v10-drive-retry-queue")
     logger.info("=" * 50)
     data_root = ensure_data_dirs()
     logger.info(f"Data root: {data_root}")
@@ -1551,6 +1715,36 @@ def main():
             telegram.send(f"⚠️ <b>RAG index failed:</b>\n<code>{str(e)[:200]}</code>\n\nGửi <code>/index</code> thủ công để thử lại.")
 
     threading.Thread(target=_auto_index, daemon=True).start()
+
+    # Boot-time retry: nếu container trước fail push Drive rồi bị kill,
+    # payload đã được lưu vào pending_uploads.json. Retry ngay khi boot
+    # để Drive sync sớm nhất có thể (không phải đợi 7h/19h).
+    def _boot_retry():
+        try:
+            from src.storage import build_sink_from_env, get_retry_queue
+            sink = build_sink_from_env()
+            queue = get_retry_queue()
+            stats = queue.stats()
+            if stats["pending"] == 0:
+                logger.info("Boot retry: queue is clean, no pending uploads")
+                return
+            logger.info("Boot retry: found %d pending uploads, retrying...", stats["pending"])
+            # Đợi 60s cho RAG init + Drive service warm up
+            time.sleep(60)
+            if not sink.health_check():
+                logger.warning("Boot retry: sink unhealthy, skip")
+                return
+            result = queue.flush_pending(sink)
+            if result["succeeded"] > 0:
+                telegram.buffer(
+                    f"♻️ Boot retry — OK={result['succeeded']}, FAIL={result['failed']}",
+                    "OK" if result["failed"] == 0 else "WARN",
+                    detail=f"dead_letter={result['dead_letter']}",
+                )
+        except Exception as e:
+            logger.error("Boot retry failed: %s", e)
+
+    threading.Thread(target=_boot_retry, daemon=True).start()
     threading.Thread(target=run_scheduler, args=(telegram, crawler), daemon=True).start()
     logger.info("All services started!")
     bot.poll()

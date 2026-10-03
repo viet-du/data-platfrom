@@ -21,6 +21,8 @@ _LAZY_EXPORTS = {
     "build_sink_from_env": ("cloud_sink", "build_sink_from_env"),
     "DrivePuller": ("drive_puller", "DrivePuller"),
     "get_drive_puller": ("drive_puller", "get_drive_puller"),
+    "UploadRetryQueue": ("retry_queue", "UploadRetryQueue"),
+    "get_retry_queue": ("retry_queue", "get_retry_queue"),
 }
 
 
@@ -42,4 +44,6 @@ __all__ = [
     "build_sink_from_env",
     "DrivePuller",
     "get_drive_puller",
+    "UploadRetryQueue",
+    "get_retry_queue",
 ]

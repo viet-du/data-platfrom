@@ -14,12 +14,25 @@ from __future__ import annotations
 import json
 import logging
 import os
+import time
 from abc import ABC, abstractmethod
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
+from googleapiclient.errors import HttpError
+
 logger = logging.getLogger(__name__)
+
+# Drive upload retry: 3 lần với exponential backoff (2s, 4s, 8s).
+# Tổng ~14s cho 3 lần retry. Đủ vượt qua network blip / quota burst.
+# Nếu vẫn fail sau 3 lần → caller (main_service) enqueue payload vào
+# retry queue để scheduler retry ở lần sau.
+DRIVE_UPLOAD_MAX_RETRIES = 3
+DRIVE_UPLOAD_BACKOFF = (2, 4, 8)
+# HttpError codes có thể retry (5xx server, 429 rate limit, 408 timeout)
+# 4xx khác (auth, permission) là client fault → không retry, fail ngay.
+DRIVE_RETRYABLE_HTTP_CODES = {408, 429, 500, 502, 503, 504}
 
 
 class CloudSink(ABC):
@@ -120,8 +133,21 @@ class GoogleDriveSink(CloudSink):
         return self._upload_json(source, payload, filename)
 
     def _upload_json(self, source: str, payload: Dict[str, Any], filename: str) -> Optional[str]:
+        """Upload payload lên Drive folder của `source`, retry 3 lần với
+        exponential backoff. Returns file_id hoặc None nếu vẫn fail.
+
+        Retry policy:
+          - HttpError 5xx / 429 / 408: retry với backoff (2s, 4s, 8s)
+          - HttpError 4xx khác (auth, perm): fail ngay — không phải lỗi
+            network, sửa code mới pass.
+          - Exception không phải HttpError (connection reset, dns, ssl):
+            retry như HttpError 5xx.
+
+        Nếu vẫn fail sau DRIVE_UPLOAD_MAX_RETRIES, caller nên enqueue
+        payload vào UploadRetryQueue để scheduler retry sau (xem
+        src/storage/retry_queue.py).
+        """
         from googleapiclient.http import MediaIoBaseUpload
-        from googleapiclient.errors import HttpError
         import io
 
         svc = self._get_service()
@@ -132,33 +158,72 @@ class GoogleDriveSink(CloudSink):
             return None
 
         body_bytes = json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
-        media = MediaIoBaseUpload(
-            io.BytesIO(body_bytes),
-            mimetype="application/json",
-            resumable=False,
-        )
         file_meta = {"name": filename, "parents": [folder_id]}
-        try:
-            created = svc.files().create(
-                body=file_meta,
-                media_body=media,
-                fields="id",
-                supportsAllDrives=True,
-            ).execute()
-            file_id = created.get("id")
-            logger.info(
-                "Drive upload OK: %s/%s (%d records, file id=%s)",
-                source, filename, len(payload) if isinstance(payload, list) else payload.get("article_count", "?"),
-                file_id,
-            )
-            return file_id
-        except HttpError as e:
-            logger.error(
-                "Drive upload FAILED HttpError %s: %s",
-                e.resp.status,
-                e._get_reason(),
-            )
-            return None
+
+        last_err: Optional[str] = None
+        for attempt in range(1, DRIVE_UPLOAD_MAX_RETRIES + 1):
+            try:
+                media = MediaIoBaseUpload(
+                    io.BytesIO(body_bytes),
+                    mimetype="application/json",
+                    resumable=False,
+                )
+                created = svc.files().create(
+                    body=file_meta,
+                    media_body=media,
+                    fields="id",
+                    supportsAllDrives=True,
+                ).execute()
+                file_id = created.get("id")
+                logger.info(
+                    "Drive upload OK: %s/%s (file_id=%s, attempt=%d/%d)",
+                    source, filename, file_id, attempt, DRIVE_UPLOAD_MAX_RETRIES,
+                )
+                return file_id
+
+            except HttpError as e:
+                status = e.resp.status
+                reason = e._get_reason()
+                last_err = f"HttpError {status}: {reason}"
+                # 4xx auth/perm → không retry, fail ngay
+                if 400 <= status < 500 and status not in DRIVE_RETRYABLE_HTTP_CODES:
+                    logger.error(
+                        "Drive upload FAILED (client error %s): %s — not retrying. "
+                        "Check Service Account permissions on folder %s.",
+                        status, reason, source,
+                    )
+                    return None
+                # 5xx / 429 / 408 → retry
+                if attempt < DRIVE_UPLOAD_MAX_RETRIES:
+                    backoff = DRIVE_UPLOAD_BACKOFF[min(attempt - 1, len(DRIVE_UPLOAD_BACKOFF) - 1)]
+                    logger.warning(
+                        "Drive upload retry %d/%d after %ds: %s (%s)",
+                        attempt + 1, DRIVE_UPLOAD_MAX_RETRIES, backoff, last_err, filename,
+                    )
+                    time.sleep(backoff)
+                    continue
+                # Hết retry
+                break
+
+            except Exception as e:
+                # Network errors (ConnectionError, ssl, dns) → retry
+                last_err = f"{type(e).__name__}: {e}"
+                if attempt < DRIVE_UPLOAD_MAX_RETRIES:
+                    backoff = DRIVE_UPLOAD_BACKOFF[min(attempt - 1, len(DRIVE_UPLOAD_BACKOFF) - 1)]
+                    logger.warning(
+                        "Drive upload retry %d/%d after %ds: %s (%s)",
+                        attempt + 1, DRIVE_UPLOAD_MAX_RETRIES, backoff, last_err, filename,
+                    )
+                    time.sleep(backoff)
+                    continue
+                break
+
+        # Sau DRIVE_UPLOAD_MAX_RETRIES lần vẫn fail
+        logger.error(
+            "Drive upload FAILED after %d attempts: %s/%s — %s",
+            DRIVE_UPLOAD_MAX_RETRIES, source, filename, last_err,
+        )
+        return None
 
     def health_check(self) -> bool:
         try:
