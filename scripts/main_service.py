@@ -603,10 +603,34 @@ class BotCommands:
             from datetime import datetime, timezone
             from src.storage import build_sink_from_env
 
+            # Dùng cùng logic resolve với build_sink_from_env() để /testdrive
+            # phản ánh đúng sink thật. Trước đây chỉ check env var → khi
+            # fallback dùng /app/configs/*.json thì báo "File not found"
+            # dù bot vẫn push Drive OK.
             creds = (
                 _os.environ.get("GOOGLE_DRIVE_CREDENTIALS")
                 or _os.environ.get("GOOGLE_DRIVE_CREDENTIALS_PATH")
                 or _os.environ.get("GOOGLE_CREDENTIALS_PATH")
+                or (
+                    "/app/configs/google-drive-credentials.json"
+                    if Path("/app/configs/google-drive-credentials.json").exists()
+                    else None
+                )
+                or (
+                    "/app/configs/client_secret_token.json"
+                    if Path("/app/configs/client_secret_token.json").exists()
+                    else None
+                )
+                or (
+                    "./configs/google-drive-credentials.json"
+                    if Path("./configs/google-drive-credentials.json").exists()
+                    else None
+                )
+                or (
+                    "./configs/client_secret_token.json"
+                    if Path("./configs/client_secret_token.json").exists()
+                    else None
+                )
             )
             folder_id = _os.environ.get("GOOGLE_DRIVE_FOLDER_ID")
 
@@ -623,6 +647,7 @@ class BotCommands:
 
             sink = build_sink_from_env()
             lines.append(f"• Sink type: <b>{sink.name}</b>")
+            lines.append(f"• Resolved credentials: <code>{creds}</code>")
             sink_ok = sink.health_check()
             lines.append(f"• health_check(): <b>{sink_ok}</b>")
             if not sink_ok:
