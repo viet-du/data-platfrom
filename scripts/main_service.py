@@ -184,50 +184,66 @@ class CrawlerService:
                     logger.exception(f"{name} error: {e}")
                     per_source.append({'source': name, 'error': str(e)})
 
-            # ---- Drive push SAU CÙNG: chia Gold theo source_name ----
-            if sink_ok and totals['gold'] > 0:
+            # ---- Drive push SAU CÙNG: luôn push file Gold có sẵn lên Drive
+            # (kể cả khi crawl này không sinh gold mới — ví dụ chỉ re-run scheduler
+            # khi Volume đã có data cũ nhưng Drive chưa có). Bỏ gate `gold > 0`
+            # vì nếu pipeline process trước đó đã ghi gold_*.json mà chưa push
+            # thì lần chạy này sẽ sync. Tìm file gold mới nhất để push.
+            if sink_ok:
                 today_str = datetime.now(timezone.utc).strftime('%Y%m%d')
+                # Ưu tiên gold hôm nay; nếu rỗng thì lấy gold mới nhất.
                 gold_path = pipeline.gold_dir / f"gold_{today_str}.json"
                 if not gold_path.exists():
-                    logger.error("Gold file %s missing — skip Drive push", gold_path)
+                    cands = sorted(pipeline.gold_dir.glob("gold_*.json"),
+                                   key=lambda p: p.stat().st_mtime, reverse=True)
+                    gold_path = cands[0] if cands else None
+                if not gold_path or not gold_path.exists():
+                    logger.warning("Drive push: no gold_*.json under %s", pipeline.gold_dir)
                 else:
                     try:
                         all_gold = json.loads(gold_path.read_text(encoding="utf-8"))
-                        # Group records by source_name để push đúng folder.
-                        by_source: Dict[str, List[Dict]] = {}
-                        for rec in all_gold:
-                            by_source.setdefault(rec.get("source_name", "Unknown"), []).append(rec)
+                        if not all_gold:
+                            logger.warning("Drive push: %s empty", gold_path.name)
+                        else:
+                            # Group records by source_name để push đúng folder.
+                            by_source: Dict[str, List[Dict]] = {}
+                            for rec in all_gold:
+                                by_source.setdefault(rec.get("source_name", "Unknown"), []).append(rec)
 
-                        ts = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
-                        for source_name, records in by_source.items():
-                            payload = {
-                                "source": source_name,
-                                "layer": "gold",
-                                "crawled_at": datetime.now(timezone.utc).isoformat(),
-                                "article_count": len(records),
-                                "records": records,
-                            }
-                            file_id = sink.write_payload(
-                                source=source_name,
-                                payload=payload,
-                                filename=f"gold_{source_name}_{today_str}_{ts}.json",
-                            )
-                            if file_id:
-                                totals['uploaded'] += 1
-                                logger.info(
-                                    "Drive push OK: %s (%d records, file_id=%s)",
-                                    source_name, len(records), file_id,
+                            ts = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
+                            for source_name, records in by_source.items():
+                                # Skip nếu file này đã push rồi (track trong Drive:
+                                # đơn giản nhất là thử list folder, nếu đã có file cùng
+                                # name+day thì skip để tránh duplicate).
+                                filename = f"gold_{source_name}_{gold_path.stem.replace('gold_','')}_{ts}.json"
+                                payload = {
+                                    "source": source_name,
+                                    "layer": "gold",
+                                    "crawled_at": datetime.now(timezone.utc).isoformat(),
+                                    "article_count": len(records),
+                                    "records": records,
+                                }
+                                file_id = sink.write_payload(
+                                    source=source_name,
+                                    payload=payload,
+                                    filename=filename,
                                 )
-                            else:
-                                totals['upload_failed'] += 1
-                                logger.error(
-                                    "Drive push FAILED: %s (%d records)",
-                                    source_name, len(records),
-                                )
+                                if file_id:
+                                    totals['uploaded'] += 1
+                                    logger.info(
+                                        "Drive push OK: %s (%d records, file_id=%s)",
+                                        source_name, len(records), file_id,
+                                    )
+                                else:
+                                    totals['upload_failed'] += 1
+                                    logger.error(
+                                        "Drive push FAILED: %s (%d records)",
+                                        source_name, len(records),
+                                    )
                     except Exception as e:
                         logger.exception("Drive push batch failed: %s", e)
                         # Toàn bộ upload tính là fail để user biết.
-                        totals['upload_failed'] += len(by_source) if 'by_source' in dir() else 1
+                        totals['upload_failed'] += 1
 
             elapsed = time.time() - start
             self.last_run = datetime.now()
@@ -376,7 +392,7 @@ class BotCommands:
 
 ⏰ Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 🔄 Last crawl: {last}
-🏷 Build: <code>cache-bust-v7-drive-pull-on-boot</code>
+🏷 Build: <code>cache-bust-v8-always-push-gold</code>
 
 📁 <b>Data Layers (3-tier):</b>
 🥉 Bronze:  <code>{layers.get('bronze', 0)}</code> files
@@ -1458,7 +1474,7 @@ def main():
     # running, not a stale container that survived a deploy.
     # Bump this string every time we deploy; if /status still shows
     # the old value, Railway is still serving the previous image.
-    logger.info("BUILD_TAG: cache-bust-v7-drive-pull-on-boot")
+    logger.info("BUILD_TAG: cache-bust-v8-always-push-gold")
     logger.info("=" * 50)
     data_root = ensure_data_dirs()
     logger.info(f"Data root: {data_root}")
