@@ -239,13 +239,41 @@ def build_sink_from_env() -> CloudSink:
     if dbx:
         return dbx
 
-    creds = os.environ.get("GOOGLE_DRIVE_CREDENTIALS") or os.environ.get("GOOGLE_CREDENTIALS_PATH")
+    creds = (
+        os.environ.get("GOOGLE_DRIVE_CREDENTIALS")
+        or os.environ.get("GOOGLE_CREDENTIALS_PATH")
+        # Default candidates: file đã được COPY vào image qua Dockerfile.railway.
+        # Tìm theo thứ tự ưu tiên — file nào tồn tại thì dùng. Tránh phải
+        # cấu hình env var trên Railway Dashboard cho mỗi lần deploy.
+        or (
+            "/app/configs/google-drive-credentials.json"
+            if Path("/app/configs/google-drive-credentials.json").exists()
+            else None
+        )
+        or (
+            "/app/configs/client_secret_token.json"
+            if Path("/app/configs/client_secret_token.json").exists()
+            else None
+        )
+        or (
+            "./configs/google-drive-credentials.json"
+            if Path("./configs/google-drive-credentials.json").exists()
+            else None
+        )
+        or (
+            "./configs/client_secret_token.json"
+            if Path("./configs/client_secret_token.json").exists()
+            else None
+        )
+    )
     if creds and Path(creds).exists():
+        logger.info("Cloud sink: using credentials at %s", creds)
         return GoogleDriveSink(credentials_path=creds)
 
     base = os.environ.get("DATA_DIR", "/app/data")
     logger.warning(
-        "No cloud sink configured (DATABRICKS_* or GOOGLE_DRIVE_CREDENTIALS missing). "
+        "No cloud sink configured (DATABRICKS_* or GOOGLE_DRIVE_CREDENTIALS missing; "
+        "no fallback credentials file under /app/configs or ./configs). "
         "Falling back to LocalJsonSink at %s — data will NOT persist across deploys.",
         base,
     )

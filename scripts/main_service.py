@@ -392,7 +392,7 @@ class BotCommands:
 
 ⏰ Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 🔄 Last crawl: {last}
-🏷 Build: <code>cache-bust-v8-always-push-gold</code>
+🏷 Build: <code>cache-bust-v9-default-creds-path</code>
 
 📁 <b>Data Layers (3-tier):</b>
 🥉 Bronze:  <code>{layers.get('bronze', 0)}</code> files
@@ -1474,7 +1474,7 @@ def main():
     # running, not a stale container that survived a deploy.
     # Bump this string every time we deploy; if /status still shows
     # the old value, Railway is still serving the previous image.
-    logger.info("BUILD_TAG: cache-bust-v8-always-push-gold")
+    logger.info("BUILD_TAG: cache-bust-v9-default-creds-path")
     logger.info("=" * 50)
     data_root = ensure_data_dirs()
     logger.info(f"Data root: {data_root}")

@@ -5,5 +5,5 @@ trên Railway. KHÔNG được import bởi code production.
 
 Current build: 2026-10-03-cache-bust-v4
 """
-BUILD_TAG = "2026-10-03-cache-bust-v8-always-push-gold"
-BUILD_NOTE = "always push gold_*.json to Drive after each crawl (no gate on gold>0)"
+BUILD_TAG = "2026-10-03-cache-bust-v9-default-creds-path"
+BUILD_NOTE = "build_sink_from_env: fallback to /app/configs/*.json so Drive works without env var"
