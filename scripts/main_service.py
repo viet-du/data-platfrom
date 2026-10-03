@@ -424,7 +424,7 @@ class BotCommands:
 
 ⏰ Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 🔄 Last crawl: {last}
-🏷 Build: <code>cache-bust-v13-cloudsink-shared-resolver</code>
+🏷 Build: <code>cache-bust-v14-debug-env-endpoint</code>
 
 📁 <b>Data Layers (3-tier):</b>
 🥉 Bronze:  <code>{layers.get('bronze', 0)}</code> files
@@ -1640,6 +1640,42 @@ def start_health_server():
     @app.route('/health')
     def health():
         return jsonify({"status": "ok", "time": datetime.now().isoformat()})
+
+    @app.route('/debug/env')
+    def debug_env():
+        """Show whether the relevant Drive env vars are present.
+
+        We only echo the *presence* and (optionally) a safe prefix of the
+        value, never the full secret. This is enough to diagnose
+        'env var looks set in dashboard but container says unset'
+        problems without leaking credentials to logs.
+        """
+        keys = [
+            "GOOGLE_DRIVE_CREDENTIALS_JSON",  # raw JSON env (preferred)
+            "GOOGLE_DRIVE_CREDENTIALS",       # path env (fallback)
+            "GOOGLE_CREDENTIALS_PATH",        # alt name (fallback)
+            "DATA_DIR",
+            "DRIVE_PATH_PREFIX",
+            "GDRIVE_FOLDER_ID",
+        ]
+        out = {}
+        for k in keys:
+            v = os.environ.get(k)
+            if v is None:
+                out[k] = None
+            elif k.endswith("_JSON"):
+                # show length + first/last 8 chars so we can tell whether
+                # the user wrapped it in quotes or chopped it
+                stripped = v.strip()
+                preview = (
+                    f"<len={len(v)}, stripped_len={len(stripped)}, "
+                    f"starts={stripped[:8]!r}, ends={stripped[-8:]!r}>"
+                )
+                out[k] = preview
+            else:
+                out[k] = v if len(v) < 200 else v[:200] + "..."
+        return jsonify({"env": out, "build_tag": BUILD_TAG})
+
     @app.route('/')
     def index():
         return jsonify({"service": "Data Platform Crawler", "status": "running"})
@@ -1708,7 +1744,7 @@ def main():
     # running, not a stale container that survived a deploy.
     # Bump this string every time we deploy; if /status still shows
     # the old value, Railway is still serving the previous image.
-    logger.info("BUILD_TAG: cache-bust-v13-cloudsink-shared-resolver")
+    logger.info("BUILD_TAG: cache-bust-v14-debug-env-endpoint")
     logger.info("=" * 50)
     data_root = ensure_data_dirs()
     logger.info(f"Data root: {data_root}")
