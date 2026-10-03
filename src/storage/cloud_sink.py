@@ -32,6 +32,12 @@ class CloudSink(ABC):
         """Persist a batch of articles. Returns the destination id/path."""
 
     @abstractmethod
+    def write_payload(self, source: str, payload: Dict[str, Any], filename: str) -> Optional[str]:
+        """Persist an already-built payload (e.g. Gold JSON from the
+        Bronze/Silver/Gold pipeline). Symmetric with write_batch so
+        callers can switch sink backends without changing call sites."""
+
+    @abstractmethod
     def health_check(self) -> bool:
         """Return True if the sink is reachable."""
 
@@ -87,14 +93,6 @@ class GoogleDriveSink(CloudSink):
     def write_batch(self, source: str, articles: List[Dict[str, Any]]) -> Optional[str]:
         if not articles:
             return None
-        svc = self._get_service()
-        if not svc:
-            return None
-
-        folder_id = self._ensure_folder(source)
-        if not folder_id:
-            return None
-
         from googleapiclient.http import MediaIoBaseUpload
         from googleapiclient.errors import HttpError
         import io
@@ -106,14 +104,40 @@ class GoogleDriveSink(CloudSink):
             "article_count": len(articles),
             "articles": articles,
         }
-        body_bytes = json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
+        return self._upload_json(source, payload, f"{source}_{ts}.json")
 
+    def write_payload(self, source: str, payload: Dict[str, Any], filename: str) -> Optional[str]:
+        """Upload an already-built payload (e.g. Gold JSON) under the
+        per-source folder. Returns the file id or None on failure.
+
+        Why this exists: with the Bronze/Silver/Gold pipeline, the
+        Gold file is already written locally by Pipeline.write_gold().
+        We want to push that file to Drive as-is (with dedup hash) so
+        downstream RAG restore / external consumers see the same data.
+        """
+        if not payload:
+            return None
+        return self._upload_json(source, payload, filename)
+
+    def _upload_json(self, source: str, payload: Dict[str, Any], filename: str) -> Optional[str]:
+        from googleapiclient.http import MediaIoBaseUpload
+        from googleapiclient.errors import HttpError
+        import io
+
+        svc = self._get_service()
+        if not svc:
+            return None
+        folder_id = self._ensure_folder(source)
+        if not folder_id:
+            return None
+
+        body_bytes = json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
         media = MediaIoBaseUpload(
             io.BytesIO(body_bytes),
             mimetype="application/json",
             resumable=False,
         )
-        file_meta = {"name": f"{source}_{ts}.json", "parents": [folder_id]}
+        file_meta = {"name": filename, "parents": [folder_id]}
         try:
             created = svc.files().create(
                 body=file_meta,
@@ -122,7 +146,11 @@ class GoogleDriveSink(CloudSink):
                 supportsAllDrives=True,
             ).execute()
             file_id = created.get("id")
-            logger.info("Drive upload OK: %s (%d articles, file id=%s)", source, len(articles), file_id)
+            logger.info(
+                "Drive upload OK: %s/%s (%d records, file id=%s)",
+                source, filename, len(payload) if isinstance(payload, list) else payload.get("article_count", "?"),
+                file_id,
+            )
             return file_id
         except HttpError as e:
             logger.error(
@@ -156,9 +184,9 @@ class LocalJsonSink(CloudSink):
     def write_batch(self, source: str, articles: List[Dict[str, Any]]) -> Optional[str]:
         if not articles:
             return None
+        ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
         out_dir = self.base_dir / "raw" / source
         out_dir.mkdir(parents=True, exist_ok=True)
-        ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
         out_path = out_dir / f"{source}_{ts}.json"
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(
@@ -172,6 +200,19 @@ class LocalJsonSink(CloudSink):
                 ensure_ascii=False,
                 indent=2,
             )
+        return str(out_path)
+
+    def write_payload(self, source: str, payload: Dict[str, Any], filename: str) -> Optional[str]:
+        """Persist an already-built payload to local JSON. Symmetric with
+        GoogleDriveSink.write_payload() so the same call site works
+        whether Drive or Local is selected."""
+        if payload is None:
+            return None
+        out_dir = self.base_dir / "gold" / source
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out_path = out_dir / filename
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, ensure_ascii=False, indent=2)
         return str(out_path)
 
     def health_check(self) -> bool:

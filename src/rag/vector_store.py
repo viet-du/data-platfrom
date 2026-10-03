@@ -186,7 +186,12 @@ class VectorStore:
 
 
 def build_store_from_parquet(parquet_root: str = None) -> VectorStore:
-    """Load all partitioned parquet into a new VectorStore."""
+    """Load all partitioned parquet into a new VectorStore.
+
+    NOTE: kept for backward-compat with /index. New code should prefer
+    `build_store_from_gold()` because the Gold layer is the single
+    source of truth (Silver + dedup + content-fingerprint hash).
+    """
     import os
     import glob
     import pandas as pd
@@ -232,6 +237,101 @@ def build_store_from_parquet(parquet_root: str = None) -> VectorStore:
 
     stats = store.add_articles(articles)
     return store, stats
+
+
+def build_store_from_gold(gold_path) -> int:
+    """Load Gold records from a single gold_YYYYMMDD.json file into Chroma.
+
+    Returns number of vectors added.
+
+    Gold is the canonical RAG-ready layer — title+description+content already
+    joined, dedup'd by article_hash, and 1 record per article (vs Silver which
+    can have multiple revisions per day). Reading from Gold here means the
+    RAG index is always consistent with what `process_batch()` wrote.
+
+    Why not call add_articles(): Gold records are flat dicts (not ArticleSchema)
+    and we want the same `metadata` schema that downstream RAG query code
+    already reads.
+    """
+    from pathlib import Path
+    import json
+
+    gold_path = Path(gold_path)
+    if not gold_path.exists():
+        logger.info("build_store_from_gold: %s not found", gold_path)
+        return 0
+    try:
+        records = json.loads(gold_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        logger.error("build_store_from_gold: read %s failed: %s", gold_path, e)
+        return 0
+
+    if not records:
+        return 0
+
+    store = VectorStore()
+    store._ensure_loaded()
+
+    # Idempotency: skip ids already in the collection.
+    wanted_ids = [r["article_id"] for r in records if r.get("article_id")]
+    already = set()
+    if wanted_ids:
+        try:
+            got = store._collection.get(ids=wanted_ids)
+            already = set(got.get("ids", []))
+        except Exception:
+            already = set()
+
+    new_ids: List[str] = []
+    new_texts: List[str] = []
+    new_metas: List[Dict] = []
+    for r in records:
+        rid = r.get("article_id")
+        if not rid or rid in already:
+            continue
+        text = r.get("content") or ""
+        if not text.strip():
+            continue
+        new_ids.append(rid)
+        new_texts.append(text[:3000])
+        new_metas.append({
+            "url": r.get("article_url", ""),
+            "source": r.get("source_name", ""),
+            "title": (r.get("title") or "")[:200],
+            "category": r.get("category") or "",
+            "crawled_at": r.get("crawled_at") or "",
+            "word_count": r.get("word_count", 0),
+        })
+
+    if not new_ids:
+        return 0
+
+    # Embed in small batches (sentence-transformers + 512 MB container).
+    BATCH = 16
+    added = 0
+    for i in range(0, len(new_ids), BATCH):
+        batch_ids = new_ids[i:i + BATCH]
+        batch_texts = new_texts[i:i + BATCH]
+        batch_metas = new_metas[i:i + BATCH]
+        try:
+            vecs = store._embed_texts(batch_texts)
+        except Exception as e:
+            logger.error("build_store_from_gold: embed batch %d failed: %s", i, e)
+            continue
+        store._collection.add(
+            ids=batch_ids,
+            documents=batch_texts,
+            metadatas=batch_metas,
+            embeddings=vecs,
+        )
+        added += len(batch_ids)
+        import gc
+        gc.collect()
+    logger.info(
+        "build_store_from_gold: %s → +%d vectors (total in store: %d)",
+        gold_path.name, added, store.count,
+    )
+    return added
 
 
 if __name__ == "__main__":

@@ -56,8 +56,16 @@ class DatabricksVolumeSink(CloudSink):
             ensure_ascii=False,
             indent=2,
         ).encode("utf-8")
+        return self._put(rel_path, body)
 
-        # Databricks Files API: PUT {host}/api/2.0/fs/files{path}
+    def write_payload(self, source: str, payload: Dict[str, Any], filename: str) -> Optional[str]:
+        if payload is None:
+            return None
+        rel_path = f"{self.volume_path}/{source}/{filename}"
+        body = json.dumps(payload, ensure_ascii=False, indent=2).encode("utf-8")
+        return self._put(rel_path, body)
+
+    def _put(self, rel_path: str, body: bytes) -> Optional[str]:
         import requests
 
         url = f"{self.host}/api/2.0/fs/files{rel_path}"
@@ -75,7 +83,7 @@ class DatabricksVolumeSink(CloudSink):
                     resp.text[:200],
                 )
                 return None
-            logger.info("Databricks upload OK: %s (%d articles)", rel_path, len(articles))
+            logger.info("Databricks upload OK: %s", rel_path)
             return rel_path
         except requests.RequestException as e:
             logger.error("Databricks PUT error: %s", e)
