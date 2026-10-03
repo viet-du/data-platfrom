@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.10-slim-bookworm
 
 WORKDIR /app
 
@@ -19,31 +19,45 @@ RUN pip install --upgrade pip \
 COPY requirements.txt .
 
 # Force rebuild layer: any change to this line invalidates Docker cache.
-# Bump this whenever requirements.txt changes so Railway does not
-# serve a stale image missing the new packages.
-RUN echo "deps build: 2026-10-03-cache-bust-v5" \
+RUN echo "deps build: 2026-10-03-cache-bust-v6-marker" \
     && pip install --no-cache-dir -r requirements.txt
 
-# Bust COPY cache AND clear any stale files from previous builds.
-# Without explicit `rm -rf`, a cached COPY layer that "looked identical"
-# (same mtime) would keep the old code on disk even though the build tag
-# changed. The `wipe && COPY` pattern guarantees a fresh tree.
-ARG BUILD_TAG=2026-10-03-cache-bust-v5
-RUN echo "src cache bust: ${BUILD_TAG}" > /tmp/.build_cache_bust
+# ============================================================
+# SOURCE-COPY CACHE BUST (guaranteed fresh code on Railway)
+# ============================================================
+# BuildKit caches each `COPY <tree> ./dest/` layer against the
+# content-hash of `<tree>`. If git checkout preserves the same
+# hash between pushes (very common — git content is content-
+# addressed regardless of timestamp), BuildKit reuses the OLD
+# layer and the new code never lands in the container.
+#
+# The marker file below is generated with `date` so its content
+# is unique on every single build, which forces the SHA of src/
+# to differ even when no other files moved. Then `COPY src/`
+# always misses cache and re-reads the build context.
+# ============================================================
+ARG BUILD_TAG=2026-10-03-cache-bust-v6-marker
+RUN echo "${BUILD_TAG} $(date -u +%FT%TZ.%N)" > /app/_build_marker
 
-# Wipe stale source trees from any previous cached layer, then re-COPY.
-# This is the only reliable way to invalidate the COPY layer when
-# Railway/BuildKit decides the source "hasn't changed".
+# Wipe + re-COPY in one logical step. We do `rm -rf` BEFORE COPY
+# so that even if a cached layer gets reused somehow, the new
+# COPY step still overwrites with current build context.
 RUN rm -rf /app/src /app/scripts /app/configs /app/dags
-
-# Copy ONLY specific folders - no root-level .py files
 COPY src/ ./src/
 COPY scripts/ ./scripts/
 COPY configs/ ./configs/
 COPY dags/ ./dags/
 
+# Sanity-check: prove the new __init__.py is on disk before we
+# declare the build done. If COPY skipped due to cache, this
+# would print the OLD first 5 lines — visible in build log.
+RUN echo "=== /app/src/rag/__init__.py first 5 lines ===" \
+ && head -5 /app/src/rag/__init__.py \
+ && echo "=== /app/src/BUILD_MARKER.py ===" \
+ && cat /app/src/BUILD_MARKER.py \
+ && echo "=== BUILD_TAG was: ${BUILD_TAG} ==="
+
 # Create data directories (Railway Volume will be mounted here)
-# Volume mount creates these dirs persistently across redeploys
 RUN mkdir -p /app/data/raw /app/data/silver /app/data/gold \
     /app/data/logs /app/data/summary /app/data/parquet \
     /app/data/chroma /app/data/backups /app/data/raw_pulled

@@ -5,5 +5,5 @@ trên Railway. KHÔNG được import bởi code production.
 
 Current build: 2026-10-03-cache-bust-v4
 """
-BUILD_TAG = "2026-10-03-cache-bust-v5"
-BUILD_NOTE = "wipe-then-COPY + defensive lazy import in src/rag/__init__.py"
+BUILD_TAG = "2026-10-03-cache-bust-v6-marker"
+BUILD_NOTE = "base-image swap python:3.10-slim→bookworm + COPY sanity check in build log"
