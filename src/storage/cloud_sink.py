@@ -304,33 +304,14 @@ def build_sink_from_env() -> CloudSink:
     if dbx:
         return dbx
 
-    creds = (
-        os.environ.get("GOOGLE_DRIVE_CREDENTIALS")
-        or os.environ.get("GOOGLE_CREDENTIALS_PATH")
-        # Default candidates: file đã được COPY vào image qua Dockerfile.railway.
-        # Tìm theo thứ tự ưu tiên — file nào tồn tại thì dùng. Tránh phải
-        # cấu hình env var trên Railway Dashboard cho mỗi lần deploy.
-        or (
-            "/app/configs/google-drive-credentials.json"
-            if Path("/app/configs/google-drive-credentials.json").exists()
-            else None
-        )
-        or (
-            "/app/configs/client_secret_token.json"
-            if Path("/app/configs/client_secret_token.json").exists()
-            else None
-        )
-        or (
-            "./configs/google-drive-credentials.json"
-            if Path("./configs/google-drive-credentials.json").exists()
-            else None
-        )
-        or (
-            "./configs/client_secret_token.json"
-            if Path("./configs/client_secret_token.json").exists()
-            else None
-        )
-    )
+    # Delegate to the shared resolver so GOOGLE_DRIVE_CREDENTIALS_JSON
+    # (raw JSON env) wins over GOOGLE_DRIVE_CREDENTIALS (path env) and
+    # over the legacy /app/configs/client_secret_token.json binary blob.
+    # This avoids the 'utf-8 codec can't decode byte 0x80' error when a
+    # stale file path is left in the env vars from previous deploys.
+    from ..utils.credentials import resolve_credentials_path
+
+    creds = resolve_credentials_path()
     if creds and Path(creds).exists():
         logger.info("Cloud sink: using credentials at %s", creds)
         return GoogleDriveSink(credentials_path=creds)

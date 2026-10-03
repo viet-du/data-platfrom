@@ -3,7 +3,7 @@
 Moi lan bump version, file nay doi SHA -> COPY src/ chac chan re-run
 tren Railway. KHONG duoc import boi code production.
 
-Current build: 2026-10-03-cache-bust-v12-credentials-precedence-fix
+Current build: 2026-10-03-cache-bust-v13-cloudsink-shared-resolver
 """
-BUILD_TAG = "2026-10-03-cache-bust-v12-credentials-precedence-fix"
-BUILD_NOTE = "v12 fix: raw JSON env wins over stale path env (client_secret_token.json bypass)"
+BUILD_TAG = "2026-10-03-cache-bust-v13-cloudsink-shared-resolver"
+BUILD_NOTE = "v13 fix: cloud_sink delegates to shared credentials resolver"
