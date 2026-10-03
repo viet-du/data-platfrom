@@ -13,6 +13,8 @@ Public API:
     DEFAULT_EMBED_MODEL
   QA chain (lazy — depends on google-generativeai):
     GeminiClient, RAGChain
+
+Build: cache-bust-v4-wipe+copy (2026-10-03)
 """
 # Constant được định nghĩa sớm (lightweight — chỉ string).
 DEFAULT_EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
@@ -29,12 +31,21 @@ _LAZY_EXPORTS = {
 
 
 def __getattr__(name):
-    """PEP 562 lazy attribute access — chỉ load submodule khi cần."""
+    """PEP 562 lazy attribute access — chỉ load submodule khi cần.
+
+    Defensive: nếu vector_store import lỗi (vd chromadb thiếu), ta vẫn
+    return một stub/raise rõ ràng thay vì làm hỏng cả module.
+    """
     if name in _LAZY_EXPORTS:
         mod_name, attr_name = _LAZY_EXPORTS[name]
         from importlib import import_module
-        module = import_module(f"{__name__}.{mod_name}")
-        value = getattr(module, attr_name)
+        try:
+            module = import_module(f"{__name__}.{mod_name}")
+            value = getattr(module, attr_name)
+        except Exception as e:
+            raise ImportError(
+                f"Lazy import of {__name__}.{mod_name}.{attr_name} failed: {e}"
+            ) from e
         globals()[name] = value  # cache
         return value
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
