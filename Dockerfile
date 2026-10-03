@@ -21,15 +21,20 @@ COPY requirements.txt .
 # Force rebuild layer: any change to this line invalidates Docker cache.
 # Bump this whenever requirements.txt changes so Railway does not
 # serve a stale image missing the new packages.
-RUN echo "deps build: 2026-10-03-cache-bust-v3" \
+RUN echo "deps build: 2026-10-03-cache-bust-v4" \
     && pip install --no-cache-dir -r requirements.txt
 
-# Bust COPY cache: each layer copy is preceded by a "touch" step tied to
-# the build tag. Without this, Railway serves a stale image if src/
-# file timestamps stay identical between pushes (git checkout preserves
-# mtime, so Docker sees the COPY layer as unchanged).
-ARG BUILD_TAG=2026-10-03-cache-bust-v3
+# Bust COPY cache AND clear any stale files from previous builds.
+# Without explicit `rm -rf`, a cached COPY layer that "looked identical"
+# (same mtime) would keep the old code on disk even though the build tag
+# changed. The `wipe && COPY` pattern guarantees a fresh tree.
+ARG BUILD_TAG=2026-10-03-cache-bust-v4
 RUN echo "src cache bust: ${BUILD_TAG}" > /tmp/.build_cache_bust
+
+# Wipe stale source trees from any previous cached layer, then re-COPY.
+# This is the only reliable way to invalidate the COPY layer when
+# Railway/BuildKit decides the source "hasn't changed".
+RUN rm -rf /app/src /app/scripts /app/configs /app/dags
 
 # Copy ONLY specific folders - no root-level .py files
 COPY src/ ./src/

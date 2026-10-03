@@ -1,5 +1,37 @@
 # Changelog
 
+## [2.4.0] - 2026-10-03
+
+### Fixed — Railway không rebuild image sau push (Dockerfile root bị cache stale)
+
+**Triệu chứng:** Sau 3 commit fix liên tiếp (lazy import `src.pipeline`, lazy `src.rag` + `src.storage`, sync root Dockerfile), container Railway vẫn dùng image build trước đó. Bot fail với traceback cũ, lazy-import code mới không bao giờ tới runtime.
+
+**Root cause:**
+1. `railway.json` trỏ `dockerfilePath: "Dockerfile"` (file ở repo root) chứ không phải `Dockerfile.railway`. Vì vậy mọi patch trên `Dockerfile.railway` không bao giờ tới Railway build.
+2. `Dockerfile` (root) build tag `2026-10-02-rag-error-surfacing-v2` — quá cũ, thiếu cache-bust, thiếu CPU-only torch, thiếu `/app/data/{parquet,chroma,backups,raw_pulled}`.
+3. Khi đã sync `Dockerfile`, Railway vẫn serve cached `COPY src/` layer vì `git checkout` giữ nguyên mtime → BuildKit xem source "không đổi" → trả image cũ.
+
+**Sau fix (`cache-bust-v4`):**
+- `Dockerfile` (root) ← đồng bộ với `Dockerfile.railway`: thêm CPU-only torch, cache-bust `ARG BUILD_TAG`, đủ data dirs, `ENV DATA_DIR=/app/data`
+- Thêm `RUN rm -rf /app/src /app/scripts /app/configs /app/dags` ngay trước các lệnh `COPY` — đảm bảo file cũ bị xóa trước khi copy file mới. Đây là cách duy nhất invalidate COPY layer khi BuildKit xem source "không đổi"
+- Bump build tag → `cache-bust-v4`
+
+### Fixed — `ImportError: cannot import name 'Deduplicator' from partially initialized module 'src.pipeline'`
+
+**Root cause:** `src.pipeline.__init__.py` eager-load `Deduplicator`, `Pipeline`, `get_pipeline` ngay tại import time. Khi Python đang init module mà bất kỳ submodule nào fail, toàn bộ module bị đánh dấu "partially initialized".
+
+**Sau fix (`import-fix-v2`):**
+- `src/pipeline/__init__.py`: PEP 562 lazy `__getattr__` — chỉ load submodule khi caller thực sự dùng tới attr đó
+- `src/pipeline/orchestrator.py`: `try/except ImportError` quanh `from .deduplicator import ...` — graceful degradation
+
+### Fixed — `ImportError: cannot import name 'build_store_from_gold' from 'src.rag'`
+
+**Root cause:** `src.rag.__init__.py` và `src.storage.__init__.py` eager-load submodules tại import time → partial-init khi boot.
+
+**Sau fix (`cache-bust-v3`):**
+- `src/rag/__init__.py`: PEP 562 lazy `__getattr__` cho `VectorStore`, `build_store_from_parquet`, `build_store_from_gold`, `RAGChain`, `GeminiClient`. Chỉ giữ constant `DEFAULT_EMBED_MODEL` eager
+- `src/storage/__init__.py`: cùng pattern lazy cho `CloudSink`, `GoogleDriveSink`, `LocalJsonSink`, `build_sink_from_env`, `DrivePuller`, `get_drive_puller`
+
 ## [2.3.0] - 2026-10-03
 
 ### Fixed — Drive push Gold JSON bị trống trên Drive folder
