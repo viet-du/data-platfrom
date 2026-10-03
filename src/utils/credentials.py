@@ -36,13 +36,21 @@ _LEGACY_PATH = "configs/google-drive-credentials.json"
 
 
 def resolve_credentials_path() -> str | None:
-    """Return a path to a valid SA JSON file, or None if unavailable."""
-    # 1) Explicit path via env var wins.
-    explicit = os.environ.get(_ENV_PATH)
-    if explicit and Path(explicit).is_file():
-        return explicit
+    """Return a path to a valid SA JSON file, or None if unavailable.
 
-    # 2) Raw JSON in env var: materialize to a tmp file once.
+    Precedence (v11.1 - fix: raw JSON wins over path env):
+      1. GOOGLE_DRIVE_CREDENTIALS_JSON env var (raw JSON, recommended)
+      2. GOOGLE_DRIVE_CREDENTIALS env var (path to JSON file)
+      3. Legacy in-repo file (local dev only)
+
+    Why the order changed: the previous order preferred the path env
+    var, which on Railway is a stale binary file left from the old
+    oauth2 flow. Even if GOOGLE_DRIVE_CREDENTIALS_JSON is also set,
+    the path env was winning and pointing at unparseable bytes. The
+    new code tries the raw JSON first; if it's set and valid, the
+    stale path env is ignored.
+    """
+    # 1) Raw JSON in env var: materialize to a tmp file once.
     raw = os.environ.get(_ENV_JSON)
     if raw:
         try:
@@ -77,6 +85,11 @@ def resolve_credentials_path() -> str | None:
             _ENV_JSON, data.get("client_email"),
         )
         return path
+
+    # 2) Explicit path via env var (only if no raw JSON was set above).
+    explicit = os.environ.get(_ENV_PATH)
+    if explicit and Path(explicit).is_file():
+        return explicit
 
     # 3) Legacy in-repo file (local dev convenience).
     legacy = Path(_LEGACY_PATH)
