@@ -489,10 +489,27 @@ class BotCommands:
             self.crawler.is_running = True
             result = self.crawler.run_crawl_news()
             self.crawler.is_running = False
-            if result['success']:
-                self.telegram.send(f"✅ <b>Crawl hoàn thành!</b>\n📰 {result['articles']} bài viết\n⏱️ {result['time']:.1f}s")
+            if result.get('success'):
+                # last_result schema: {success, totals:{crawled,bronze,silver,gold,
+                # parquet,duplicates,rejected,uploaded,upload_failed}, sink, sink_ok,
+                # per_source, time}
+                totals = result.get('totals', {})
+                crawled = totals.get('crawled', 0)
+                uploaded = totals.get('uploaded', 0)
+                upload_failed = totals.get('upload_failed', 0)
+                sink_label = f"☁️ Drive: <b>{uploaded}</b>/{uploaded + upload_failed}"
+                self.telegram.send(
+                    f"✅ <b>Crawl hoàn thành!</b>\n"
+                    f"📰 Crawled: <b>{crawled}</b> | "
+                    f"🥉 Bronze {totals.get('bronze', 0)} | "
+                    f"🥈 Silver {totals.get('silver', 0)} | "
+                    f"🥇 Gold {totals.get('gold', 0)}\n"
+                    f"📦 Parquet {totals.get('parquet', 0)} | "
+                    f"♻️ dups {totals.get('duplicates', 0)}\n"
+                    f"{sink_label} | ⏱️ <b>{result.get('time', 0):.1f}s</b>"
+                )
             else:
-                self.telegram.send(f"❌ <b>Lỗi:</b> {result.get('error', 'Unknown')}")
+                self.telegram.send(f"❌ <b>Lỗi:</b> <code>{result.get('error', 'Unknown')[:200]}</code>")
         threading.Thread(target=run, daemon=True).start()
         return "🚀 <b>Đã khởi động crawl!</b>\nBạn sẽ nhận thông báo khi xong."
     
@@ -1403,10 +1420,20 @@ def run_scheduler(telegram: TelegramService, crawler: CrawlerService):
         telegram.buffer(f"{emoji} Auto crawl — {hour}", "INFO")
         result = crawler.run_crawl_news()
         if result['success']:
+            # last_result schema: totals.crawled (số bài crawler đã lấy về),
+            # totals.uploaded (số nguồn push Drive thành công).
+            totals = result.get('totals', {})
+            crawled = totals.get('crawled', 0)
+            uploaded = totals.get('uploaded', 0)
             telegram.buffer(
-                f"✅ Crawl OK — {result['articles']} bài",
+                f"✅ Crawl OK — {crawled} bài",
                 "OK",
-                detail=f"{result['time']:.1f}s",
+                detail=(
+                    f"{result['time']:.1f}s, "
+                    f"B{totals.get('bronze',0)}/S{totals.get('silver',0)}/"
+                    f"G{totals.get('gold',0)}, Drive={uploaded}/"
+                    f"{uploaded + totals.get('upload_failed', 0)}"
+                ),
             )
         else:
             # Errors are still immediate — the user needs to know.
