@@ -376,7 +376,7 @@ class BotCommands:
 
 ⏰ Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 🔄 Last crawl: {last}
-🏷 Build: <code>cache-bust-v6-marker</code> (base-image swap + COPY sanity-check)
+🏷 Build: <code>cache-bust-v7-drive-pull-on-boot</code>
 
 📁 <b>Data Layers (3-tier):</b>
 🥉 Bronze:  <code>{layers.get('bronze', 0)}</code> files
@@ -1458,7 +1458,7 @@ def main():
     # running, not a stale container that survived a deploy.
     # Bump this string every time we deploy; if /status still shows
     # the old value, Railway is still serving the previous image.
-    logger.info("BUILD_TAG: cache-bust-v6-marker (base-image swap + COPY sanity-check)")
+    logger.info("BUILD_TAG: cache-bust-v7-drive-pull-on-boot")
     logger.info("=" * 50)
     data_root = ensure_data_dirs()
     logger.info(f"Data root: {data_root}")
@@ -1466,6 +1466,27 @@ def main():
     probe = data_root / ".startup_probe"
     probe.write_text(datetime.now().isoformat())
     logger.info(f"Volume write probe OK: {probe.read_text()}")
+    # Volume mount diagnostic: list contents + du so we can see whether
+    # the Railway Volume is actually mounted at /app/data, and whether
+    # silver/gold/parquet dirs already have files from previous deploys.
+    try:
+        import subprocess
+        df = subprocess.run(["df", "-h", str(data_root)], capture_output=True, text=True, timeout=5)
+        for line in df.stdout.splitlines():
+            logger.info("df: %s", line)
+        du = subprocess.run(["du", "-sh", str(data_root)], capture_output=True, text=True, timeout=10)
+        for line in du.stdout.splitlines():
+            logger.info("du: %s", line)
+        for sub in ("raw", "silver", "gold", "parquet", "chroma"):
+            d = data_root / sub
+            if d.exists():
+                entries = list(d.iterdir())
+                sample = sorted([f.name for f in entries])[:10]
+                logger.info("Volume %s: %d entries, sample=%s", sub, len(entries), sample)
+            else:
+                logger.info("Volume %s: MISSING", sub)
+    except Exception as e:
+        logger.warning("Volume diag failed: %s", e)
     start_health_server()
     telegram = TelegramService()
     crawler = CrawlerService(telegram)
@@ -1478,6 +1499,33 @@ def main():
     def _auto_index():
         logger.info("RAG auto-index: starting background index on boot...")
         telegram.send("🔄 <b>Bot đang khởi động...</b>\n⏳ Đang build RAG index lần đầu (tải model, có thể mất 2-5 phút).")
+        # Fallback: if local gold_dir is empty (Volume trống hoặc lần đầu
+        # deploy), pull gold batches từ Drive rồi mới rebuild index. Drive
+        # đã có snapshot gold_*.json từ các lần crawl trước.
+        try:
+            from src.storage.drive_puller import get_drive_puller
+            from src.pipeline import get_pipeline
+            pipeline = get_pipeline()
+            gold_dir = pipeline.gold_dir
+            existing_gold = sorted(gold_dir.glob("gold_*.json"))
+            if not existing_gold:
+                logger.info("RAG auto-index: gold_dir empty — pulling from Drive...")
+                telegram.send("📥 <b>Volume rỗng — kéo gold batches từ Drive...</b>")
+                puller = get_drive_puller()
+                sources_env = os.environ.get("CRAWLER_SOURCES", "vnexpress,tuoitre,vietnamnet,dantri")
+                sources = [s.strip() for s in sources_env.split(",") if s.strip()]
+                pull_result = puller.sync_today(sources=sources, reindex=False)
+                logger.info("DrivePuller: %s", pull_result)
+                if pull_result.get("downloaded", 0) > 0:
+                    telegram.send(
+                        f"✅ <b>Pull từ Drive OK:</b>\n"
+                        f"  Downloaded: <code>{pull_result['downloaded']}</code> files\n"
+                        f"  Indexed (gold): <code>{pull_result.get('indexed', 0)}</code> records\n"
+                        f"  → Đang rebuild RAG..."
+                    )
+        except Exception as e:
+            logger.warning("RAG auto-index: Drive pull skipped: %s", e)
+
         try:
             result = bot.cmd_index()
             logger.info("RAG auto-index: done — %s", result)
