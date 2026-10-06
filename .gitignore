@@ -22,6 +22,9 @@ data/chroma/
 # Railway instead (see src/utils/credentials.py).
 configs/google-drive-credentials.json
 configs/*.secret.json
+configs/client_secret*.json
+configs/client_secret_token*.json
+client_secret_*.apps.googleusercontent.com.json
 *.pem
 *.key
 
