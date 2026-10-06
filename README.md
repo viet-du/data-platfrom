@@ -417,6 +417,8 @@ Repo này đi kèm một số tài liệu bổ sung trong thư mục `docs/`:
 ---
 
 ## Liên hệ
+mail:Duviet720@gmail.com
+sđt:0372876814
 
 Dự án mã nguồn mở theo giấy phép MIT. Stack chính: Python 3.11,
 Apache Airflow, PyArrow, ChromaDB, Google Gemini, python-telegram-bot,
