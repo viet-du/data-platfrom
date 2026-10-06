@@ -39,3 +39,4 @@ configs/*.secret.json
 # Temp
 *.tmp
 tmp/
+gen-lang-client-*.json
